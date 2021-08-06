@@ -1,0 +1,126 @@
+.noddingHead{
+    animation: noddingHead 5s infinite;
+}
+.eyesBigger{
+    animation: eyeLarger 7s infinite;
+}
+.movingTail{
+    animation: moveTail 5s infinite;
+}
+.movingLeftEar{
+    animation: moveEarLeft 5s infinite;
+}
+.movingRightEar{
+    animation: moveEarRight 5s infinite;
+}
+.movingWhiskersRight{
+    animation: moveWhiskersRight 5s infinite;
+}
+.movingWhiskersLeft{
+    animation: moveWhiskersLeft 5s infinite;
+}
+.enflatedBelly{
+    animation: enflateBelly 5s infinite;
+}
+.enflatedFeet{
+    animation: enflateFeet 5s infinite;
+}
+.eyesTired{
+    animation: eyesTire 10s infinite;
+}
+.eyesChangeColor{
+    animation: multi-Colored 3s infinite;
+    
+}
+@keyframes eyeLarger {
+    0%{ transform: scale(1)}
+    30%{transform: scale(1.2)}
+    60%{ transform: scale(1.2)}
+    100%{transform: scale(1)}
+}
+@keyframes multi-Colored{
+    
+    0%{ background-color: rgb(255, 0, 0)}
+    7%{ background-color:rgb(253, 93, 0);}
+    14%{ background-color:rgb(255, 153, 0); }
+    21%{ background-color:rgb(253, 207, 0); }
+    28%{ background-color:rgb(251, 255, 0) }
+    35%{ background-color:rgb(145, 255, 0) }
+    42%{ background-color:rgb(20, 255, 118) }
+    49%{ background-color:rgb(0, 195, 255) }
+    56%{ background-color:rgb(0, 119, 255) }
+    63%{ background-color:rgb(0, 17, 255) }
+    70%{ background-color:rgb(112, 9, 230) }
+    77%{ background-color: rgb(184, 14, 236); }
+    84%{ background-color: rgb(247, 0, 255);}
+    100%{ background-color:rgb(255, 0, 119); }
+}
+@keyframes eyesTire{
+    0%{ border-top: 0px solid }
+    25%{ border-top: 10px solid }
+    50%{ border-top: 5px solid }
+    75%{ border-top: 15px solid }
+    100%{ border-top: 0px solid }
+}
+@keyframes enflateBelly{
+    0%{ transform: scale(1) }
+    30%{ transform:  scale(1.2) }
+    60%{ transform: scale(1.4) }
+    100%{ transform: scale(1) }
+}
+@keyframes enflateFeet{
+    0%{ transform: scale(1) }
+    30%{ transform:  scale(1.05) }
+    60%{ transform: scale(1.1) }
+    100%{ transform: scale(1) }
+}
+
+@keyframes moveWhiskersRight{
+    0%{ transform: rotate(0deg) }
+    30%{ transform: rotate(-3deg) }
+    60%{ transform: rotate(3deg) }
+    100%{ transform: rotate(0deg) }
+}
+@keyframes moveWhiskersLeft{
+    0%{ transform: rotate(0deg) }
+    30%{ transform: rotate(-3deg) }
+    60%{ transform: rotate(3deg) }
+    100%{ transform: rotate(0deg) }
+}
+
+@keyframes moveHead{
+    0%{ transform: rotate(0deg) }
+    30%{ transform: rotate(5deg) }
+    60%{ transform: rotate(-5deg) }
+    100%{ transform: rotate(0deg) }
+}
+
+@keyframes noddingHead{
+    0%{ transform: translate(0px, 0px); }
+    30%{ transform: translate(-10px, 0px); }
+    60%{ transform: translate(10px, 0px); }
+    100%{ transform: translate(0px, 0px); }
+}
+
+
+@keyframes moveTail{
+    0%{ transform: rotate(53deg) }
+    50%{ transform: rotate(65deg) }
+    100%{ transform: rotate(53deg) }
+}
+
+@keyframes moveEarLeft{
+    0%{ transform: rotate(90deg) }
+    30%{ transform: rotate(75deg) }
+    60%{ transform: rotate(105deg) }
+    100%{ transform: rotate(90deg) }
+}
+
+@keyframes moveEarRight{
+    0%{ transform: rotate(0deg) }
+    30%{ transform: rotate(-5deg) }
+    60%{ transform: rotate(15deg) }
+    100%{ transform: rotate(0deg) }
+}
+
+

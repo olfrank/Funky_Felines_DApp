@@ -1,0 +1,124 @@
+pragma solidity >=0.4.22 <0.9.0;
+
+import "./Catcontract.sol";
+import "./ICatMarketplace.sol";
+
+contract Marketplace is ICatMarketPlace{
+
+    Catcontract private _catContract;
+
+    struct Offer{
+     address payable seller;
+     uint256 price;
+     uint256 index;
+     uint256 tokenId;
+     bool active;
+
+ }
+    Offer[] offers;
+          //tokenId => Offer
+    mapping(uint256 => Offer) tokenIdToOffer;
+
+
+    function setKittyContract(address _catContractAddress) external override{
+        _catContract = Catcontract(_catContractAddress);
+    }
+
+    constructor(address _catContractAddress){
+        _catContract = Catcontract(_catContractAddress);
+        
+    }
+    
+
+    function getOffer(uint256 _tokenId) external override view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active){
+        Offer storage offer = tokenIdToOffer[_tokenId];
+        return (
+            offer.seller,
+            offer.price,
+            offer.index,
+            offer.tokenId,
+            offer.active
+                );
+    }
+
+    function getAllTokenOnSale() external override view  returns(uint256[] memory listOfOffers){
+        if(offers.length == 0){
+            return new uint256[](0);//return empty array
+        }else{
+            uint256[] memory result = new uint256[](offers.length);
+            uint256 offerId;
+            for(offerId = 0; offerId < offers.length; offerId++){
+                if(offers[offerId].active == true){
+                    result[offerId] = offers[offerId].tokenId;
+                }
+            }
+            return result;
+        }
+    }
+
+    //* Requirement: There can only be one active offer for a token at a time.
+    //* Requirement: Marketplace contract (this) needs to be an approved operator when the offer is created.
+
+    function ownerOfCat(address theAddress, uint256 theTokenId) internal view returns (bool){
+        return (_catContract.ownerOf(theTokenId)== theAddress);
+    }
+     
+    function createOffer(uint256 _price, uint256 _tokenId) public override{
+        require(ownerOfCat(msg.sender, _tokenId));
+        require(tokenIdToOffer[_tokenId].active == false, "There is currently an active offer");
+        require(_catContract.isApprovedForAll(msg.sender, address(this)), "The marketplace contract must be approved to create an offer");
+
+        Offer memory _offer = Offer({
+            seller: payable(msg.sender),
+            price: _price,
+            index: offers.length,
+            tokenId: _tokenId,
+            active: true
+        });
+
+        tokenIdToOffer[_tokenId] = _offer;
+        offers.push(_offer);
+
+        emit MarketTransaction("Create offer", msg.sender, _tokenId);
+    }
+
+    /**
+    * Removes an existing offer.
+    * Emits the MarketTransaction event with txType "Remove offer"
+    * Requirement: Only the seller of _tokenId can remove an offer.
+     */
+    function removeOffer(uint256 _tokenId) external override{
+        require(tokenIdToOffer[_tokenId].seller == msg.sender, "You need to be the seller of that cat");
+
+        delete tokenIdToOffer[_tokenId];
+        offers[tokenIdToOffer[_tokenId].index].active = false;
+
+        emit MarketTransaction("Remove offer", msg.sender, _tokenId);
+    }
+
+    /**
+    * Executes the purchase of _tokenId.
+    * Sends the funds to the seller and transfers the token using transferFrom in Kittycontract.
+    * Emits the MarketTransaction event with txType "Buy".
+    * Requirement: The msg.value needs to equal the price of _tokenId
+    * Requirement: There must be an active offer for _tokenId
+     */
+    function buyKitty(uint256 _tokenId) external override payable{
+        Offer memory offer = tokenIdToOffer[_tokenId];
+        require(msg.value == offer.price, "The price doesnt match");
+        require(tokenIdToOffer[_tokenId].active == true, "No active orders");
+
+        delete offer;
+        offers[offer.index].active = false;
+
+        if(offer.price > 0 ){//this is push, todo: make it pull
+            offer.seller.transfer(offer.price);
+        }
+
+        _catContract.transferFrom(offer.seller, msg.sender, _tokenId);
+
+        emit MarketTransaction("Buy", msg.sender, _tokenId);
+
+    }
+
+}

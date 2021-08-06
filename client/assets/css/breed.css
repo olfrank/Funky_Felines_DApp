@@ -1,0 +1,40 @@
+
+#firstCat{
+float: left;
+align-items: center;
+padding-left: 10px;
+padding-right: 10px;
+padding-bottom: 50px;
+padding-top: 10px;
+width: 400px;
+height: 450px;
+background-color: rgb(240, 158, 144);
+}
+
+#secondCat{
+    float: right;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+    width: 400px;
+    height: 450px;
+    background-color: rgb(240, 158, 144);
+}
+
+.homePic{
+    padding-left: 450px;
+    align-content: center;
+}
+
+.maleHeadshot{
+    width: 200px;
+}
+.femaleHeadshot{
+    width: 200px;
+}
+
+body {
+    background: rgb(144,197,188);
+}
