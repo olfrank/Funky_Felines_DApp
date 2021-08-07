@@ -2,7 +2,7 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "./IERC721.sol";
 import "./IERC721Receiver.sol";
-
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 contract Catcontract is IERC721 {
 
 string private  constant Name = "Purrfect";
@@ -11,11 +11,13 @@ uint16 private constant Gen0_Creation_Limit = 10;
 bytes4 internal constant MAGIC_ERC721_RECEIVED= bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
 bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
 bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
+address public contractOwner;
 
 event Birth(address owner, uint256 catId, uint256 mumId, uint256 dadId, uint256 genes);
 
+
 modifier onlyOwner{
-    require(msg.sender == address(this));
+    require(contractOwner == msg.sender, "You are not the owner of the contract");
     _;
 }
 
@@ -25,6 +27,12 @@ struct Cat {
     uint32 mumId;
     uint32 dadId;
     uint16 generation;
+}
+
+constructor(){
+    contractOwner = msg.sender;
+    uint256 gen = type(uint256).max;
+    _createCat(0, 0, 0, gen, address(0));//_createCat(0, 0, 0, gen-1, address(0))
 }
 
 Cat[] cats;
@@ -41,10 +49,7 @@ mapping(address => mapping(address => bool)) private operatorApprovals;
 
 uint256 public gen0Counter;
 
-constructor(){
-    uint256 gen = type(uint256).max;
-    _createCat(0, 0, 0, gen, address(0));//_createCat(0, 0, 0, gen-1, address(0))
-}
+
 
 function breed(uint256 _dadId, uint256 _mumId) public {
     //check ownership
@@ -98,7 +103,7 @@ function mixDna(uint256 _dadDNA, uint256 _mumDNA) internal view returns(uint256)
 }
 
 function createCatGen0(uint256 _genes)public onlyOwner{
-    require(gen0Counter < Gen0_Creation_Limit);
+    require(gen0Counter < Gen0_Creation_Limit, "gen0Counter < Gen0_Creation_Limit");
     gen0Counter++;
 
     _createCat(_genes, 0, 0, 0, msg.sender);
@@ -112,7 +117,7 @@ function _createCat(
     address _owner
 )internal returns(uint256){
     Cat memory _cat = Cat({
-        genes: uint64(_genes),
+        genes: uint256(_genes),
         birthTime: uint64(block.timestamp),
         mumId: uint32(_mumId),
         dadId: uint32(_dadId),
@@ -132,14 +137,22 @@ function _createCat(
 }
 
     //returning the values in uint256 due to front end preferences (easier to read)
-    function getCat(uint256 _tokenId) public view returns(uint256, uint256, uint256, uint256, uint256, address){
-        return(cats[_tokenId].genes,
-                cats[_tokenId].birthTime,
-                cats[_tokenId].mumId,
-                cats[_tokenId].dadId,
-                cats[_tokenId].generation,
-                catIndexToOwner[_tokenId]
-                );
+    function getCat(uint256 _tokenId) public view returns(
+        uint256 genes, 
+        uint256 birthTime, 
+        uint256 mumId, 
+        uint256 dadId, 
+        uint256 generation, 
+        address owner 
+        ){
+        return(
+            genes = cats[_tokenId].genes,
+            birthTime = cats[_tokenId].birthTime,
+            mumId = cats[_tokenId].mumId,
+            dadId = cats[_tokenId].dadId,
+            generation = cats[_tokenId].generation,
+            owner = catIndexToOwner[_tokenId]
+        );
     }
 
     function supportsInterface(bytes4 _interfaceId) external pure returns (bool){

@@ -1,21 +1,20 @@
 
 function appendCat(dna, id, gen){
 
-    var CatDna = catDna(dna);
+    var catDna = catDna(dna);
     catContainer(id);
-    renderCat(CatDna, id);
+    renderCat(catDna, id);
     $('#catview' + id).attr('onclick', 'go_to("catDetails.html?catId=' + id + '")')
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
-
 }
 
 function breedAppend(dna, id, gen, gender){
-    var CatDNA = catDna(id);
+    var catDna = catDna(dna);
     catBox(id);
-    renderCat(CatDNA, id);
+    renderCat(catDna, id);
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>
@@ -26,9 +25,13 @@ function breedAppend(dna, id, gen, gender){
 }
 
 function selectBreed(dna, id, gen, gender){
-    var CatDNA = catDna(dna);
+    var catDna = catDna(dna);
     var body = catBody(gender);
-    var Cattributes = cattributes(gender)
+    var cattributes = cattributes(gender)
+    $("#cattributes" + gender).html(cattributes)
+    $('#' + gender).html(body);
+
+    renderCat(catDna, gender);
     $('#' + gender).addClass('breedSelect')
     $('#' + gender).attr('data-catid', id)
     $('#' + gender).attr('onclick', 'breedKitties("' + gender + '")')
@@ -38,19 +41,19 @@ function selectBreed(dna, id, gen, gender){
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
     $('#catSelection').modal('hide')
     removeSelection(id, gender)
-    readyToBredd()
+    readyToBreed()
 
 }
 
-function readyToBredd() {
+function readyToBreed() {
 
-    var mumId = $('#DameId').val()
-    var dadId = $('#SireId').val()
+    var mumId = $('#female').val()
+    var dadId = $('#male').val()
 
     if (!empty(mumId) && !empty(dadId)) {
         $('#breed').css('filter', 'none')
         $('#breed').prop('disabled', false)
-        $('#breed').attr('onclick', 'breed("' + dadId + '","' + mumId + '")')
+        $('#breed').attr('onclick', 'breed(" ' + dadId + ' "," ' + mumId + ' ")')
         return true
     }
     $('#breed').prop('disabled', true)
@@ -59,18 +62,20 @@ function readyToBredd() {
 }
 
 function removeSelection(id, gender){
-    var selectionDiv = `<div align="center">
+    var selectionDiv = `
+                        <div align="center">
                                 <div class="egg">
                                 </div>
                                 <h4>Select a cat as `+ gender + `</h4>
                             </div>
-                        </div>`
+                        </div>
+                        `
 
     if (gender == 'female') {
         var catData = $('#male').attr('data-catid')
         if (catData == id) {
             $('#male').attr('data-catid', 0)
-            $('#male').attr('onclick', 'breedKitties(this.id)')
+            $('#male').attr('onclick', 'breedCats(this.id)')
             $('#male').html(selectionDiv)
             $('#male').removeClass('breedSelect')
             $('#catDNAMale').html('')
@@ -90,14 +95,14 @@ function removeSelection(id, gender){
 
 async function singleCat(dna, id, gen) {
 
-    var KittyDna = catDna(dna)
+    var catDna = catDna(dna)
     //2 build the singleCat into HTML
     var body = catBody(id)
     var Cattributes = cattributes(id)
     $('#cattributes').html(Cattributes)
     $('#singleCat').html(body)
     //3 Render the cats CSS style depending on DNA string
-    renderCat(KittyDna, id)
+    renderCat(catDna, id)
     $('#catDNA').html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>

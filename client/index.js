@@ -4,8 +4,8 @@ var marketplace;
 var user;
 // var dnaStr = "457896541299";
 
-var contractAddress = "0x907EcC1E7732ba1397CF01E16eD7DaBf2483811d";
-var marketplaceContract = "0x555DDBBfBE210f2D64c55c3C6af2D6D05A999f35";
+var contractAddress = "0x702e5F297E4fE0E38041b6D906fe9156040e8233";
+var marketplaceContract = "0x4E485B6AEe283ae0Fa6A08FC5a28E65022673d5C";
 var contractOwner;
 
 $(document).ready(function () {
@@ -16,25 +16,10 @@ $(document).ready(function () {
     //   contractOwner = test;
     // });
     user = accounts[0];
-    console.log(token);
-    console.log(marketplace);
+    console.log("Cat Contract instance: "+token);
+    console.log("Marketplace instance: "+marketplace);
 
 
-    token.events.Birth()
-      .on('data', (event) => {
-        console.log(event);
-        let owner = event.returnValues.owner;
-        let catId = event.returnValues.catId;
-        let mumId = event.returnValues.mumId;
-        let dadId = event.returnValues.dadId;
-        let genes = event.returnValues.genes        
-        alert_msg("owner:" + owner
-          + " catId:" + catId
-          + " mumId:" + mumId
-          + " dadId:" + dadId
-          + " genes:" + genes,'success')
-      })
-      .on('error', console.error);
 
     marketplace.events.MarketTransaction()
       .on('data', (event) => {
@@ -74,17 +59,37 @@ $(document).ready(function () {
 
 });
 
-function createCat() {
-   
-  try {
-    var dnaStr = getDna();
-    let result = token.methods.createCatGen0(dnaStr).send();
-    console.log(result);
-    
-  } catch (err) {
-    console.log(err);
+function createCat(){
+  var dnaStr = getDna();
+  token.methods.createCatGen0(dnaStr).send({}, function(error, txHash){
+    if(error)
+      console.log(error)
+    else 
+      console.log(txHash)
+      alert("You Have Successfully Created a Cat");
+      
+      token.events.Birth().on('data', (event) => {
+        console.log(event);
+        let owner = event.returnValues.owner;
+        console.log(owner);
+        let catId = event.returnValues.catId;
+        console.log(catId);
+        let mumId = event.returnValues.mumId;
+        console.log(mumId);
+        let dadId = event.returnValues.dadId;
+        console.log(dadId);
+        let genes = event.returnValues.genes    
+        console.log(genes);
+        
+        alert_msg("owner:" + owner
+                  + " catId:" + catId
+                  + " mumId:" + mumId
+                  + " dadId:" + dadId
+                  + " genes:" + genes,'success')
+      })
+      .on('error', console.error);
+  });
   }
-}
 
 
 async function checkOffer(id) {
@@ -93,8 +98,8 @@ async function checkOffer(id) {
   try {
 
     result = await marketplace.methods.getOffer(id).call();
-    var price = res['price'];
-    var seller = res['seller'];
+    var price = result['price'];
+    var seller = result['seller'];
     var onsale = false
     //If price more than 0 means that cat is for sale
     if (price > 0) {
@@ -157,9 +162,9 @@ async function catOwnership(id) {
 
   if (address.toLowerCase() == user.toLowerCase()) {      
     return true
-  }  
-  return false
-
+  }  else{
+    return false
+  }
 }
 
 
@@ -175,14 +180,14 @@ async function breed(dadId, mumId) {
   try {
     await token.methods.breed(dadId, mumId).send()
   } catch (err) {
-    log(err)
+    console.log(err)
   }
 }
 
 //Appending cats for catalog
 async function catAppend(id) {
   var cat = await token.methods.getCat(id).call()
-  appendCat(cat[0], id, cat['generation'])
+  appendCat(cat.genes, id, cat.generation)
 }
 
 

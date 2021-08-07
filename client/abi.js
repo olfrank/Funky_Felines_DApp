@@ -159,6 +159,20 @@ var abi = {
       },
       {
         "inputs": [],
+        "name": "contractOwner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
         "name": "gen0Counter",
         "outputs": [
           {
@@ -595,6 +609,20 @@ var abi = {
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "getContractAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -693,6 +721,6 @@ var abi = {
       "type": "function",
       "payable": true
     }
-    ]
+  ]
   }
   

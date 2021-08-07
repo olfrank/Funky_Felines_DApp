@@ -28,6 +28,10 @@ contract Marketplace is ICatMarketPlace{
         _catContract = Catcontract(_catContractAddress);
         
     }
+
+    function getContractAddress() external view returns(address){
+        return address(this);
+    }
     
 
     function getOffer(uint256 _tokenId) external override view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active){

@@ -333,7 +333,7 @@ async function headPattern1(){
    }
  
 
-//*********ANIMATIONS**********
+//********* ANIMATIONS **********
 
 function noAnimation(){
     $('.head').removeClass('noddingHead')
