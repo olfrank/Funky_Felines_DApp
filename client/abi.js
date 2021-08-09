@@ -228,32 +228,32 @@ var abi = {
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "",
+            "name": "genes",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "",
+            "name": "birthTime",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "",
+            "name": "mumId",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "",
+            "name": "dadId",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "",
+            "name": "generation",
             "type": "uint256"
           },
           {
             "internalType": "address",
-            "name": "",
+            "name": "owner",
             "type": "address"
           }
         ],

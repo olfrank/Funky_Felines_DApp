@@ -4,8 +4,8 @@ var marketplace;
 var user;
 // var dnaStr = "457896541299";
 
-var contractAddress = "0x702e5F297E4fE0E38041b6D906fe9156040e8233";
-var marketplaceContract = "0x4E485B6AEe283ae0Fa6A08FC5a28E65022673d5C";
+var contractAddress = "0x46B045187410B07a17eF15467bc2c92A39553661";
+var marketplaceContract = "0xF18a40630B25592CB423F9a2eEbc22a0Aa0BD8eC";
 var contractOwner;
 
 $(document).ready(function () {
@@ -16,8 +16,8 @@ $(document).ready(function () {
     //   contractOwner = test;
     // });
     user = accounts[0];
-    console.log("Cat Contract instance: "+token);
-    console.log("Marketplace instance: "+marketplace);
+    console.log("Cat Contract instance: "+ token);
+    console.log("Marketplace instance: "+ marketplace);
 
 
 
@@ -146,7 +146,7 @@ async function myCats() {
   }
 }
 
-//Get kittues for breeding that are not selected
+//Get cats for breeding that are not selected
 async function breedCats(gender) {
   var arrayId = await token.methods.ownedTokens(user).call();
   for (i = 0; i < arrayId.length; i++) {
@@ -180,7 +180,7 @@ async function breed(dadId, mumId) {
   try {
     await token.methods.breed(dadId, mumId).send()
   } catch (err) {
-    console.log(err)
+    console.log("function breed"+err)
   }
 }
 
@@ -201,7 +201,7 @@ async function deleteOffer(id) {
   try {
     await marketplace.methods.removeOffer(id).send();    
   } catch (err) {
-    console.log(err);
+    console.log("deleteOffer function "+err);
   }
 
 }
@@ -212,7 +212,7 @@ async function sellCat(id) {
   try {
     await marketplace.methods.createOffer(amount,id).send();
   } catch (err) {
-    console.log(err);
+    console.log("sellCat function "+err);
   }
 }
 
@@ -221,7 +221,7 @@ async function buyCat(id, price) {
   try {
     await marketplace.methods.buyCat(id).send({ value: amount });
   } catch (err) {
-    console.log(err);
+    console.log("buyCat function "+err);
   }
 }
 
