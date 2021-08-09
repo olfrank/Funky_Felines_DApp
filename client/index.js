@@ -4,8 +4,8 @@ var marketplace;
 var user;
 // var dnaStr = "457896541299";
 
-var contractAddress = "0x46B045187410B07a17eF15467bc2c92A39553661";
-var marketplaceContract = "0xF18a40630B25592CB423F9a2eEbc22a0Aa0BD8eC";
+var contractAddress = "0xa41d706Aeb4f41d412d9265D5180dC119EcAd864";
+var marketplaceContract = "0xFA286fF0b52A8B381281318c1961B5097b7f0677";
 var contractOwner;
 
 $(document).ready(function () {
@@ -18,7 +18,7 @@ $(document).ready(function () {
     user = accounts[0];
     console.log("Cat Contract instance: "+ token);
     console.log("Marketplace instance: "+ marketplace);
-
+    myCats();
 
 
     marketplace.events.MarketTransaction()
@@ -27,7 +27,7 @@ $(document).ready(function () {
         var eventType = event.returnValues["TxType"].toString()
         var tokenId = event.returnValues["tokenId"]
         if (eventType == "Buy") {
-          alert_msg('Succesfully Kitty purchase! Now you own this Kitty with TokenId: ' + tokenId, 'success')
+          alertMSG('Succesfully Kitty purchase! Now you own this Kitty with TokenId: ' + tokenId, 'success')
         }
         if (eventType == "Create offer") {
           alert_msg('Successfully Offer set for Kitty id: ' + tokenId, 'success')
@@ -43,7 +43,7 @@ $(document).ready(function () {
           
         }
         if (eventType == "Remove offer") {
-          alert_msg('Successfully Offer remove for Kitty id: ' + tokenId, 'success')
+          alertMSG('Successfully Offer remove for Kitty id: ' + tokenId, 'success')
           $('#cancelBox').addClass('hidden')
           $('#cancelBtn').attr('onclick', '')          
           $('#catPrice').val('')
@@ -62,11 +62,10 @@ $(document).ready(function () {
 function createCat(){
   var dnaStr = getDna();
   token.methods.createCatGen0(dnaStr).send({}, function(error, txHash){
-    if(error)
-      console.log(error)
-    else 
+    if(error){
+      console.log("createCat function " + error)
+    }else {
       console.log(txHash)
-      alert("You Have Successfully Created a Cat");
       
       token.events.Birth().on('data', (event) => {
         console.log(event);
@@ -81,15 +80,32 @@ function createCat(){
         let genes = event.returnValues.genes    
         console.log(genes);
         
-        alert_msg("owner:" + owner
-                  + " catId:" + catId
-                  + " mumId:" + mumId
-                  + " dadId:" + dadId
-                  + " genes:" + genes,'success')
+        alertMSG("You have successfully created a cat... INFO: owner: " + owner
+                  + " catId: " + catId
+                  + " mumId: " + mumId
+                  + " dadId: " + dadId
+                  + " genes: " + genes,'success');
       })
       .on('error', console.error);
+
+      
+    }
   });
   }
+
+//Get cats of a current address
+async function myCats() {
+  var arrayId = await token.methods.ownedTokens(ethereum.selectedAddress).call();
+  for (i = 0; i < arrayId.length; i++) {
+    catAppend(arrayId[i]);
+  }
+}
+
+//Appending cats for catalog
+async function catAppend(id) {
+  var cat = await token.methods.getCat(id).call()
+  appendCat(cat.genes, id, cat.generation)
+}
 
 
 async function checkOffer(id) {
@@ -138,19 +154,14 @@ async function contractCatalog() {
   }
 }
 
-//Get kittues of a current address
-async function myCats() {
-  var arrayId = await token.methods.ownedTokens(user).call();
-  for (i = 0; i < arrayId.length; i++) {
-    catAppend(arrayId[i])
-  }
-}
+
+
 
 //Get cats for breeding that are not selected
 async function breedCats(gender) {
-  var arrayId = await token.methods.ownedTokens(user).call();
+  var arrayId = await token.methods.ownedTokens(ethereum.selectedAddress).call();
   for (i = 0; i < arrayId.length; i++) {
-    appendBreed(arrayId[i], gender)
+    breedAppend(arrayId[i], gender)
   }
 }
 
@@ -168,7 +179,6 @@ async function catOwnership(id) {
 }
 
 
-
 //Appending cats to breed selection
 async function appendBreed(id, gender) {
   var cat = await token.methods.getCat(id).call()
@@ -184,11 +194,7 @@ async function breed(dadId, mumId) {
   }
 }
 
-//Appending cats for catalog
-async function catAppend(id) {
-  var cat = await token.methods.getCat(id).call()
-  appendCat(cat.genes, id, cat.generation)
-}
+
 
 
 async function catSingle() {
@@ -227,6 +233,8 @@ async function buyCat(id, price) {
 
 async function totalCats() {
   var cats = await token.methods.totalSupply().call();
+
+  return cats;
 }
 
 

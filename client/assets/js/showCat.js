@@ -1,10 +1,10 @@
 
 function appendCat(dna, id, gen){
 
-    var catDna = catDna(dna);
+    var catDna = catDNA(dna);
     catContainer(id);
     renderCat(catDna, id);
-    $('#catview' + id).attr('onclick', 'go_to("catDetails.html?catId=' + id + '")')
+    // $('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>
@@ -143,34 +143,37 @@ async function catOffer(id) {
 
 function renderCat(dna, id) {
 
-    headColor(dna.headcolor, id)
+    bodyColor(dna.headBodyColor, id)
     eyeColor(dna.eyesColor, id)
-    mouthAndBelly(dna.mouthColor, id)
+    bellyColor(dna.bellyMouthColor, id)
+    earColor(dna.earsInnerTailColor, id)
+    tailColor(dna.tailColor, id)
     
-    earsAndPaw(dna.earsColor, id)
     eyeVariation(dna.eyesShape, id)
     decorationVariation(dna.decorationPattern, id)
-    midColor(dna.decorationMidcolor, id)
-    SidesColor(dna.decorationSidescolor, id)
+    decorationMidColor(dna.decorationMidcolor, id)
+    decorationSidesColor(dna.decorationSidescolor, id)
     animationVariation(dna.animation, id)
 }
 
 
-function catDna(dnaAttribute){
+function catDNA(dnaAttribute){
     var dna = {
+        //colors
         "headBodyColor": dnaAttribute.substring(0, 2),
         "eyesColor": dnaAttribute.substring(2, 4),
         "bellyMouthColor": dnaAttribute.substring(4, 6),
-        "earsColor": dnaAttribute.substring(6, 8),
+        "earsInnerTailColor": dnaAttribute.substring(6, 8),
         "tailColor": dnaAttribute.substring(8, 10),
-        "eyeShape": dnaAttribute.substring(10, 11),
-        "patternShape": dnaAttribute.substring(11, 12),
-        "patternMidColor": dnaAttribute.substring(12, 14),
-        "patternSidesColor": dnaAttribute.substring(14, 16),
-        "animDna": dnaAttribute.substring(16, 17),
-        "lastDna": dnaAttribute.substring(17, 18)
+        // cattributes
+        "eyesShape": dnaAttribute.substring(10, 11),
+        "decorationPattern": dnaAttribute.substring(11, 12),
+        "decorationMidcolor": dnaAttribute.substring(12, 14),
+        "decorationSidescolor": dnaAttribute.substring(14, 16),
+        "animation": dnaAttribute.substring(16, 17),
+        "lastNum": dnaAttribute.substring(17, 18)
     }
-
+    console.log(dna);
     return dna;
 }
 
@@ -189,7 +192,7 @@ function catContainer(id){
 }
 
 function catBody(id){
-    var single = `<div class = "cat" id = "newCat">
+    var single = `  <div class = "cat" id = "newCat`+id+`">
                         <div id = "catEars" class = "ears">
                             <div id = "leftEar `+ id + `" class= "ear left-ear">
                                 <div class = " left-inner-ear"></div>
@@ -200,7 +203,7 @@ function catBody(id){
                         </div>
 
                         <div id = "catTail `+ id + `" class = "tail">
-                            <div id = "inner-tail"></div>
+                            <div id = "inner-tail`+id+`"></div>
                         </div>
 
                         <div id = "catBody `+ id + `" class = "body"></div>
@@ -261,9 +264,9 @@ function catBody(id){
 function cattributes(id) {
 
     var Cattributes = `<ul class="ml-5 cattributes">
-                            <li><span id="eyeName`+ id + `"></span> eyes</li>
-                            <li><span id="decorationName`+ id + `"></span> decoration</li>
-                            <li><span id="animationName`+ id + `"></span></li>
+                            <li><span id="eyeName`+ id + `"></span> eyes: </li>
+                            <li><span id="decorationName`+ id + `"></span> decoration: </li>
+                            <li><span id="animationName`+ id + `"></span> animation: </li>
                         </ul>`
     return Cattributes
 }

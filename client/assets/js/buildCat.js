@@ -1,42 +1,41 @@
 
-var color = Object.values(allColors());
+var colors = Object.values(allColors());
 
 function bodyColor(code, id) {
     var color = colors[code];
     $('#catBody'+ id + ', #catHead'+ id +', #bothFeet'+ id).css('background', '#' + color)  //This changes the color of the cat
-    
 }
 
-function eyeColor(id, code) {
+function eyeColor(code, id) {
     var color = colors[code];
     $('#catEyes'+ id).find('span').css('background', '#' + color);
     
 }
 
-function bellyColor(id, code) {
+function bellyColor(code, id) {
     var color = colors[code];
     $('#mouth'+ id +  ', #catBelly'+ id).css('background', '#' + color);
     
 }
 
-function earColor(id, code) {
+function earColor(code, id) {
     var color = colors[code];
     $('#leftEar'+ id + ', #rightEar' + id + ', #inner-tail'+ id).css('background', '#' + color);
     
 }
 
-function tailColor(id, code) {
+function tailColor(code, id) {
     var color = colors[code];
     $('#catTail'+ id).css('background', '#' + color);
     
 }
-function decorationMidColor(id, code) {
+function decorationMidColor(code, id) {
     var color = colors[code];
     $('#midShape'+ id).css('background', '#' + color)  //This changes the mid decoration color of the cat
     
 }
 
-function decorationSidesColor(id, code) {
+function decorationSidesColor(code, id) {
     var color = colors[code];
     $('#leftShape'+ id +  ', #rightShape'+ id).css('background', '#' + color)  //This changes the side decoration color of the cat
    
@@ -199,66 +198,6 @@ function animationVariation(num, id){
 
 //**********EYE TYPES************
 
-async function normalEyes() {
-    await $('#catEyes').find('span').css('border', 'none')
-    await $('#catEyes').find(innerBigLeft).css('background-color', 'blanchedalmond')
-    await $('#catEyes').find(innerBigRight).css('background-color', 'blanchedalmond')
-    await $('#catEyes').find(innerSmallLeft).css('background-color', 'blanchedalmond')
-    await $('#catEyes').find(innerSmallRight).css('background-color', 'blanchedalmond')
-}
-async function eyesType1() {//top lids half shut-- chiller
-    await $('#catEyes').find('span').css('border-top', '13px solid')
-}
-async function eyesType2() {//bottom lids half shut-- welling up
-    await $('#catEyes').find('span').css('border-bottom', '13px solid')
-}
-async function eyesType3() {//looking down left
-    await $('#catEyes').find('span').css('border-top', '12px solid')
-    await $('#catEyes').find('span').css('border-right', '12px solid')
-
-}
-async function eyesType4() {//looking down right
-    await $('#catEyes').find('span').css('border-top', '12px solid')
-    await $('#catEyes').find('span').css( 'border-left', '12px solid')
-}
-
-async function eyesType5() {//sleepy
-    await $('#catEyes').find('span').css('border-top', '17px solid')
-    await $('#catEyes').find('span').css('border-bottom', '10px solid')
-    await $('#catEyes').find(innerBigRight).css('background-color', '#ffebcd00')
-    await $('#catEyes').find(innerSmallLeft).css('background-color', '#ffebcd00')
-    await $('#catEyes').find(innerSmallRight).css('background-color', '#ffebcd00')
-    await $('#catEyes').find(innerBigLeft).css('background-color', '#ffebcd00')
-}
-
-async function eyesType6() {//top lid half shut left eye
-    await $('#catEyes').find(leftPupil).css('border-top', '13px solid')
-}
-async function eyesType7() {//top lid half shut right eye
-    await $('#catEyes').find(rightPupil).css('border-top', '13px solid')
-}
-
-async function eyesType8() {//cross-eyed
-    await $('#catEyes').find(leftPupil).css('border-left', '11px solid')
-    await $('#catEyes').find(rightPupil).css('border-right', '12px solid')
-}
-
-async function eyesType9() { //wink left eye
-    await $('#catEyes').find(leftPupil).css('border-top', '14px solid')
-    await $('#catEyes').find(leftPupil).css('border-bottom', '15px solid')
-    await $('#catEyes').find(innerBigLeft).css('background-color', '#ffebcd00')
-    await $('#catEyes').find(innerSmallLeft).css('background-color', '#ffebcd00')
-}
-
-async function eyesType10() {//small pupil
-    await $('#catEyes').find('span').css('border-top', 'solid 7px')
-    await $('#catEyes').find('span').css('border-bottom', 'solid 7px')
-    await $('#catEyes').find('span').css('border-left', 'solid 7px')
-    await $('#catEyes').find('span').css('border-right', 'solid 7px')
-}
-
-//********** HEAD PATTERNS **********
-
 var innerSmallLeft = document.getElementsByClassName('inner-eyes-small-left' )
 var innerBigLeft = document.getElementsByClassName('inner-eyes-big-left')
 var innerSmallRight = document.getElementsByClassName('inner-eyes-small-right')
@@ -266,53 +205,114 @@ var innerBigRight = document.getElementsByClassName('inner-eyes-big-right')
 var leftPupil = document.getElementsByClassName('pupil-left')
 var rightPupil = document.getElementsByClassName('pupil-right')
 
-async function normaldecoration() {
+async function normalEyes(id) {
+    await $('#catEyes'+id).find('span').css('border', 'none')
+    await $('#catEyes'+id).find(innerBigLeft).css('background-color', 'blanchedalmond')
+    await $('#catEyes'+id).find(innerBigRight).css('background-color', 'blanchedalmond')
+    await $('#catEyes'+id).find(innerSmallLeft).css('background-color', 'blanchedalmond')
+    await $('#catEyes'+id).find(innerSmallRight).css('background-color', 'blanchedalmond')
+}
+async function eyesType1(id) {//top lids half shut-- chiller
+    await $('#catEyes'+id).find('span').css('border-top', '13px solid')
+}
+async function eyesType2(id) {//bottom lids half shut-- welling up
+    await $('#catEyes'+id).find('span').css('border-bottom', '13px solid')
+}
+async function eyesType3(id) {//looking down left
+    await $('#catEyes'+id).find('span').css('border-top', '12px solid')
+    await $('#catEyes'+id).find('span').css('border-right', '12px solid')
+
+}
+async function eyesType4(id) {//looking down right
+    await $('#catEyes'+id).find('span').css('border-top', '12px solid')
+    await $('#catEyes'+id).find('span').css( 'border-left', '12px solid')
+}
+
+async function eyesType5(id) {//sleepy
+    await $('#catEyes'+id).find('span').css('border-top', '17px solid')
+    await $('#catEyes'+id).find('span').css('border-bottom', '10px solid')
+    await $('#catEyes'+id).find(innerBigRight).css('background-color', '#ffebcd00')
+    await $('#catEyes'+id).find(innerSmallLeft).css('background-color', '#ffebcd00')
+    await $('#catEyes'+id).find(innerSmallRight).css('background-color', '#ffebcd00')
+    await $('#catEyes'+id).find(innerBigLeft).css('background-color', '#ffebcd00')
+}
+
+async function eyesType6(id) {//top lid half shut left eye
+    await $('#catEyes'+id).find(leftPupil).css('border-top', '13px solid')
+}
+async function eyesType7(id) {//top lid half shut right eye
+    await $('#catEyes'+id).find(rightPupil).css('border-top', '13px solid')
+}
+
+async function eyesType8(id) {//cross-eyed
+    await $('#catEyes'+id).find(leftPupil).css('border-left', '11px solid')
+    await $('#catEyes'+id).find(rightPupil).css('border-right', '12px solid')
+}
+
+async function eyesType9(id) { //wink left eye
+    await $('#catEyes'+id).find(leftPupil).css('border-top', '14px solid')
+    await $('#catEyes'+id).find(leftPupil).css('border-bottom', '15px solid')
+    await $('#catEyes'+id).find(innerBigLeft).css('background-color', '#ffebcd00')
+    await $('#catEyes'+id).find(innerSmallLeft).css('background-color', '#ffebcd00')
+}
+
+async function eyesType10(id) {//small pupil
+    await $('#catEyes'+id).find('span').css('border-top', 'solid 7px')
+    await $('#catEyes'+id).find('span').css('border-bottom', 'solid 7px')
+    await $('#catEyes'+id).find('span').css('border-left', 'solid 7px')
+    await $('#catEyes'+id).find('span').css('border-right', 'solid 7px')
+}
+
+//********** HEAD PATTERNS **********
+
+
+async function normaldecoration(id) {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
-    $('#midShapes').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "left": "92px", "border-radius": "0 0 50% 50%" })
-    $('#leftShape').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "-13px", "border-radius": "50% 0 50% 50%" })
-    $('#rightShape').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "13px", "border-radius": "0 50% 50% 50%" })
+    $('#midShapes'+id).css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "left": "92px", "border-radius": "0 0 50% 50%" })
+    $('#leftShape'+id).css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "-13px", "border-radius": "50% 0 50% 50%" })
+    $('#rightShape'+id).css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "13px", "border-radius": "0 50% 50% 50%" })
 }
 
-async function headPattern1(){
-    $('#midShapes').css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
-    $('#leftShape').css({ "transform": "rotate(63deg)", "height": "35px", "width": "14px", "top": "-3px", "border-radius": "50% 0 50% 50%" })
-    $('#rightShape').css({ "transform": "rotate(-63deg)", "height": "35px", "width": "14px", "top": "-2px", "border-radius": "50% 0 50% 50%" })
+async function headPattern1(id){
+    $('#midShapes'+id).css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
+    $('#leftShape'+id).css({ "transform": "rotate(63deg)", "height": "35px", "width": "14px", "top": "-3px", "border-radius": "50% 0 50% 50%" })
+    $('#rightShape'+id).css({ "transform": "rotate(-63deg)", "height": "35px", "width": "14px", "top": "-2px", "border-radius": "50% 0 50% 50%" })
 
 }
 
- async function headPattern2() {
-     await $('#midShapes').css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
-     await $('#leftShape').css({ "transform": "rotate(72deg)", "height": "63px", "width": "14px", "top": "-19px", "left": "-27px", "border-radius": "50% 0 50% 50%" })
-     await $('#rightShape').css({ "transform": "rotate(-74deg)", "height": "63px", "width": "14px", "top": "-17px", "left": "27px", "border-radius": "50% 0 50% 50%" })
+ async function headPattern2(id) {
+     await $('#midShapes'+id).css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
+     await $('#leftShape'+id).css({ "transform": "rotate(72deg)", "height": "63px", "width": "14px", "top": "-19px", "left": "-27px", "border-radius": "50% 0 50% 50%" })
+     await $('#rightShape'+id).css({ "transform": "rotate(-74deg)", "height": "63px", "width": "14px", "top": "-17px", "left": "27px", "border-radius": "50% 0 50% 50%" })
  }
  
- async function headPattern3() {
-     await $('#midShapes').css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
-     await $('#leftShape').css({ "transform": "rotate(30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-     await $('#rightShape').css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
+ async function headPattern3(id) {
+     await $('#midShapes'+id).css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
+     await $('#leftShape'+id).css({ "transform": "rotate(30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
+     await $('#rightShape'+id).css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
  
-     await $('#midShapes').css({ "transform": "scale(0.3)"})
-     await $('#midShapes').css({ "top": "-5"})
+     await $('#midShapes'+id).css({ "transform": "scale(0.3)"})
+     await $('#midShapes'+id).css({ "top": "-5"})
    }
  
-   async function headPattern4() {
-     await $('#midShapes').css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
-     await $('#leftShape').css({ "transform": "rotate(25deg)", "height": "38px", "width": "14px", "top": "-2px", "left": "-8px" })
-     await $('.#leftShape').css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "0px", "left": "9px" })
-     await $('#midShapes').css({ "transform": "rotate(180deg)"})
-     await $('#midShapes').css({ "top": "4px"})   
+   async function headPattern4(id) {
+     await $('#midShapes'+id).css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
+     await $('#leftShape'+id).css({ "transform": "rotate(25deg)", "height": "38px", "width": "14px", "top": "-2px", "left": "-8px" })
+     await $('.#leftShape'+id).css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "0px", "left": "9px" })
+     await $('#midShapes'+id).css({ "transform": "rotate(180deg)"})
+     await $('#midShapes'+id).css({ "top": "4px"})   
    }
  
-   async function headPattern5() {   
-     await $('#leftShape').css({"height": "60px", "width": "15px"})
-     await $('#rightShape').css({"height": "60px", "width": "15px", "top": "0px"})   
+   async function headPattern5(id) {   
+     await $('#leftShape'+id).css({"height": "60px", "width": "15px"})
+     await $('#rightShape'+id).css({"height": "60px", "width": "15px", "top": "0px"})   
    }
  
-   async function headPattern6() {   
-     await $('#midShapes').css({ "height": "10px", "width": "5px", "transform": "rotate(-1deg)", "left": "97px"})
-     await $('#leftShape').css({"height": "10px", "width": "5px"})
-     await $('#rightShape').css({"height": "10px", "width": "5px"})   
+   async function headPattern6(id) {   
+     await $('#midShapes'+id).css({ "height": "10px", "width": "5px", "transform": "rotate(-1deg)", "left": "97px"})
+     await $('#leftShape'+id).css({"height": "10px", "width": "5px"})
+     await $('#rightShape'+id).css({"height": "10px", "width": "5px"})   
    }
  
 
@@ -375,6 +375,11 @@ async function animationType8(id){// mutli-coloured eyes
     $('#leftPupil'+id).addClass('eyesChangeColor')
     $('#rightPupil'+id).addClass('eyesChangeColor')
 }
+
+
+
+
+
 
 //eyes following cursor
 const closer = 4;

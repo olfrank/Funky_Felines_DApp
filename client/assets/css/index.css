@@ -21,7 +21,7 @@ svg text {
   
   /* font-family: Lora; */
   letter-spacing: 5px;
-  stroke: #ca3e3e;
+  stroke: #d3b221;
   font-size: 80px;
   font-weight: 700;
   stroke-width: 0.5;
@@ -41,7 +41,7 @@ svg text {
   100% {
     stroke-dasharray: 50% 0;
     stroke-dashoffstet: -20%;
-    fill: rgba(29, 30, 31, 0.986)
+    fill: rgba(68, 94, 121, 0.986)
   }
   
 }
@@ -178,14 +178,17 @@ background: #ffebcd00;
 }
 
 .intro-box{
-  border-radius: 20px; 
+  border-radius: 15px; 
   background-color: aliceblue;
-  padding: 40px;
+  padding: 30px;
   position: relative;
   width: 28rem;
   height: 28rem;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   margin: auto;
+  color: #fff;
   
   top: -12rem;
   box-shadow: 5px 5px 100px rgb(0, 0, 0);
@@ -194,32 +197,37 @@ background: #ffebcd00;
   -o-transition: all .5s ease-in;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
-  background:#c3a9ff;
+  background:#4d2703;
 }
 
 .intro-box:hover{
   animation: shake 1s;
-  background: #60c8e2;
+  background: #9e7ac7;
 }
 
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  20% { transform: translate(-1px, -2px) rotate(-1deg); }
+  40% { transform: translate(-3px, 0px) rotate(1deg); }
+  60% { transform: translate(3px, 2px) rotate(0deg); }
+  80% { transform: translate(1px, -1px) rotate(1deg); }
+  100% { transform: translate(-1px, 2px) rotate(0deg); }
+  /* 60% { transform: translate(-3px, 1px) rotate(0deg); }
   70% { transform: translate(3px, 1px) rotate(-1deg); }
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); } */
 }
 
 #fancy{
   position: relative;
   left: -17px
 }
+#fancy:hover{
+  transition: s ease-in-out;
+  background:rgb(186, 113, 219);
+}
+
 
 h3{
   font-size: 1.3rem;

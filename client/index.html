@@ -8,11 +8,9 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script> -->
-  <script src="../node_modules/web3/dist/web3.min.js"></script>
+  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-  <script src="./abi.js"></script>
   <link rel="stylesheet" href="assets/css/breed.css">
   
   <link rel="stylesheet" href="assets/css/mystyle.css">
@@ -21,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/factory.css">
   <link rel="stylesheet" href="assets/css/frontend.css">
   <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
   <script src="https://kit.fontawesome.com/8d9e2e73ef.js" crossorigin="anonymous"></script>
 
 </head>
@@ -74,6 +73,7 @@
 
       <div class = "intro-box">
         <h3>Crypto Cats is an NFT Marketplace where you can:</h3>
+        <br>
         <ul>
           <li>
             <p><strong>Buy </strong><i class="fas fa-shopping-basket"></i></p>
@@ -85,7 +85,14 @@
             <p><strong>Collect </strong><i class="fas fa-archive"></i></p>
           </li>
           <li>
+            <p>&</p>
+          </li>
+          <li>
             <p><strong>Breed </strong> <i class="fas fa-venus-mars"></i></p>
+          </li>
+          <br>
+          <li>
+            <h3><strong>THESE CREEPY EYED CATS...</strong></h3>
           </li>
         </ul>
         <button id = "fancy" class = "btn red-btn ml-5" onclick="go_to('katFactory.html')" type = "button">FANCY A FELINE?</button>
@@ -99,13 +106,13 @@
         <div class = "row">
           <div class = "col info-row">
           <h3>What Exactly is Crypto Cats?</h3>
-          <p>Crypto Cats is a clone of the well known and successful NFT Marketplace called CryptoKitties.
+          <p>Crypto Cats is a copycat of the well known and successful NFT Marketplace called CryptoKitties.
              You have the opportunity to collect rare cats that will continually increase in rarity and value.
             <br><br>
              There are never enough cats in the world... so in addition to simply buying and selling your cats, 
              you can also breed them to birth new cats. The little fresh faced kittens that are born have a 
-             random mix of "Cattributes" from both the mother and the father
-             and is tradable as well as breedable, given that they are old enough of course.
+             random mix of "Cattributes" from both the mother and the father, so each cat is totally unique. 
+             
 
           </p>
         </div>
@@ -126,6 +133,24 @@
             eye.style.transform = "rotate("+rot+"deg)";
           })
         }
+
+        // var textWrapper = document.querySelector('.title .letters');
+        // textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        // anime.timeline({loop: true})
+        //   .add({
+        //     targets: '.title .letter',
+        //     scale: [0, 1],
+        //     duration: 2000,
+        //     elasticity: 600,
+        //     delay: (el, i) => 45 * (i+1)
+        //   }).add({
+        //     targets: '.title',
+        //     opacity: 0,
+        //     duration: 300000000,
+        //     easing: "easeOutExpo",
+        //     delay: 100000000
+        //   });
       </script>
 
   </body>
@@ -142,7 +167,8 @@
   <script src="menu.js"></script>
   <script src="animHelpers.js"></script>
   <script src="assets/js/colors.js"></script>
-  <script src="assets/js/catSettings.js"></script>
-  <link rel="stylesheet" href="assets/css/animations.css">
+  <!-- <script src="assets/js/catSettings.js"></script> -->
+  <!-- <script src="assets/js/catFactory.js"></script> -->
+  
 
 </html>

@@ -47,35 +47,22 @@ function menuHeader(){
 }
             
 
-var textWrapper = document.querySelector('.title .letters');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-anime.timeline({loop: true})
-  .add({
-    targets: '.title .letter',
-    scale: [0, 1],
-    duration: 2000,
-    elasticity: 600,
-    delay: (el, i) => 45 * (i+1)
-  }).add({
-    targets: '.title',
-    opacity: 0,
-    duration: 300000000,
-    easing: "easeOutExpo",
-    delay: 100000000
-  });
 
   function go_to(url) {
     window.location.href = url;
   }
 
-  function alert_msg(content, type) {
+  function alertMSG(content, type) {
     var str = '';
     str += '<div class="alert alert-' + type + ' fit-content mt-3" role="alert">' + content + '<button type="button" class="close ml-2" data-dismiss="alert" aria-label="Close"> <i class="far fa-times-circle"></i> </button></div>';    
     $('#message').html(str)    
   }
-  function alert_msg(content, type) {
-    var str = '';
-    str += '<div class="alert alert-' + type + ' fit-content mt-3" role="alert">' + content + '<button type="button" class="close ml-2" data-dismiss="alert" aria-label="Close"> <i class="far fa-times-circle"></i> </button></div>';    
-    $('#message').html(str);    
-}
+
+  function get_variables() {
+    var $_GET = [];
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (a, name, value) {
+      $_GET[name] = value;                
+    });
+    return $_GET;
+  }
