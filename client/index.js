@@ -4,8 +4,8 @@ var marketplace;
 var user;
 // var dnaStr = "457896541299";
 
-var contractAddress = "0xa41d706Aeb4f41d412d9265D5180dC119EcAd864";
-var marketplaceContract = "0xFA286fF0b52A8B381281318c1961B5097b7f0677";
+var contractAddress = "0x702e5F297E4fE0E38041b6D906fe9156040e8233";
+var marketplaceContract = "0x4E485B6AEe283ae0Fa6A08FC5a28E65022673d5C";
 var contractOwner;
 
 $(document).ready(function () {

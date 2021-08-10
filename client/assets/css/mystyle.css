@@ -5,16 +5,39 @@
 }
 
 body {
-  font-family: Poppins;
+  font-family: 'Dosis', sans-serif;
   font-weight: 500;
   letter-spacing: 1px; 
 }
+#build{
+  background: linear-gradient(to right, #e086c5 0%, #fceeb5 50%, #ee786e 100%);
+  position: relative;
+  left: -17px;
+  color: rgb(12, 12, 12);
+  background-size: 500%;
+  cursor: pointer;
+}
+#build:hover{
+  animation-name: gradient;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  /* background:rgb(186, 113, 219); */
+}
 
+@keyframes gradient{
+  0% {background-position: 0% 50%}
+  100%{background-position: 100% }
+    
+}
 
 .navbar-light {
-  background: rgba(59, 216, 208, 0.788);
+  /* background: #e2a16cea; */
+  /* background: linear-gradient(to top, #e2a16cea, #daafa4ea); */
+  background: #e2a16cea;
   
 }
+
 
 .fit-content {
   width: fit-content;

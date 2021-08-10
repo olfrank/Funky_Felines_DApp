@@ -1,5 +1,14 @@
 
+body {
+    font-family: 'Dosis', sans-serif;
+    background: #ca7c76;
+}
+p{
+    font-size: 20px;
+}
+
 #firstCat{
+    position: absolute;
 float: left;
 align-items: center;
 padding-left: 10px;
@@ -12,6 +21,7 @@ background-color: rgb(240, 158, 144);
 }
 
 #secondCat{
+    position: absolute;
     float: right;
     align-items: center;
     padding-left: 10px;
@@ -33,8 +43,4 @@ background-color: rgb(240, 158, 144);
 }
 .femaleHeadshot{
     width: 200px;
-}
-
-body {
-    background: rgb(144,197,188);
 }

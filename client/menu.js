@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 
 function menuHeader(){
-       var menu = `<nav class="menu navbar navbar-expand-md navbar-light fixed-top bg-ligh p-4">
+       var menu = `<nav class="menu navbar navbar-light navbar-expand-md fixed-top bg-ligh p-4">
                     <div class="container">
                         <a class="navbar-brand" href="index.html"> <img style="width: 60px;" src="./image/circle-croppedfinal.png"/><b style= "font-size: 27px;"> Crypto Cats</b></a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
@@ -32,7 +32,7 @@ function menuHeader(){
                                     </li> 
 
                                     <li class="nav-item">
-                                        <button id = "build" class="btn red-btn ml-5" onclick="go_to('katFactory.html')">DESIGN A CAT</button>
+                                        <button id = "build" class="btn red-btn ml-5" onclick="go_to('katFactory.html')">CREATE A CAT</button>
                                     </li>
 
                                 </ul>
@@ -44,8 +44,9 @@ function menuHeader(){
                     </nav>`  
 
     $("#menuBar").html(menu);
-}
-            
+}        
+
+
 
 
 

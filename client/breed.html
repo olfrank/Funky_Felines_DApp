@@ -6,7 +6,7 @@
   <title>Crypto Cats</title>
   <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/breed.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400&display=swap" rel="stylesheet">
 
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -14,27 +14,24 @@
   <!-- <script src="../node_modules/web3/dist/web3.min.js"></script> -->
   <script src="./abi.js"></script>
   <script src="./index.js"></script>
-  
+
+  <link rel="stylesheet" href="assets/css/breed.css">
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/colors.css">
   <link rel="stylesheet" href="assets/css/frontend.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/cats.css">
-  
   <link rel="stylesheet" href="assets/css/factory.css">
- 
-  <style>
-    body{
-        background: rgb(144,197,188);;
-    }
-    </style>
+  
+  <script src="https://kit.fontawesome.com/8d9e2e73ef.js" crossorigin="anonymous"></script>
+
 </head>
   <body>
     <div id= "menuBar"></div>
 
     <div class="container p-5" style="margin-top: 12vh ;margin-bottom: 10vh;">
         <div align="center">
-        <h1>The Boudoir</h1>
+        <h1><i class="fas fa-grin-hearts"></i> The Boudoir <i class="fas fa-kiss-beam"></i></h1>
         <p>❤️ Love is in the Air ❤️</p>
     </div>
     <div class="container breedBox" align="center">
@@ -46,12 +43,12 @@
               <p>This cat will be the mother</p>
               <div class="featureBox pointer" data-toggle="modal" data-target="#catSelection">
                     <img class = "femaleHeadshot" src="./image/femaleheadshot.png">
-                    <div id="female" onclick="breedCats(this.id)" align="left">
+                    <div id="female" data-catid="0" onclick="breedCats(this.id)" align="left">
                       <div align="center">
                           <div class="egg">
   
                           </div>
-                            <h4>SELECT A FEMALE CAT</h4>
+                            <p><i class="fas fa-hand-point-up"></i> SELECT A FEMALE CAT <i class="fas fa-hand-point-up"></i></p>
   
                         </div>
                     </div>
@@ -63,12 +60,12 @@
               <p>This cat will be the father</p>
               <div class="featureBox pointer" data-toggle="modal" data-target="#catSelection">
                 <img class = "maleHeadshot" src="./image/maleheadshot.png">
-                <div id="male" onclick="breedCats(this.id)" align="left">
+                <div id="male" data-catid="0" onclick="breedCats(this.id)" align="left">
                     <div align="center">
                         <div class="egg">
 
                         </div>
-                          <h4>SELECT A MALE CAT</h4>
+                          <p><i class="fas fa-hand-point-up"></i> SELECT A MALE CAT <i class="fas fa-hand-point-up"></i></p>
                       </div>
                   </div>
               </div>

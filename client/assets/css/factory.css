@@ -1,4 +1,5 @@
 .catBox {
+    position: relative;
     background-color: #e2efff;
     border-radius: 10px;
     padding-top: 50px;

@@ -1,4 +1,4 @@
-
+//append cat on catalogue page
 function appendCat(dna, id, gen){
 
     var catDna = catDNA(dna);
@@ -11,6 +11,8 @@ function appendCat(dna, id, gen){
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
 }
 
+
+//append cat for breeding
 function breedAppend(dna, id, gen, gender){
     var catDna = catDna(dna);
     catBox(id);
@@ -34,7 +36,7 @@ function selectBreed(dna, id, gen, gender){
     renderCat(catDna, gender);
     $('#' + gender).addClass('breedSelect')
     $('#' + gender).attr('data-catid', id)
-    $('#' + gender).attr('onclick', 'breedKitties("' + gender + '")')
+    $('#' + gender).attr('onclick', 'breedCats("' + gender + '")')
     $('#catDNA' + gender).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4><input class="hidden" id="` + gender + `Id" type="number" value=` + id + `></span>
     <br>
@@ -95,7 +97,7 @@ function removeSelection(id, gender){
 
 async function singleCat(dna, id, gen) {
 
-    var catDna = catDna(dna)
+    var catDna = catDNA(dna)
     //2 build the singleCat into HTML
     var body = catBody(id)
     var Cattributes = cattributes(id)
@@ -148,12 +150,13 @@ function renderCat(dna, id) {
     bellyColor(dna.bellyMouthColor, id)
     earColor(dna.earsInnerTailColor, id)
     tailColor(dna.tailColor, id)
-    
+    //cattributes
     eyeVariation(dna.eyesShape, id)
     decorationVariation(dna.decorationPattern, id)
     decorationMidColor(dna.decorationMidcolor, id)
     decorationSidesColor(dna.decorationSidescolor, id)
     animationVariation(dna.animation, id)
+
 }
 
 
@@ -180,10 +183,10 @@ function catDNA(dnaAttribute){
 function catContainer(id){
     var catDiv = `<div class="col-lg-4 pointer fit-content" id="catview` + id + `">
                  <div class="featureBox catDiv">
-                 `+ catBody(id) + `                           
+                 ${catBody(id)}                          
                  </div>
                  <div class="dnaDiv" id="catDNA`+ id + `"></div>
-                 `+ cattributes(id) + `
+                 ${cattributes(id)}
                 </div>`
     var catView = $('#catview' + id)
     if (!catView.length) {
@@ -193,7 +196,7 @@ function catContainer(id){
 
 function catBody(id){
     var single = `  <div class = "cat" id = "newCat`+id+`">
-                        <div id = "catEars" class = "ears">
+                        <div id = "catEars" class ="ears">
                             <div id = "leftEar `+ id + `" class= "ear left-ear">
                                 <div class = " left-inner-ear"></div>
                             </div>
@@ -264,9 +267,9 @@ function catBody(id){
 function cattributes(id) {
 
     var Cattributes = `<ul class="ml-5 cattributes">
-                            <li><span id="eyeName`+ id + `"></span> eyes: </li>
-                            <li><span id="decorationName`+ id + `"></span> decoration: </li>
-                            <li><span id="animationName`+ id + `"></span> animation: </li>
+                            <li>eyes: <span id="eyeName`+ id + `"></span></li>
+                            <li>decoration: <span id="decorationName`+ id + `"></span></li>
+                            <li>animation: <span id="animationName`+ id + `"></span></li>
                         </ul>`
     return Cattributes
 }

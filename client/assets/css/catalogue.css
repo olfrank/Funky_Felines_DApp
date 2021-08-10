@@ -1,3 +1,8 @@
+body{
+    background: #803e00;
+    font-family: 'Dosis', sans-serif;
+    
+}
 .header{
     margin-top: 12vh;
     margin-bottom: 10vh;
