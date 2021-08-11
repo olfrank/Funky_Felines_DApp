@@ -143,6 +143,7 @@ async function catOffer(id) {
     }
 }
 
+
 function renderCat(dna, id) {
 
     changeBodyColor(dna.headBodyColor, id)
@@ -158,7 +159,6 @@ function renderCat(dna, id) {
     changeAnimationVariation(dna.animation, id)
     
 }
-
 
 function catDNA(dnaAttribute){
     var dna = {
@@ -197,37 +197,37 @@ function catContainer(id){
 function catBody(id){
     var single = `  <div class = "cat" id = "newCat`+id+`">
                         <div id = "catEars" class ="ears">
-                            <div id = "leftEar `+ id + `" class= "ear left-ear">
+                            <div id = "leftEar`+ id + `" class= "ear left-ear">
                                 <div class = " left-inner-ear"></div>
                             </div>
-                            <div id = "rightEar `+ id + `" class = "ear right-ear">
+                            <div id = "rightEar`+ id + `" class = "ear right-ear">
                                 <div class = "right-inner-ear"></div>
                             </div>
                         </div>
 
-                        <div id = "catTail `+ id + `" class = "tail">
+                        <div id = "catTail`+ id + `" class = "tail">
                             <div id = "inner-tail`+id+`"></div>
                         </div>
 
-                        <div id = "catBody `+ id + `" class = "body"></div>
-                        <div id = "catBelly `+ id + `" class = "belly"></div>
-                        <div id = "catHead `+ id + `" class = "head">
+                        <div id = "catBody`+ id + `" class = "body"></div>
+                        <div id = "catBelly`+ id + `" class = "belly"></div>
+                        <div id = "catHead`+ id + `" class = "head">
                             <!-- <div class= "head-pattern"></div> -->
-                                            <div id="midShape `+ id + `" class="head-shapes">
-                                                <div id="leftShape `+ id + `" class="left_head-shape"></div>
-                                                <div id="rightShape `+ id + `" class="right_head-shape"></div>
+                                            <div id="midShape`+ id + `" class="head-shapes">
+                                                <div id="leftShape`+ id + `" class="left_head-shape"></div>
+                                                <div id="rightShape`+ id + `" class="right_head-shape"></div>
                                             </div>
 
-                            <div id = "catEyes `+ id + `" class = "eyes">
+                            <div id = "catEyes`+ id + `" class = "eyes">
                                 <div class = "eye-left">
-                                    <span id = "leftPupil `+ id + `" class = "pupil-left">
+                                    <span id = "leftPupil`+ id + `" class = "pupil-left">
                                         <div class = "inner-eyes-big-left"></div>
                                         <div class = "inner-eyes-small-left"></div>
                                     </span>
                                 </div>
 
                                 <div class = "eye-right">
-                                    <span id = "rightPupil `+ id + `" class = "pupil-right">
+                                    <span id = "rightPupil`+ id + `" class = "pupil-right">
                                         <div class = "inner-eyes-big-right"></div>
                                         <div class = "inner-eyes-small-right"></div>
                                     </span>
@@ -235,14 +235,14 @@ function catBody(id){
                             </div>
 
 
-                            <div id = "mouth `+ id + `"></div>
+                            <div id = "mouth`+ id + `"></div>
                             <div class = "whiskers">
-                                <div id = "rightWhiskers `+ id + `" class = "whiskers-right">
+                                <div id = "rightWhiskers`+ id + `" class = "whiskers-right">
                                     <div class = "whisker1"></div>
                                     <div class = "whisker2"></div>
                                     <div class = "whisker3"></div>
                                 </div>
-                                <div id = "leftWhiskers `+ id + `" class = "whiskers-left">
+                                <div id = "leftWhiskers`+ id + `" class = "whiskers-left">
                                     <div class = "whisker4"></div>
                                     <div class = "whisker5"></div>
                                     <div class = "whisker6"></div>
@@ -255,11 +255,12 @@ function catBody(id){
                         </div>
 
 
-                        <div id = "bothFeet `+ id + `" class = "feet">
+                        <div id = "bothFeet`+ id + `" class = "feet">
                             <div class = "foot-left"></div>
                             <div class = "foot-right"></div>
                         </div>
-                    </div>`
+                    </div>
+                    `
     return single;
 }
 
@@ -273,6 +274,8 @@ function cattributes(id) {
                         </ul>`
     return Cattributes
 }
+
+
 
 
 

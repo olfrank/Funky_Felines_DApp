@@ -3,24 +3,25 @@ var colors = Object.values(allColors());
 
 function changeBodyColor(code, id) {
     var color = colors[code];
+    
     $('#catBody'+ id + ', #catHead'+ id +', #bothFeet'+ id).css('background', '#' + color)  //This changes the color of the cat
 }
 
 function changeEyeColor(code, id) {
     var color = colors[code];
-    $('#catEyes'+ id).find('span').css('background', '#' + color);
+    $('#catEyes'+id).find('span').css('background', '#' + color);
     
 }
 
 function changeBellyColor(code, id) {
     var color = colors[code];
-    $('#mouth'+ id +  ', #catBelly'+ id).css('background', '#' + color);
+    $('#mouth'+id +  ', #catBelly'+id).css('background', '#' + color);
     
 }
 
 function changeEarColor(code, id) {
     var color = colors[code];
-    $('#leftEar'+ id + ', #rightEar' + id + ', #inner-tail'+ id).css('background', '#' + color);
+    $('#leftEar'+id + ', #rightEar' +id + ', #inner-tail'+id).css('background', '#' + color);
     
 }
 
