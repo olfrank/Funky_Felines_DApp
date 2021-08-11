@@ -1,41 +1,41 @@
 
 var colors = Object.values(allColors());
 
-function bodyColor(code, id) {
+function changeBodyColor(code, id) {
     var color = colors[code];
     $('#catBody'+ id + ', #catHead'+ id +', #bothFeet'+ id).css('background', '#' + color)  //This changes the color of the cat
 }
 
-function eyeColor(code, id) {
+function changeEyeColor(code, id) {
     var color = colors[code];
     $('#catEyes'+ id).find('span').css('background', '#' + color);
     
 }
 
-function bellyColor(code, id) {
+function changeBellyColor(code, id) {
     var color = colors[code];
     $('#mouth'+ id +  ', #catBelly'+ id).css('background', '#' + color);
     
 }
 
-function earColor(code, id) {
+function changeEarColor(code, id) {
     var color = colors[code];
     $('#leftEar'+ id + ', #rightEar' + id + ', #inner-tail'+ id).css('background', '#' + color);
     
 }
 
-function tailColor(code, id) {
+function changeTailColor(code, id) {
     var color = colors[code];
     $('#catTail'+ id).css('background', '#' + color);
     
 }
-function decorationMidColor(code, id) {
+function changeDecorationMidColor(code, id) {
     var color = colors[code];
     $('#midShape'+ id).css('background', '#' + color)  //This changes the mid decoration color of the cat
     
 }
 
-function decorationSidesColor(code, id) {
+function changeDecorationSidesColor(code, id) {
     var color = colors[code];
     $('#leftShape'+ id +  ', #rightShape'+ id).css('background', '#' + color)  //This changes the side decoration color of the cat
    
@@ -43,7 +43,7 @@ function decorationSidesColor(code, id) {
 
 
 
-function eyeVariation(num, id) {
+function changeEyeVariation(num, id) {
 
     switch (num) {
         case "1":
@@ -103,7 +103,7 @@ function eyeVariation(num, id) {
     }
 }
 
-function decorationVariation(num, id) {
+function changeDecorationVariation(num, id) {
     
     switch (num) {
         case "1":
@@ -145,7 +145,7 @@ function decorationVariation(num, id) {
     }
 }
 
-function animationVariation(num, id){
+function changeAnimationVariation(num, id){
     
     switch (num){
         case 1: 

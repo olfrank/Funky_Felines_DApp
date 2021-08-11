@@ -37,6 +37,52 @@ body {
   background: #e2a16cea;
   
 }
+.cat-breed-btn{
+  border-radius: 4px;  
+  font-size:  20px;
+  color: black;
+  cursor: pointer;
+  
+
+  background: rgb(145, 201, 42);
+  border: none;
+  border-radius: 25px;
+  z-index: 1;
+  display: flex;
+  width: 10rem;
+  height: 3rem;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+} 
+
+  .cat-breed-btn:hover{
+      background-image:     linear-gradient(
+         to right, 
+         #E7484F,
+         #E7484F 16.65%,
+         #F68B1D 16.65%,
+         #F68B1D 33.3%,
+         #FCED00 33.3%,
+         #FCED00 49.95%,
+         #009E4F 49.95%,
+         #009E4F 66.6%,
+         #00AAC3 66.6%,
+         #00AAC3 83.25%,
+         #732982 83.25%,
+         #732982 100%,
+         #E7484F 100%
+       );
+     animation:slidebg 5s linear infinite;
+   }
+   
+   
+   @keyframes slidebg {
+     to {
+       background-position:20vw;
+     }
+}
 
 
 .fit-content {
