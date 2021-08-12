@@ -181,8 +181,8 @@ function catDNA(dnaAttribute){
 }
 
 function catContainer(id){
-    var catDiv = `<div class="col-lg-4 pointer fit-content" id="catview` + id + `">
-                 <div class="featureBox catDiv">
+    var catDiv = `<div class="col-lg-4" id="catview` + id + `">
+                 <div class="catalogue-box catDiv">
                     ${catBody(id)}
                  </div>
                  <div class="dnaDiv" id="catDNA`+ id + `"></div>
@@ -196,7 +196,7 @@ function catContainer(id){
 
 function catBody(id){
     var single = `  <div class = "cat" id = "newCat`+id+`">
-                        <div id = "catEars" class ="ears">
+                        <div id = "catEars`+id+`" class ="ears">
                             <div id = "leftEar`+ id + `" class= "ear left-ear">
                                 <div class = " left-inner-ear"></div>
                             </div>
@@ -206,7 +206,7 @@ function catBody(id){
                         </div>
 
                         <div id = "catTail`+ id + `" class = "tail">
-                            <div id = "inner-tail`+id+`"></div>
+                            <div id = "inner-tail`+id+`" class = "inner-tail"></div>
                         </div>
 
                         <div id = "catBody`+ id + `" class = "body"></div>
@@ -214,11 +214,12 @@ function catBody(id){
                         <div id = "catHead`+ id + `" class = "head">
                             <!-- <div class= "head-pattern"></div> -->
                                             <div id="midShape`+ id + `" class="head-shapes">
-                                                <div id="leftShape`+ id + `" class="left_head-shape"></div>
-                                                <div id="rightShape`+ id + `" class="right_head-shape"></div>
+                                                <div id="leftShape`+ id +`" class="left_head-shape"></div>
+                                                <div id="rightShape`+ id +`" class="right_head-shape"></div>
                                             </div>
 
                             <div id = "catEyes`+ id + `" class = "eyes">
+
                                 <div class = "eye-left">
                                     <span id = "leftPupil`+ id + `" class = "pupil-left">
                                         <div class = "inner-eyes-big-left"></div>
@@ -231,11 +232,12 @@ function catBody(id){
                                         <div class = "inner-eyes-big-right"></div>
                                         <div class = "inner-eyes-small-right"></div>
                                     </span>
-                                </div>    
+                                </div>  
+
                             </div>
 
 
-                            <div id = "mouth`+ id + `"></div>
+                            <div id = "mouth`+ id + `" class = "mouth"></div>
                             <div class = "whiskers">
                                 <div id = "rightWhiskers`+ id + `" class = "whiskers-right">
                                     <div class = "whisker1"></div>

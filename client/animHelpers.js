@@ -30,20 +30,20 @@ function create(){
                                             <div id="rightShape" class="right_head-shape"></div>
                                         </div>
 
-                        <div id = "catEyes" class = "eyes">
-                            <div class = "eye-left">
-                                <span id = "leftPupil" class = "pupils pupil-left chilled">
-                                    <div class = "inner-eyes-big-left"></div>
-                                    <div class = "inner-eyes-small-left"></div>
-                                </span>
-                            </div>
+                        <div id = "catEyes" class = "eyes eyes-color">
+                             <div class = "eye-left grey">
+                                 <span id = "leftPupil" class = "grey pupils pupil-left chilled ">
+                                     <div class = "inner-eyes-big-left grey"></div>
+                                     <div class = "inner-eyes-small-left grey"></div>
+                                 </span>
+                             </div>
 
-                            <div class = "eye-right">
-                                <span id = "rightPupil" class = "pupils pupil-right chilled">
-                                    <div class = "inner-eyes-big-right"></div>
-                                    <div class = "inner-eyes-small-right"></div>
-                                </span>
-                            </div>    
+                             <div class = "eye-right grey">
+                                 <span id = "rightPupil" class = "grey pupils pupil-right chilled ">
+                                     <div class = "inner-eyes-big-right grey"></div>
+                                     <div class = "inner-eyes-small-right grey"></div>
+                                 </span>
+                             </div>    
                         </div>
 
 
