@@ -32,12 +32,35 @@
     animation: multi-Colored 3s infinite;
     
 }
+.rotate{
+    animation: rotate-icon 4s infinite;
+}
+.enflateIcon{
+    animation: enflate-icon 4s infinite;
+}
+
+@keyframes enflate-icon{
+    0%{ transform: scale(1)}
+    25%{transform: scale(1.3)}
+    50%{ transform: scale(1)}
+    75%{ transform: scale(1.3)}
+    100%{transform: scale(1)}
+}
+
+@keyframes rotate-icon {
+    0%{ transform: rotate(0deg)}
+    30%{transform: rotate(90deg)}
+    60%{ transform: rotate(180deg)}
+    100%{transform: rotate(360deg)}
+}
+
 @keyframes eyeLarger {
     0%{ transform: scale(1)}
     30%{transform: scale(1.2)}
     60%{ transform: scale(1.2)}
     100%{transform: scale(1)}
-}
+} 
+
 @keyframes multi-Colored{
     
     0%{ background-color: rgb(255, 0, 0)}

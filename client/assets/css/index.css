@@ -200,13 +200,14 @@ svg text {
   left: 12rem;
 }
 .body1{
-  background: rgb(228, 190, 138);
+  background: #ebbe76;
 }
 .body2{
   background: #a8776a;
 }
 .head1{
-  background: rgb(228, 190, 138);
+  background: #ebbe76;
+
 }
 .head2{
   background: #a8776a;
@@ -254,6 +255,8 @@ background: #ffebcd00;
   border-radius: 30px;
   left: 3px;
   width: 193px;
+  border: 2.5px solid #FFD700;
+  height: 92px;
 }
 
 .grey{
@@ -282,7 +285,6 @@ background-color: #36409b;
   top: 13rem;
   left: -4rem;
 }
-
 
 
 

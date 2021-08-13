@@ -27,7 +27,7 @@ function breedAppend(dna, id, gen, gender){
 }
 
 function selectBreed(dna, id, gen, gender){
-    var catDna = catDna(dna);
+    var catDna = catDNA(dna);
     var body = catBody(gender);
     var cattributes = cattributes(gender)
     $("#cattributes" + gender).html(cattributes)
@@ -146,17 +146,18 @@ async function catOffer(id) {
 
 function renderCat(dna, id) {
 
-    changeBodyColor(dna.headBodyColor, id)
-    changeEyeColor(dna.eyesColor, id)
-    changeBellyColor(dna.bellyMouthColor, id)
-    changeEarColor(dna.earsInnerTailColor, id)
-    changeTailColor(dna.tailColor, id)
+    changeBodyColor(dna.headBodyColor, id);
+    changeEyeColor(dna.eyesColor, id);
+    changeBellyColor(dna.bellyMouthColor, id);
+    changeEarColor(dna.earsInnerTailColor, id);
+    changeTailColor(dna.tailColor, id);
     //cattributes
-    changeEyeVariation(dna.eyesShape, id)
-    changeDecorationVariation(dna.decorationPattern, id)
-    changeDecorationMidColor(dna.decorationMidcolor, id)
-    changeDecorationSidesColor(dna.decorationSidescolor, id)
-    changeAnimationVariation(dna.animation, id)
+    changeEyeVariation(dna.eyesShape, id);
+    changeDecorationVariation(dna.decorationPattern, id);
+    changeDecorationMidColor(dna.decorationMidcolor, id);
+    changeDecorationSidesColor(dna.decorationSidescolor, id);
+    changeAnimationVariation(dna.animation, id);
+    changeSpecialVariation(dna.lastNum, id);
     
 }
 
@@ -181,7 +182,7 @@ function catDNA(dnaAttribute){
 }
 
 function catContainer(id){
-    var catDiv = `<div class="col-lg-4" id="catview` + id + `">
+    var catDiv = `<div id="catview` + id + `">
                  <div class="catalogue-box catDiv">
                     ${catBody(id)}
                  </div>
@@ -270,7 +271,7 @@ function catBody(id){
 function cattributes(id) {
 
     var Cattributes = `<ul class="cattributes">
-                            <li style="position: absolute;">eyes: <span id="eyeName`+ id + `"></span></li>
+                            <li>eyes: <span id="eyeName`+ id + `"></span></li>
                             <li>decoration: <span id="decorationName`+ id + `"></span></li>
                             <li>animation: <span id="animationName`+ id + `"></span></li>
                         </ul>`

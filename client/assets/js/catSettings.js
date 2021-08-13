@@ -84,6 +84,9 @@ function renderCat(dna){
 
   animationVariation(dna.animation)
   $('#animations').val(dna.animation)
+
+  specialName(dna.lastNum)
+  $('#special').val(dna.lastNum)
   
   
 }
@@ -145,6 +148,11 @@ $('#animations').change(()=>{
   animationVariation(animationVal)
 })
 
+$("#special").change(()=>{
+  var specialVal = parseInt( $('#special').val() )
+  specialName(specialVal);
+})
+
 //Random Click
 $('#random').click(()=>{
   
@@ -160,6 +168,10 @@ $('#random').click(()=>{
   var anim = Math.floor(Math.random()*9)+1
   animationVariation(anim)
   parseInt( $('#animations').val(anim) )
+
+  var spec = Math.floor(Math.random()*10)+1
+  specialName(spec)
+  parseInt( $('#special').val(spec) )
 
   var sides = Math.floor(Math.random()*89)+10
   decorationSidesColor(colors[sides],sides)
@@ -222,6 +234,9 @@ $('#default').click(()=>{
 
   animationVariation(defaultDNA.animation)
   parseInt( $('#animations').val(defaultDNA.animation) )
+
+  specialName(defaultDNA.lastNum)
+  parseInt( $('#special').val(defaultDNA.lastNum) )
   
 })
 
@@ -236,10 +251,12 @@ $('#btnColorsTab').click(()=>{
   $("#patternGroup").hide();
   $('#patternColorGroup').hide();
   $("#animationGroup").hide();
+  $('#specialGroup').hide();
 })
 
 
 $('#btnAttributesTab').click(()=>{
+  $('#cattributes').removeClass('hidden');
   $('#headGroup').hide();
   $('#mouthGroup').hide();
   $('#eyesGroup').hide();
@@ -250,4 +267,5 @@ $('#btnAttributesTab').click(()=>{
   $("#patternGroup").show();
   $('#patternColorGroup').show();
   $("#animationGroup").show();
+  $('#specialGroup').show();
 })

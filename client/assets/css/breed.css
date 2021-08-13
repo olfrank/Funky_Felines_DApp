@@ -44,34 +44,19 @@ background-color: rgb(240, 158, 144);
 .femaleHeadshot{
     width: 200px;
 }
-/* .breed-box{
-    position: relative;
-    display: flex;
-    width: fit-content;
-    height: 74%;
-    
-    padding-left:68px;
-    padding-top: 52px;
-    padding-bottom: 70px;
-    border: 1px solid #7c7777;
-    border-radius: 10px;
-    margin:8px;
-    transition: 0.3s ease-in-out;
-}
-.breed-box:hover{
-    box-shadow: 0px 0px 35px 5px rgba(166, 18, 172, 0.856);
-} */
 
 .catalogue-box{
     position: relative;
-    height: 74%;
-    width: 113%;
+    height: 79%;
+    width: 103%;
     padding-left:68px;
     padding-top: 52px;
     padding-bottom: 70px;
     border: 1px solid #7c7777;
     border-radius: 10px;
-    margin:8px;
+    margin: 8px;
+    cursor: pointer;
+    background: lightblue;
     transition: 0.3s ease-in-out;
 }
 .catalogue-box:hover{

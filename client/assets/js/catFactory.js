@@ -214,6 +214,64 @@ function animationVariation(num){
     }
 }
 
+function specialName(num){
+    $('#dnaspecial').html(num);
+    switch(num){
+        case 1:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 2:
+            noSpecial()
+            $('#specialName').html('😎 😎 😎 😎 😎 ')
+            special()
+            break
+        case 3:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 4:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 5:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 6:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 7:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 8:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 9:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+        case 10:
+            noSpecial()
+            $('#specialName').html('Basic')
+            break
+    }
+}
+
+//********** SPECIAL ************
+
+function noSpecial(){
+     $('.eyes').removeClass('sunnies');
+}
+
+function special(){
+    $('.eyes').addClass('sunnies');
+    
+}
+
 //**********EYE TYPES************
 
 async function normalEyes() {

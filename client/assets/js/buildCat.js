@@ -170,6 +170,61 @@ function changeAnimationVariation(num, id){
     }
 }
 
+function specialName(num, id){
+    
+    switch(num){
+        case "1":
+            $('#specialName'+id).html('Basic')
+            noSpecial(id)
+            break
+        case "2":
+            $('#specialName'+id).html('😎 😎 😎 😎 😎 ')
+            special(id)
+            break
+        case "3":
+            $('#specialName'+id).html('Basic')
+            noSpecial(id)
+            break
+        case "4":
+            $('#specialName'+id).html('Basic')
+            noSpecial(id)
+            break
+        case "5":
+            $('#specialName'+id).html('Basic')
+            noSpecial(id)
+            break
+        case "6":
+            $('#specialName'+id).html('Basic')
+            noSpecial(id)
+            break
+        case "7":
+            $('#specialName'+id).html('Basic')
+            noSpecial(id)
+            break
+        case "8":
+            $('#specialName'+id).html('Basic')
+            noSpecial(id)
+            break
+        case "9":
+            $('#specialName'+id).html('Basic')
+            noSpecial()
+            break
+        case "10":
+            $('#specialName'+id).html('Basic')
+            noSpecial()
+            break
+    }
+}
+
+function noSpecial(id){
+    $('#catEyes'+id).removeClass('sunnies');
+}
+
+function special(id){
+   $('.catEyes'+id).addClass('sunnies');
+   
+}
+
 //**********EYE TYPES************
 
 // var innerSmallLeft = document.getElementsByClassName('inner-eyes-small-left' )

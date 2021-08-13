@@ -360,6 +360,14 @@ span.pupil-left, span.pupil-right{
     left: 13px;
     border-radius: 0 50% 50% 50%;
 }
+.sunnies{
+    background:linear-gradient(to bottom, rgb(51, 50, 50), #000);
+    border-radius: 30px;
+    left: 3px;
+    width: 193px;
+    border: 2.5px solid #FFD700;
+    height: 92px;
+}
 
 
 

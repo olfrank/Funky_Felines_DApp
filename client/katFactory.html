@@ -37,7 +37,7 @@
     </nav>
     <div class="container p-5" style="margin-top: 12vh;margin-bottom: 10vh;">
         <div align="center">
-        <h1 class="c-blue"><i class="fas fa-cog"></i> Cat-Factory <i class="fas fa-cog"></i></h1>
+        <h1 class="c-blue"><i class="fas fa-cog rotate"></i> Cat-Factory <i class="fas fa-cog rotate"></i></h1>
         <p class="c-blue">Create your custom Kitty</p>
     </div>
         <div class="row">
@@ -168,7 +168,7 @@
             </div>
             <br>
 
-<div id = "cattributes" >
+<div id = "cattributes" class= "hidden">
             <div id = "eyeShapeGroup" class="form-group">
                 <label for="formControlRange"><b>Eye Shape</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
                 <input type="range" min="1" max="11" class="form-control-range" id="eyeshape">
@@ -190,7 +190,12 @@
                 <label for="formControlRange"><b>Animations</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
                 <input type="range" min="1" max="9" class="form-control-range" id="animations">
             </div>
+            <div id="specialGroup" class = "form-group">
+                <label for="formControlRange"><b>Special</b><span class="badge badge-dark ml-2" id="specialName"></span></label>
+                <input type="range" min="1" max="10" class="form-control-range" id="special">
             </div>
+</div>
+            
 
             <button id = "random" class = "btn btn-dark" >Random Cat</button>
             <button id = "default" class = "btn btn-warning" >Default</button>
