@@ -213,12 +213,26 @@ svg text {
   background: #a8776a;
   top: 3rem;
 }
+.head3{
+  background: #a4be5a;
+  top: 3rem;
+}
 .left-ear2{
   top: 3rem;
+}
+.left-ear3{
+  top: 3rem;
+  background: cadetblue;
 }
 .right-ear2{
   top: 3rem;
   left: 6rem;
+}
+.right-ear3{
+  
+  top: 3rem;
+  left: 6rem;
+  background:#ee786e;
 }
 .chilled{
   border-top: 13px solid;
@@ -250,6 +264,7 @@ background: #ffebcd00;
 
 }
 
+
 .eyes-color{
   background:linear-gradient(to bottom, rgb(51, 50, 50), #000);
   border-radius: 30px;
@@ -262,9 +277,10 @@ background: #ffebcd00;
 .grey{
   background: grey;
 }
-.pupil-color{
-background-color: #36409b;
+.lightBlue{
+  color: rgb(35 81 119);
 }
+
 
 
 

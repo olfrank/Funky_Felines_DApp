@@ -39,6 +39,7 @@
     animation: enflate-icon 4s infinite;
 }
 
+
 @keyframes enflate-icon{
     0%{ transform: scale(1)}
     25%{transform: scale(1.3)}

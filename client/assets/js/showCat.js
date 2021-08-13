@@ -4,7 +4,7 @@ function appendCat(dna, id, gen){
     var catDna = catDNA(dna);
     catContainer(id);
     renderCat(catDna, id);
-    // $('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
+    //$('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>
@@ -14,8 +14,8 @@ function appendCat(dna, id, gen){
 
 //append cat for breeding
 function breedAppend(dna, id, gen, gender){
-    var catDna = catDna(dna);
-    catBox(id);
+    var catDna = catDNA(dna);
+    catContainer(id);
     renderCat(catDna, id);
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
@@ -29,8 +29,8 @@ function breedAppend(dna, id, gen, gender){
 function selectBreed(dna, id, gen, gender){
     var catDna = catDNA(dna);
     var body = catBody(gender);
-    var cattributes = cattributes(gender)
-    $("#cattributes" + gender).html(cattributes)
+    var Cattributes = cattributes(gender)
+    $("#cattributes" + gender).html(Cattributes)
     $('#' + gender).html(body);
 
     renderCat(catDna, gender);
@@ -41,16 +41,15 @@ function selectBreed(dna, id, gen, gender){
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4><input class="hidden" id="` + gender + `Id" type="number" value=` + id + `></span>
     <br>
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
-    $('#catSelection').modal('hide')
+    $('#catSelection').modal('hide');
     removeSelection(id, gender)
     readyToBreed()
-
 }
 
 function readyToBreed() {
 
-    var mumId = $('#female').val()
-    var dadId = $('#male').val()
+    var mumId = $('#femaleId').val()
+    var dadId = $('#maleId').val()
 
     if (!empty(mumId) && !empty(dadId)) {
         $('#breed').css('filter', 'none')
@@ -64,21 +63,28 @@ function readyToBreed() {
 }
 
 function removeSelection(id, gender){
-    var selectionDiv = `
+    var selectionDivFemale = `
                         <div align="center">
-                                <div class="egg">
+                                <div class="headFemale">
                                 </div>
                                 <h4>Select a cat as `+ gender + `</h4>
                             </div>
                         </div>
                         `
-
+    var selectionDivMale = `
+                        <div align="center">
+                                <div class="headMale">
+                                </div>
+                                <h4>Select a cat as `+ gender + `</h4>
+                            </div>
+                        </div>
+                        `
     if (gender == 'female') {
         var catData = $('#male').attr('data-catid')
         if (catData == id) {
             $('#male').attr('data-catid', 0)
             $('#male').attr('onclick', 'breedCats(this.id)')
-            $('#male').html(selectionDiv)
+            $('#male').html(selectionDivMale)
             $('#male').removeClass('breedSelect')
             $('#catDNAMale').html('')
         }
@@ -88,7 +94,7 @@ function removeSelection(id, gender){
         if (catData == id) {
             $('#female').attr('data-catid', 0)
             $('#female').attr('onclick', 'breedCats(this.id)')
-            $('#female').html(selectionDiv)
+            $('#female').html(selectionDivFemale)
             $('#female').removeClass('breedSelect')
             $('#catDNAFemale').html('')
         }
@@ -144,22 +150,7 @@ async function catOffer(id) {
 }
 
 
-function renderCat(dna, id) {
 
-    changeBodyColor(dna.headBodyColor, id);
-    changeEyeColor(dna.eyesColor, id);
-    changeBellyColor(dna.bellyMouthColor, id);
-    changeEarColor(dna.earsInnerTailColor, id);
-    changeTailColor(dna.tailColor, id);
-    //cattributes
-    changeEyeVariation(dna.eyesShape, id);
-    changeDecorationVariation(dna.decorationPattern, id);
-    changeDecorationMidColor(dna.decorationMidcolor, id);
-    changeDecorationSidesColor(dna.decorationSidescolor, id);
-    changeAnimationVariation(dna.animation, id);
-    changeSpecialVariation(dna.lastNum, id);
-    
-}
 
 function catDNA(dnaAttribute){
     var dna = {
@@ -279,166 +270,19 @@ function cattributes(id) {
 }
 
 
+function renderCat(dna, id) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var web3 = new Web3(Web3.givenProvider);
-
-// var instance;
-// var user;
-// var contractAddress = "0x907EcC1E7732ba1397CF01E16eD7DaBf2483811d";
-
-        
-// $(document).ready(function(){
-//     window.ethereum.enable().then(function(accounts) {
-//         instance = new web3.eth.Contract(abi.catContract, contractAddress, {from: accounts[0]});
-//         user = accounts[0];
-//         console.log(instance);
-//         displayAllCats();
-        
-//     })
-// })
-
-// async function displayAllCats(){
-//     let currentUser = ethereum.selectedAddress;
-//     var item;
-//     let items = [];
-//     var allCatIds = [];
-
-//     var catCount = await instance.methods.getCat().call();
-//     console.log("CAT COUNT: " + catCount);
-
-//     for(let i = 0; i < catCount; i++){
-//        var owner = await instance.methods.owns(currentUser, i).call();
-//         if(owner){
-//             allCatIds.push(i);
-//         }   
-        
-//     }
-
-//     for(let i = 0; i < allCatIds.length; i++){
-//        let catId = allCatIds[i];
-//        let each = await instance.methods.getCat(catId).call();
-//        let catGenes = each.genes;
-//        createCatContainer(catId, catGenes);
-//     }        
-
-//     function createCatContainer(id, dnaAttribute){
-//         let headBodyDna = dnaAttribute.substring(0, 2);
-//         let eyesDna = dnaAttribute.substring(2, 4);
-//         let bellyMouthDna = dnaAttribute.substring(4, 6);
-//         let earsDna = dnaAttribute.substring(6, 8);
-//         let tailDna = dnaAttribute.substring(8, 10);
-//         let eyeShape = dnaAttribute.substring(10, 11);
-//         let patternShape = dnaAttribute.substring(11, 12);
-//         let patternMidColor = dnaAttribute.substring(12, 14);
-//         let patternSideColor = dnaAttribute.substring(14, 16);
-//         let animDna = dnaAttribute.substring(16, 17);
-//         let lastDna = dnaAttribute.substring(17, 18);
+    changeBodyColor(dna.headBodyColor, id);
+    changeEyeColor(dna.eyesColor, id);
+    changeBellyColor(dna.bellyMouthColor, id);
+    changeEarColor(dna.earsInnerTailColor, id);
+    changeTailColor(dna.tailColor, id);
+    //cattributes
+    changeEyeVariation(dna.eyesShape, id);
+    changeDecorationVariation(dna.decorationPattern, id);
+    changeDecorationMidColor(dna.decorationMidcolor, id);
+    changeDecorationSidesColor(dna.decorationSidescolor, id);
+    changeAnimationVariation(dna.animation, id);
+    changeSpecialVariation(dna.lastNum, id);
     
-//         item = `<div class="col-lg-4 catBox m-3 light-b-shadow" id="box`+id+`">
-//                     <div class = "cat" id= "newCat` + id + `">
-//                         <div id="ears`+id+`" class =" ` + (animDna == 2 ? 'noddinghead' : 'ears') + `">
-//                             <div id = "leftEar` + id + ` class= "ear `+ (animDna == 3 ? 'movingEarLeft' : 'left-ear')+ `" style="background:#` + colors[earsDna] + `">
-//                                 <div class = " left-inner-ear" id="left-inner-ear"></div>
-//                             </div>
-//                             <div id = "rightEar` + id + `"class = "ear `+ (animDna == 3 ? 'movingEarRight' : 'right-ear')+ `" style="background:#` + colors[earsDna] + `">
-//                                 <div class = "right-inner-ear" id="eight-inner-ear"></div>
-//                             </div>
-//                         </div>
-//                         <div id = "catTail`+ id +`" class = " `+ (animDna == 4 ? 'movingTail': 'tail') + ` " style="background:#` + colors[tailDna] + `">
-//                             <div class = "inner-tail" style="background:#` + colors[earsDna] + `"></div>
-//                         </div>
-//                         <div id = "catBody`+id+`" class = "` + (animDna == 7 ? 'enflatedBelly' : 'body') + `" style="background:#` + colors[headBodyDna] + `"></div>
-//                         <div id = "catBody` +id+`" class = "` + (animDna == 7 ? 'enflatedBelly' : 'belly') + `" style="background:#` + colors[bellyMouthDna] + `"></div>
-//                         <div id = "catHead` + id + `" class =" ` + (animDna == 2 ? 'noddinghead' : 'head') + `">
-//                             <div id="midShape`+id+`" class="head-shapes" style="background:#` + colors[patternMidColor] + `">
-//                                 <div id="leftShape`+id+`" class="left_head-shape" style="background:#` + colors[patternSideColor] + `"></div>
-//                                 <div id="rightShape`+id+`" class="right_head-shape" style="background:#` + colors[patternSideColor] + `"></div>
-//                             </div>
-//                             <div id = "catEyes ` + id + `" class = "` + (animDna == 5 ? 'eyesBigger' : 'eyes') + `">
-//                                 <div class = "eye-left">
-//                                     <span id = "leftPupil `+ id + `" class = "` + (animDna == 8 ? 'eyesTired' : (animDna == 9 ? 'eyesChangeColor' : 'pupil-left')) + `" style="background:#` + colors[eyesDna] + `">
-//                                         <div class = "inner-eyes-big-left"></div>
-//                                         <div class = "inner-eyes-small-left"></div>
-//                                     </span>
-//                                 </div>
-//                                 <div class = "eye-right">
-//                                     <span id = "rightPupil `+ id + `" class = "` + (animDna == 8 ? 'eyesTired' : (animDna == 9 ? 'eyesChangeColor' : 'pupil-right')) + `" style="background:#` + colors[eyesDna] + `">
-//                                         <div class = "inner-eyes-big-right"></div>
-//                                         <div class = "inner-eyes-small-right"></div>
-//                                     </span>
-//                                 </div>    
-//                             </div>
-//                             <div class = "mouth"></div>
-//                             <div class = "whiskers">
-//                                 <div id="rightWhiskers` + id + `" class = "` + (animDna == 6 ? 'movingWhiskersRight' : 'whiskers-right') + `">
-//                                     <div class = "whisker1"></div>
-//                                     <div class = "whisker2"></div>
-//                                     <div class = "whisker3"></div>
-//                                 </div> 
-//                                 <div id="leftWhiskers` + id + ` "class = " ` + (animDna == 6 ? 'movingWhiskersLeft' : 'whiskers-left') + `">
-//                                     <div class = "whisker4"></div>
-//                                     <div class = "whisker5"></div>
-//                                     <div class = "whisker6"></div>
-//                                 </div>
-//                             </div>
-//                             <div class = "mouth-left"></div>
-//                             <div class = "mouth-right"></div>
-//                             <div class = "nose"></div>
-//                             <div class = "chin"></div>
-//                         </div>
-//                         <div id= "bothFeet `+ id + `" class = "` + (animDna == 7 ? 'enflatedFeet' : 'feet') + `"  style="background:#` + colors[headBodyDna] + `">
-//                             <div class = "foot-left"></div>
-//                             <div class = "foot-right"></div>
-//                         </div>
-//                     </div>
-//                 </div>
-//                     <div class="dnaDiv" id="catDNA `+ id +`">
-//                         <b>
-//                             DNA:
-//                             <!-- Colors -->
-//                              <span id="dnabody` + id + `">` + dnaAttributes + `</span>
-//                              <span id="dnaeyes` + id + `"></span>
-//                              <span id="dnabelly` + id + `"></span>
-//                              <span id="dnaears` + id + `"></span>
-//                              <span id="dnatail` + id + `"></span>
-
-//                              <!-- Cattributes -->
-//                              <span id="dnashape` + id + `"></span>
-//                              <span id="dnadecoration` + id + `"></span>
-//                              <span id="dnadecorationMid` + id + `"></span>
-//                              <span id="dnadecorationSides` + id + `"></span>
-//                              <span id="dnaanimation` + id + `"></span>
-//                              <span id="dnaspecial` + id + `"></span>
-//                         </b>
-//                     </div>`
-                    
-//         items.push(item);
-//     }
-//     $(".row").append(items.join());
-    
-
-// }
+}

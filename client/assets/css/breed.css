@@ -62,3 +62,16 @@ background-color: rgb(240, 158, 144);
 .catalogue-box:hover{
     box-shadow: 0px 0px 35px 5px rgba(11, 230, 219, 0.856);
 }
+.headFemale{
+    width: 150px;
+    height: 150px;
+    background: url('/client/image/femaleheadshot.png') no-repeat;
+
+    background-size: contain;
+}
+.headMale{
+    width: 150px;
+    height: 150px;
+    background: url('/client/image/maleheadshot.png') no-repeat;
+    background-size: contain;
+}

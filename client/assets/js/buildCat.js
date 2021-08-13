@@ -3,7 +3,9 @@ var colors = Object.values(allColors());
 
 function changeBodyColor(code, id) {
     var color = colors[code];
-    $('#catBody'+ id + ', #catHead'+ id +', #bothFeet'+ id).css('background', '#' + color)  //This changes the color of the cat
+    $('#catBody'+ id + ', #catHead'+ id).css('background', '#' + color)  //This changes the color of the cat
+    $('#bothFeet'+id).find('.foot-left').css('background', '#' + color)
+    $('#bothFeet'+id).find('.foot-right').css('background', '#' + color)
 }
 
 function changeEyeColor(code, id) {
@@ -170,7 +172,7 @@ function changeAnimationVariation(num, id){
     }
 }
 
-function specialName(num, id){
+function changeSpecialVariation(num, id){
     
     switch(num){
         case "1":
@@ -221,8 +223,7 @@ function noSpecial(id){
 }
 
 function special(id){
-   $('.catEyes'+id).addClass('sunnies');
-   
+   $('#catEyes'+id).addClass('sunnies');
 }
 
 //**********EYE TYPES************

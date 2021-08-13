@@ -64,6 +64,7 @@ function createCat(){
   token.methods.createCatGen0(dnaStr).send({}, function(error, txHash){
     if(error){
       console.log("createCat function " + error)
+      alertMSG("Only the contract deployer can create cats at the moment... sorry 😢😢")
     }else {
       console.log(txHash)
       

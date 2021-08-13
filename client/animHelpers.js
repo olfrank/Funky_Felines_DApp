@@ -32,14 +32,14 @@ function create(){
 
                         <div id = "catEyes" class = "eyes eyes-color">
                              <div class = "eye-left grey">
-                                 <span id = "leftPupil" class = "grey pupils pupil-left chilled ">
+                                 <span id = "leftPupil" class = "lightBlue pupils pupil-left chilled ">
                                      <div class = "inner-eyes-big-left grey"></div>
                                      <div class = "inner-eyes-small-left grey"></div>
                                  </span>
                              </div>
 
                              <div class = "eye-right grey">
-                                 <span id = "rightPupil" class = "grey pupils pupil-right chilled ">
+                                 <span id = "rightPupil" class = "lightBlue pupils pupil-right chilled ">
                                      <div class = "inner-eyes-big-right grey"></div>
                                      <div class = "inner-eyes-small-right grey"></div>
                                  </span>
@@ -150,14 +150,14 @@ function create2(){
 function create3(){
     var head = `<div class = "cat1" id = "newCat">
                     <div class = "ears1">
-                        <div id = "leftEar" class= "ear left-ear2 movingLeftEar">
+                        <div id = "leftEar" class= "ear left-ear3 movingLeftEar">
                             <div class = " left-inner-ear"></div>
                         </div>
-                        <div id = "rightEar" class = "ear right-ear2">
+                        <div id = "rightEar" class = "ear right-ear3 movingRightEar">
                             <div class = "right-inner-ear"></div>
                         </div>
                     </div>
-                    <div id = "catHead" class = "head head2">
+                    <div id = "catHead" class = "head head3">
                         <!-- <div class= "head-pattern"></div> -->
                                         <div id="midShape" class="head-shapes">
                                             <div id="leftShape" class="left_head-shape"></div>
