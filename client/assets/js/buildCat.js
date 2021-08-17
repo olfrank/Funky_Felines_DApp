@@ -50,7 +50,7 @@ function changeEyeVariation(num, id) {
     switch (num) {
         case "1":
             $('#eyeName'+id).html('Basic')//set the badge "Basic"
-            normalEyes(id)//reset to default
+            normalEyes(id)
             break 
         case "2": 
             $('#eyeName'+id).html('Chiller')

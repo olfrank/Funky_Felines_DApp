@@ -4,7 +4,7 @@ function appendCat(dna, id, gen){
     var catDna = catDNA(dna);
     catContainer(id);
     renderCat(catDna, id);
-    //$('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
+    $('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>
@@ -23,12 +23,12 @@ function breedAppend(dna, id, gen, gender){
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
 
     $('#catview' + id).attr('onclick', 'selectBreed("' + dna + '","' + id + '","' + gen + '","' + gender + '")')
-
+   
 }
 
 function selectBreed(dna, id, gen, gender){
     var catDna = catDNA(dna);
-    var body = catBody(gender);
+    var body = catBody(gender)
     var Cattributes = cattributes(gender)
     $("#cattributes" + gender).html(Cattributes)
     $('#' + gender).html(body);
@@ -56,10 +56,12 @@ function readyToBreed() {
         $('#breed').prop('disabled', false)
         $('#breed').attr('onclick', 'breed(" ' + dadId + ' "," ' + mumId + ' ")')
         return true
+    }else{
+        $('#breed').prop('disabled', true)
+        $('#breed').css('filter', ' grayscale()')
+        return false;
     }
-    $('#breed').prop('disabled', true)
-    $('#breed').css('filter', ' grayscale()')
-    return false
+  
 }
 
 function removeSelection(id, gender){

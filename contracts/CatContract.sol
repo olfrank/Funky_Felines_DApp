@@ -159,12 +159,12 @@ function _createCat(
         return(_interfaceId ==_INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
     }
 
-    function balanceOf(address owner) external view override returns (uint256 balance){
+    function balanceOf(address owner) public view override returns (uint256 balance){
         balance = ownerTokenBalance[owner];
         return balance;
     }
 
-    function totalSupply() external view override returns (uint256 total){
+    function totalSupply() public view override returns (uint256 total){
         total = cats.length;
         return total; 
     }
@@ -223,12 +223,13 @@ function _createCat(
         return catIndexToApproved[_tokenId];
     }
 
-    function isApprovedForAll(address _owner, address _operator) external override view returns (bool){
+    function isApprovedForAll(address _owner, address _operator) public override view returns (bool){
         //returns the mapping status for these inputs
         return operatorApprovals[_owner][_operator];
     } 
     function safeTransferFrom(address _from, address _to, uint256 _tokenId) external override{
-        this.safeTransferFrom(_from, _to, _tokenId, "");
+        require(ownerOrApprovedCheck(msg.sender, _from, _to, _tokenId));
+        _safeTransfer(_from, _to, _tokenId, "");
     }
 
     function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata data) external override{
@@ -276,18 +277,18 @@ function _createCat(
         require(owns(_from, _tokenId));
         require(_to != address(0));
         require(_tokenId < cats.length);
-        return(spender == _from || approvedFor(spender, _tokenId) || this.isApprovedForAll(_from, spender));
+        return(spender == _from || approvedFor(spender, _tokenId) || isApprovedForAll(_from, spender));
 
     }
 
     function ownedTokens(address _owner) public view returns(uint256[] memory ownerTokens) {
-    uint256 tokenCount = this.balanceOf(_owner);
+    uint256 tokenCount = balanceOf(_owner);
 
     if (tokenCount == 0) {
         return new uint256[](0);
     } else {
         uint256[] memory result = new uint256[](tokenCount);
-        uint256 totalCats = this.totalSupply();
+        uint256 totalCats = totalSupply();
         uint256 resultIndex = 0;
 
         uint256 catId;

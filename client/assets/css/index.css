@@ -169,7 +169,18 @@ svg text {
 .cat1{
   margin: auto;
   height: 18rem;
+  animation: spin 15s infinite
 }
+
+@keyframes spin {
+  0%{ transform: rotate(0deg);}
+  25%{ transform: rotate(0deg);}
+  50%{ transform: rotate(360deg);}
+  75%{ transform: rotate(0deg);}
+  100%{ transform: rotate(0deg);}
+}
+
+
 .ears1{
   top: 0rem;
   position: relative;

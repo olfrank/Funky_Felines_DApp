@@ -2,10 +2,9 @@ var web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
 var token;
 var marketplace;
 var user;
-// var dnaStr = "457896541299";
 
-var contractAddress = "0x702e5F297E4fE0E38041b6D906fe9156040e8233";
-var marketplaceContract = "0x4E485B6AEe283ae0Fa6A08FC5a28E65022673d5C";
+var contractAddress = "0x42Cc0bb0bEa721CA322Ca60116A3f9805e5c891F";
+var marketplaceContract = "0xb8Ca1258B19F056f8C5a60F608c9705a5a35d142";
 var contractOwner;
 
 $(document).ready(function () {
@@ -159,10 +158,10 @@ async function contractCatalog() {
 
 
 //Get cats for breeding that are not selected
-async function breedCats(gender) {
+async function breedCats(gender) { //gender = either male or female
   var arrayId = await token.methods.ownedTokens(ethereum.selectedAddress).call();
   for (i = 0; i < arrayId.length; i++) {
-    breedAppend(arrayId[i], gender)
+    appendBreed(arrayId[i], gender)
   }
 }
 
@@ -183,7 +182,9 @@ async function catOwnership(id) {
 //Appending cats to breed selection
 async function appendBreed(id, gender) {
   var cat = await token.methods.getCat(id).call()
+  console.log(cat[0], id, cat['generation'], gender);
   breedAppend(cat[0], id, cat['generation'], gender)
+  
 }
 
 //Appending cats to breed selection
@@ -201,7 +202,7 @@ async function breed(dadId, mumId) {
 async function catSingle() {
   var id = get_variables().catId
   var cat = await instance.methods.getCat(id).call()
-  singleCat(cat[0], id, cat['generation'])
+  singleCat(cat[0], id, cat['generation']);
 }
 
 async function deleteOffer(id) {
