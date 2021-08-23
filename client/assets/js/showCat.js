@@ -57,13 +57,13 @@ function readyToBreed() {
 
     var mumId = $('#femaleId').val()
     var dadId = $('#maleId').val()
-    
+
     console.log(mumId, dadId);
 
     if (!isEmpty(mumId) && !isEmpty(dadId)) {
         $('#breed').css('filter', 'none')
         $('#breed').prop('disabled', false)
-        $('#breed').attr('onclick', 'breed(" ' + dadId + ' "," ' + mumId + ' ")')
+        $('#breed').attr('onclick', 'breed("'+dadId+'","'+mumId+'")')
         return true;
 
     }

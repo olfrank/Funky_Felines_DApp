@@ -84,3 +84,42 @@ background-color: rgb(240, 158, 144);
     margin: 20px;
 
 }
+
+.featureBox{
+    position: relative;
+    height: 76%;
+    width: 76%;
+    padding-left: 65px;
+    padding-top: 52px;
+    border: 1px solid #f3adad;
+    border-radius: 10px;
+    margin: 10;
+    align-items: center;
+    transition: 0.8s ease-in-out;
+}
+
+#catDNAmale{
+    position: relative;
+    /* margin-left: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    float: left;
+    width: 0%;
+    height: 0%;
+}
+
+#catDNAfemale{
+    position: relative;
+    /* margin-left: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    float: left;
+    width: 0%;
+    height: 0%;
+}

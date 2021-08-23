@@ -64,16 +64,17 @@ footer {
 }
 .featureBox {
     position: relative;
-    height: 60%;
-    width: 100%;
-    padding-left:30px;
-    padding-right:30px;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    height: 76%;
+    width: 76%;
+    padding-left: 65px;
+    padding-top: 52px;
     border: 1px solid #f3adad;
     border-radius: 10px;
-    margin:10px;
+    align-items: center;
     transition: 0.8s ease-in-out;
+    margin: 20;
+    padding-right: 60px;
+
 }
 
 .featureBox h4 {
