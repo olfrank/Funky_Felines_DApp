@@ -169,7 +169,8 @@ svg text {
 .cat1{
   margin: auto;
   height: 18rem;
-  animation: spin 15s infinite
+  animation: spin 15s infinite;
+  
 }
 
 @keyframes spin {

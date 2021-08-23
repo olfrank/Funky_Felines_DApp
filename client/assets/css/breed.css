@@ -75,3 +75,12 @@ background-color: rgb(240, 158, 144);
     background: url('/client/image/maleheadshot.png') no-repeat;
     background-size: contain;
 }
+
+.yell{
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+    background-color: cadetblue;
+    margin: 20px;
+
+}

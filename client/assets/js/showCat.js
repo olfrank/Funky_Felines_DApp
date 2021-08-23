@@ -33,16 +33,23 @@ function selectBreed(dna, id, gen, gender){
     $("#cattributes" + gender).html(Cattributes)
     $('#' + gender).html(body);
 
+
     renderCat(catDna, gender);
     $('#' + gender).addClass('breedSelect')
     $('#' + gender).attr('data-catid', id)
     $('#' + gender).attr('onclick', 'breedCats("' + gender + '")')
+
     $('#catDNA' + gender).html(`
-    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4><input class="hidden" id="` + gender + `Id" type="number" value=` + id + `></span>
+    <span class="badge badge-light">
+        <h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4>
+        <input class = "hidden" id="`+gender+`Id" type="number" value=`+id+`>
+    </span>
     <br>
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
+
     $('#catSelection').modal('hide');
     removeSelection(id, gender)
+    console.log(id, gender)
     readyToBreed()
 }
 
@@ -50,19 +57,21 @@ function readyToBreed() {
 
     var mumId = $('#femaleId').val()
     var dadId = $('#maleId').val()
+    
+    console.log(mumId, dadId);
 
-    if (!empty(mumId) && !empty(dadId)) {
+    if (!isEmpty(mumId) && !isEmpty(dadId)) {
         $('#breed').css('filter', 'none')
         $('#breed').prop('disabled', false)
         $('#breed').attr('onclick', 'breed(" ' + dadId + ' "," ' + mumId + ' ")')
-        return true
-    }else{
-        $('#breed').prop('disabled', true)
-        $('#breed').css('filter', ' grayscale()')
-        return false;
+        return true;
+
     }
-  
+    $('#breed').prop('disabled', true)
+    $('#breed').css('filter', ' grayscale()')
+    return false;
 }
+  
 
 function removeSelection(id, gender){
     var selectionDivFemale = `

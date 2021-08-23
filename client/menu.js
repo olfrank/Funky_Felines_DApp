@@ -67,6 +67,8 @@ function menuHeader(){
     });
     return $_GET;
   }
-  function empty(str) {
-    return (!str || 0 === str.length);
+
+
+  function isEmpty(str) {
+    return (!str || str.length === 0 );
 }

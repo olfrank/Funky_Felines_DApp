@@ -58,7 +58,10 @@ function breed(uint256 _dadId, uint256 _mumId) public {
     //create a new cat with new properties, give it to msg.sender
     require(owns(msg.sender, _dadId) && owns(msg.sender, _mumId), "You must own both cats in order to breed");
     require(_mumId != _dadId, "The cat can't breed itself");
-    uint256 newCatDna = mixDna(_dadId, _mumId);
+    Cat storage dad = cats[_dadId];
+    Cat storage mum = cats[_mumId];
+
+    uint256 newCatDna = mixDna(dad.genes, mum.genes);
     
     uint256 newGen; 
     uint256 mumGen = cats[_mumId].generation;
