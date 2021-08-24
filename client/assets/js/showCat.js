@@ -4,7 +4,8 @@ function appendCat(dna, id, gen){
     var catDna = catDNA(dna);
     catContainer(id);
     renderCat(catDna, id);
-    $('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
+    //$('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
+    $('#catview' + id).css('margin-right', '30px');
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>

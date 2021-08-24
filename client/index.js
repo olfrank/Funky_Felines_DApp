@@ -3,8 +3,8 @@ var token;
 var marketplace;
 var user;
 
-var contractAddress = "0xF18a40630B25592CB423F9a2eEbc22a0Aa0BD8eC";
-var marketplaceContract = "0xa2E48bF4C458BD67B13F95165D927AAf776D7AA9";
+var contractAddress = "0x7B20791070DBa8E866565f8784f1e61d72d1431A";
+var marketplaceContract = "0x37e250df408ED9ceA38F1066EA91cAEcc06684c2";
 var contractOwner;
 
 $(document).ready(function () {
@@ -127,7 +127,7 @@ async function checkOffer(id) {
     return offer
 
   } catch (err) {
-    console.log(err);
+    console.log("checkOffer function", err);
     return
   }
 
@@ -183,7 +183,7 @@ async function catOwnership(id) {
 async function appendBreed(id, gender) {
   var cat = await token.methods.getCat(id).call()
   console.log(cat[0], id, cat['generation'], gender);
-  breedAppend(cat[0], id, cat['generation'], gender)
+  breedAppend(cat[0], id, cat['generation'], gender);
   
 }
 
@@ -192,8 +192,9 @@ async function breed(dadId, mumId) {
   console.log(dadId, mumId);
   try {
     await token.methods.breed(dadId, mumId).send()
+    alertMSG("Congratulations you have successfully created a new little Cat. Your new family member is chilling in the Catalogue page")
   } catch (err) {
-    console.log("function breed: "+err)
+    console.log("breed function index.js: "+err)
   }
 }
 

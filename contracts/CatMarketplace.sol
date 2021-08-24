@@ -6,6 +6,7 @@ import "./ICatMarketplace.sol";
 contract Marketplace is ICatMarketPlace{
 
     Catcontract private _catContract;
+    
 
     struct Offer{
      address payable seller;
@@ -14,21 +15,24 @@ contract Marketplace is ICatMarketPlace{
      uint256 tokenId;
      bool active;
 
- }
+    }
+
     Offer[] offers;
           //tokenId => Offer
     mapping(uint256 => Offer) tokenIdToOffer;
 
-
-    function setKittyContract(address _catContractAddress) external override{
-        _catContract = Catcontract(_catContractAddress);
-    }
-
+    
+    
     constructor(address _catContractAddress){
-        _catContract = Catcontract(_catContractAddress);
-        
+        setKittyContract(_catContractAddress);
+        //_catContract = Catcontract(_catContractAddress);
     }
 
+    function setKittyContract(address _catContractAddress) public override {
+        _catContract = Catcontract(_catContractAddress);
+    }
+
+   
     function getContractAddress() external view returns(address){
         return address(this);
     }
@@ -36,6 +40,9 @@ contract Marketplace is ICatMarketPlace{
 
     function getOffer(uint256 _tokenId) external override view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active){
         Offer storage offer = tokenIdToOffer[_tokenId];
+
+        require(offer.active == true, "Marketplace: There is no active offer for this token");
+        
         return (
             offer.seller,
             offer.price,

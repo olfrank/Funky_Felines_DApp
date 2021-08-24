@@ -199,9 +199,40 @@ var abi = {
           }
         ],
         "name": "breed",
-        "outputs": [],
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
         "stateMutability": "nonpayable",
         "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_dadDna",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_mumDna",
+            "type": "uint256"
+          }
+        ],
+        "name": "mixDna",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
       },
       {
         "inputs": [

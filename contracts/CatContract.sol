@@ -51,57 +51,62 @@ uint256 public gen0Counter;
 
 
 
-function breed(uint256 _dadId, uint256 _mumId) public {
-    //check ownership
-    //check you got the dna
-    //figure out the generation
-    //create a new cat with new properties, give it to msg.sender
+function breed(uint256 _dadId, uint256 _mumId) public returns(uint256){
+
     require(owns(msg.sender, _dadId) && owns(msg.sender, _mumId), "You must own both cats in order to breed");
     Cat storage dad = cats[_dadId];
     Cat storage mum = cats[_mumId];
 
     uint256 newCatDna = mixDna(dad.genes, mum.genes);
     
-    uint256 newGen; 
+    
     uint256 mumGen = mum.generation;
     uint256 dadGen = dad.generation;
+    uint256 kidGen = 0; 
 
-    if(dadGen == mumGen){
-        newGen = mumGen++;
-    }else if(dadGen < mumGen){
-        newGen = dadGen++;
+    if(dadGen < mumGen){
+        kidGen = mumGen+1;
+        kidGen /= 2;
+    }else if(dadGen > mumGen){
+        kidGen = dadGen + 1;
+        kidGen /= 2;
     }else{
-        newGen = (dadGen + mumGen) / 2;
+        kidGen = mumGen + 1;
     }
     
-    _createCat(newCatDna, _mumId, _dadId, newGen, msg.sender);
+    return _createCat(newCatDna, _mumId, _dadId, kidGen, msg.sender);
 }
 
-function mixDna(uint256 _dadDNA, uint256 _mumDNA) internal view returns(uint256){
+
+function mixDna(uint256 _dadDna, uint256 _mumDna) public view returns(uint256){
     uint256[9] memory geneArray;
-    //sudo random number
-    uint16 random = uint16(block.timestamp)%511; //binary between 000000000-111111111
     
+    //uint16 random = uint16(block.timestamp % 511);
+    uint16 random = uint16(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % 511);//binary between 000000000-111111111
+    uint256 i = 1;
     uint256 index = 8;
-    for(uint8 i = 0; i <= 256; i=i*2){ //1, 2, 4, 8, 16, 32, 64, 128, 256 = 9 pairs
-        if(random & i != 0){
-            geneArray[index] = uint16( _mumDNA % 100);
+    
+    for(i=1; i <= 256; i=i*2) {  //1, 2, 4, 8, 16, 32, 64, 128, 256 = 9 pairs
+        if(random & i !=0){
+            geneArray[index] = _mumDna % 100;
         }else{
-            geneArray[index] = uint16( _dadDNA % 100);
+            geneArray[index] = _dadDna % 100;
         }
-            _mumDNA = _mumDNA / 100;//removing the last two digits by moving the decimal point
-            _dadDNA = _dadDNA / 100;
-            index = index -1; 
+        _mumDna = _mumDna / 100;  //removing the last two digits by moving the decimal point
+        _dadDna = _dadDna / 100;
+        
+        if(i != 256){index = index-1;}
     }
+    
     uint256 newGene;
-    for(uint8 i = 0; i < 9; i++){
+    
+    for(i=0; i<9; i++){
         newGene = newGene + geneArray[i];
-        if(i != 8){
+        if(i !=8 ){
             newGene = newGene *100;
         }
-    }
+    } 
     return newGene;
-
 }
 
 function createCatGen0(uint256 _genes)public onlyOwner{
