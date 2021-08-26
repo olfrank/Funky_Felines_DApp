@@ -20,16 +20,18 @@ body {
   width: 100vw;
 }
 
+
+
 svg text {
   
   /* font-family: Lora; */
-  letter-spacing: 5px;
+  letter-spacing: 1px;
   stroke: #f5e49f;
-  font-size: 110px;
-  font-weight: 700;
-  stroke-width: 0.2;
+  font-size: 102px;
+  font-weight: 900;
+  stroke-width: 1;
  
-  animation: textAnimate 5s infinite alternate;
+  animation: textAnimate 10s infinite alternate;
   
 }
 
@@ -211,18 +213,39 @@ svg text {
   position: relative;
   left: 12rem;
 }
+.belly2{
+  background: #344867;
+}
 .body1{
   background: #ebbe76;
 }
 .body2{
-  background: #a8776a;
+  background: #748882;
+  width: 200px;
+    height: 222px;
+    border-radius: 50% 50% 50% 50%;
+    position: absolute;
+    top: 146px;
+    left: 62px;
+}
+.mouth2{
+  background: #344867;
+}
+.feet2{
+  background: #e3a0cc;
+}
+.feet1{
+  background: #000;
+}
+.inner2{
+  background: #e3a0cc;
 }
 .head1{
   background: #ebbe76;
 
 }
 .head2{
-  background: #a8776a;
+  background-color: #748882;
   top: 3rem;
 }
 .head3{
@@ -231,6 +254,7 @@ svg text {
 }
 .left-ear2{
   top: 3rem;
+  background: #748882;
 }
 .left-ear3{
   top: 3rem;
@@ -239,6 +263,7 @@ svg text {
 .right-ear2{
   top: 3rem;
   left: 6rem;
+  background: #748882;
 }
 .right-ear3{
   
@@ -257,9 +282,7 @@ svg text {
 .sleepytransp{
 background: #ffebcd00;
 }
-.foot{
-  background-color: #a8776a;
-}
+
 .paws-div{
   position: relative;
   margin: 0;

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./image/circle-cropped.png" type="image/x-icon">
-    <title>Crypto Cats</title>
+    <link rel="shortcut icon" href="./image/pixelCATTT.png" type="image/x-icon">
+    <title>FUNKY FELINES</title>
 
 
     <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
@@ -23,16 +23,27 @@
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/frontend.css">
+    <link rel="stylesheet" href="assets/css/marketplace.css">
     <!-- Cats -->
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/cats.css">
+    <script src="https://kit.fontawesome.com/8d9e2e73ef.js" crossorigin="anonymous"></script>
+
 
 </head>
 
 <body cz-shortcut-listen="true">
-
+<style>
+    body{
+        background-color: rgb(19, 19, 19);
+    }
+</style>
 
     <div id="menuBar"></div>
+    <div class="container p-5 header1">
+        <h1><i class="fas fa-store"></i> Marketplace <i class="fas fa-tags"></i></h1>
+        <h4>Cats for sale </h4>
+    </div>
 
     <div class="animation-wrapper">
         <div class="particle particle-1"></div>
@@ -40,6 +51,9 @@
     <div class="catHeader">
 
         <div class="container">
+            <div id="catsOnSale">
+
+            </div>
             <div id="singleCat">
 
             </div>
@@ -47,7 +61,7 @@
         </div>
     </div>
 
-    <div class="container middleBox mt-5">
+    <!-- <div class="container middleBox mt-5">
         <div id="catDNA" align="center"></div>
         <br>
         <div class="hidden" align="center" id="buyBox">
@@ -80,7 +94,7 @@
         <br>
         <div id="cattributes"></div>
 
-    </div>
+    </div> -->
 
 
 
@@ -97,15 +111,15 @@
     // when page load fetch the cat
     $(document).ready(function () {
         setTimeout(() => {
-            singleCat()
+            getAllSaleCats()
         }, 1000)
     });
 </script>
-
+<script src="menu.js"></script>
+<script src="assets/js/colors.js"></script>
 <script src="./assets/js/buildCat.js"></script>
 <script src="./assets/js/showCat.js"></script>
-<script src="assets/js/colors.js"></script>
-<script src="menu.js"></script>
+
 
 
 </html>

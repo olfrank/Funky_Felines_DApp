@@ -3,8 +3,8 @@ var token;
 var marketplace;
 var user;
 
-var contractAddress = "0x7B20791070DBa8E866565f8784f1e61d72d1431A";
-var marketplaceContract = "0x37e250df408ED9ceA38F1066EA91cAEcc06684c2";
+var contractAddress = "0xa2E48bF4C458BD67B13F95165D927AAf776D7AA9";
+var marketplaceContract = "0xa41d706Aeb4f41d412d9265D5180dC119EcAd864";
 var contractOwner;
 
 $(document).ready(function () {
@@ -29,7 +29,7 @@ $(document).ready(function () {
           alertMSG('Succesfully Kitty purchase! Now you own this Kitty with TokenId: ' + tokenId, 'success')
         }
         if (eventType == "Create offer") {
-          alert_msg('Successfully Offer set for Kitty id: ' + tokenId, 'success')
+          alertMSG('Successfully Offer set for Kitty id: ' + tokenId, 'success')
           $('#cancelBox').removeClass('hidden')
           $('#cancelBtn').attr('onclick', 'deleteOffer(' + tokenId + ')')
           $('#sellBtn').attr('onclick', '')
@@ -145,15 +145,23 @@ async function catByOwner(address) {
 }
 
 //Gen 0 cats for sale
-async function contractCatalog() {
+async function getAllSaleCats() {
   var arrayId = await marketplace.methods.getAllTokenOnSale().call();
   for (i = 0; i < arrayId.length; i++) {
     if(arrayId[i] != "0"){
-      appendCat(arrayId[i])
+      appendSaleCats(arrayId[i]);
     }    
   }
 }
-
+async function appendSaleCats(id){
+  console.log(id);
+  let cat = await token.methods.getCat(id).call();
+  let offer = await marketplace.methods.getOffer(id).call();
+  let isSeller = offer.seller == ethereum.selectedAddress;
+  let price = web3.utils.fromWei(offer.price, 'ether');
+  console.log(cat.genes, id, cat.generation, isSeller, price);
+  appendCatForBuy(cat.genes, id, isSeller, price);
+}
 
 
 
@@ -184,7 +192,6 @@ async function appendBreed(id, gender) {
   var cat = await token.methods.getCat(id).call()
   console.log(cat[0], id, cat['generation'], gender);
   breedAppend(cat[0], id, cat['generation'], gender);
-  
 }
 
 //Appending cats to breed selection
@@ -198,13 +205,26 @@ async function breed(dadId, mumId) {
   }
 }
 
-
+async function approveCheck(){
+  approved = await token.methods.isApprovedForAll(ethereum.selectedAddress, marketplaceContract).call();
+  if(!approved){
+    alert("In order to sell any token, you need to allow the market place to be the operator for your tokens. \nPlease accept the following transcation first.");
+    token.methods.setApprovalForAll(marketplaceContract, true).send({}, (err, txHash) => {
+      if(err){
+        console.log(err);
+      }else{
+        console.log(txHash);
+      }
+    });
+  }
+}
 
 
 async function catSingle() {
   var id = get_variables().catId
-  var cat = await instance.methods.getCat(id).call()
-  singleCat(cat[0], id, cat['generation']);
+  var cat = await token.methods.getCat(id).call()
+  console.log(cat.genes, id, cat.generation);
+  singleCat(cat.genes, id, cat.generation);
 }
 
 async function deleteOffer(id) {
@@ -217,8 +237,9 @@ async function deleteOffer(id) {
 }
 
 async function sellCat(id) {  
-  var price = $('#catPrice').val()
+  var price = $('#catSellPrice'+id).val()
   var amount = web3.utils.toWei(price, "ether")
+  console.log(amount, id);
   try {
     await marketplace.methods.createOffer(amount,id).send();
   } catch (err) {
@@ -226,13 +247,50 @@ async function sellCat(id) {
   }
 }
 
-async function buyCat(id, price) {
-  var amount = web3.utils.toWei(price, "ether")
-  try {
-    await marketplace.methods.buyCat(id).send({ value: amount });
-  } catch (err) {
-    console.log("buyCat function "+err);
-  }
+
+async function buyCat(id){
+  let offer = await marketplace.methods.getOffer(id).call();
+    marketplace.methods.buyKitty(id).send({value: offer.price}, (err) => {
+    if(err){
+      console.log(err);
+    }else{
+      marketplace.once("MarketTransaction", (err, event) => {
+        if(err){
+          console.log(err);
+        }else{
+          console.log(JSON.stringify(event, null, "    "));
+          alertMSG(`
+            Successfully purchased Doraemon\n
+            owner: ${event.returnValues.owner} \n
+            ID: ${event.returnValues.tokenId} 
+          `);
+          location.reload();
+        }
+      });
+    }
+  });
+}
+
+async function cancelOrder(id){
+  marketplace.methods.removeOffer(id).send({}, (err) => {
+    if(err){
+      console.log(err);
+    }else{
+      marketplace.once("MarketTransaction", (err, event) => {
+        if(err){
+          console.log(err);
+        }else{
+          console.log(JSON.stringify(event, null, "    "));
+          alertMSG(`
+            Successfully removed from marketplace \n
+            owner: ${event.returnValues.owner} \n
+            ID: ${event.returnValues.tokenId} 
+          `);
+          location.reload();
+        }
+      });
+    }
+  });
 }
 
 async function totalCats() {

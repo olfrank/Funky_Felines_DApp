@@ -44,11 +44,11 @@ contract Marketplace is ICatMarketPlace{
         require(offer.active == true, "Marketplace: There is no active offer for this token");
         
         return (
-            offer.seller,
-            offer.price,
-            offer.index,
-            offer.tokenId,
-            offer.active
+            seller = offer.seller,
+            price = offer.price,
+            index = offer.index,
+            tokenId = offer.tokenId,
+            active = offer.active
                 );
     }
 
@@ -75,7 +75,7 @@ contract Marketplace is ICatMarketPlace{
     }
      
     function createOffer(uint256 _price, uint256 _tokenId) public override{
-        require(ownerOfCat(msg.sender, _tokenId));
+        require(ownerOfCat(msg.sender, _tokenId), "You must own the cat you want to sell");
         require(tokenIdToOffer[_tokenId].active == false, "There is currently an active offer");
         require(_catContract.isApprovedForAll(msg.sender, address(this)), "The marketplace contract must be approved to create an offer");
 
@@ -117,19 +117,26 @@ contract Marketplace is ICatMarketPlace{
     function buyKitty(uint256 _tokenId) external override payable{
         Offer memory offer = tokenIdToOffer[_tokenId];
         require(msg.value == offer.price, "The price doesnt match");
-        require(tokenIdToOffer[_tokenId].active == true, "No active orders");
+        require(offer.seller != msg.sender, "Marketplace: Cannot by your own token!");
+        require(offer.active == true, "No active orders");
+        _buyKitty(_tokenId, msg.sender);
+    
+    }
 
-        delete offer;
+    function _buyKitty(uint256 _tokenId, address _buyer) internal {
+        Offer memory offer = tokenIdToOffer[_tokenId];
+        address seller = offer.seller;
+        uint256 price = offer.price;
+        (bool success, ) = payable(seller).call{value: price}("");
+        require(success, "Marketplace: Failed to send funds to the seller");
         offers[offer.index].active = false;
 
         if(offer.price > 0 ){//this is push, todo: make it pull
             offer.seller.transfer(offer.price);
         }
 
-        _catContract.transferFrom(offer.seller, msg.sender, _tokenId);
+        _catContract.transferFrom(seller, _buyer, _tokenId);
 
         emit MarketTransaction("Buy", msg.sender, _tokenId);
-
     }
-
 }

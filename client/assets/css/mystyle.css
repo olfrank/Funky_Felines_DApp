@@ -36,6 +36,7 @@ body {
   /* background: linear-gradient(to top, #e2a16cea, #daafa4ea); */
   background: #e2a16cea;
   
+  
 }
 .cat-breed-btn{
   border-radius: 4px;  
@@ -393,9 +394,7 @@ th {
 
 /* Text size */
 
-h4 {
-  font-size: 1rem;
-}
+
 
 .fs-50 {
   font-size: 50%;

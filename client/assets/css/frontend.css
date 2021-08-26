@@ -5,10 +5,18 @@
     background-size: cover;
     background-position:bottom;
 }
-
+.imageLogo{
+    width: 116px;
+    left: -5px;
+    margin: -32px;
+    position: relative;
+}
 
 .navbar-brand {
-    font-weight: 700;
+    font-weight: 900;
+    letter-spacing: 1px;
+    /* color:rgb(77, 226, 47); */
+    
 }
 
 .nav-link {

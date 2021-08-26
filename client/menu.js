@@ -5,7 +5,7 @@ $(document).ready(function(){
 function menuHeader(){
        var menu = `<nav class="menu navbar navbar-light navbar-expand-md fixed-top bg-ligh p-4">
                     <div class="container">
-                        <a class="navbar-brand" href="index.html"> <img style="width: 60px;" src="./image/circle-croppedfinal.png"/><b style= "font-size: 27px;"> Crypto Cats</b></a>
+                        <a class="navbar-brand" href="index.html"><u style="color: rgb(77, 226, 47);"><b style= "font-size: 32px; color:rgb(248, 12, 189);">FUNKY</b></u></a><img class = "imageLogo" src="./image/pixelCATTT.png"/><a class="navbar-brand" href="index.html"><u style="color: rgb(47, 201, 226);"><b style= "font-size: 32px; color:rgb(186, 12, 248);"> FELINES</b></u></a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                             data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -47,7 +47,15 @@ function menuHeader(){
 }        
 
 
-
+function cancelClick(clickedId){
+    clickedId = parseInt(clickedId);
+    cancelOrder(clickedId);
+  }
+  
+  function buyClick(clickedId){
+    clickedId = parseInt(clickedId);
+    buyCat(clickedId);
+  }
 
 
   function go_to(url) {

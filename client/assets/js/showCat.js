@@ -4,12 +4,41 @@ function appendCat(dna, id, gen){
     var catDna = catDNA(dna);
     catContainer(id);
     renderCat(catDna, id);
-    //$('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId=' + id + '")')
-    $('#catview' + id).css('margin-right', '30px');
+    //$('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId='+id+'")')
+    // $('#catview' + id).attr('onclick', 'catSingle("'+id+'")');
+    $('#catview' + id).css('margin-right', '35px');
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
     <br>
-    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
+    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>
+    
+    <div class = "sellBOX">
+        <button class="btn btn-warning" onclick="showSell(`+id+`)">Sell Cat</button>
+        <div id="sell-div`+id+`" class = "hidden sellForm">
+            <input id="catSellPrice`+id+`" type="number" class="form-control">
+            <button id="confirmSell" class = "btn btn-primary" onclick="sellCat(`+id+`)">Confirm Sell Request</button>
+            <button id="cancelSell" class = "btn btn-danger" onclick="hideSell(`+id+`)">Cancel Sell Request</button>
+        </div>
+    </div>
+    
+    `)
+}
+
+function appendCatForBuy(dna, id, isSeller, price){
+    catContainerForBuy(id, true, isSeller, price);
+    renderCat(catDNA(dna), id);
+    
+    
+}
+
+async function showSell(id){
+    $("#sell-div"+id).removeClass("hidden");
+    await approveCheck();
+    
+}
+async function hideSell(id){
+    $("#sell-div"+id).addClass("hidden");
+    
 }
 
 
@@ -113,6 +142,9 @@ function removeSelection(id, gender){
     }
 }
 
+
+
+
 async function singleCat(dna, id, gen) {
 
     var catDna = catDNA(dna)
@@ -131,35 +163,35 @@ async function singleCat(dna, id, gen) {
     await catOffer(id)
 }
 
-async function catOffer(id) {
+// async function catOffer(id) {
 
-    //Checking if this cat is for Sale
-    var offer = await checkOffer(id)
-    var seller = offer.seller.toLocaleLowerCase()
-    if (offer.onsale == true && seller != user) {
-        $('#buyBox').removeClass('hidden')
-        $('#priceBtn').html('<b>' + offer.price + ' ETH</b>')
-        $('#buyBtn').attr('onclick', 'buyCat(' + id + ',"' + offer.price + '")')
-    }
+//     //Checking if this cat is for Sale
+//     var offer = await checkOffer(id)
+//     var seller = offer.seller.toLocaleLowerCase()
+//     if (offer.onsale == true && seller != ethereum.selectedAddress) {
+//         $('#buyBox').removeClass('hidden')
+//         $('#priceBtn').html('<b>' + offer.price + ' ETH</b>')
+//         $('#buyBtn').attr('onclick', 'buyCat(' + id + ',"' + offer.price + '")')
+//     }
     
-    var ownership = await catOwnership(id)
-    //If user owns the cat
-    if (ownership == true) {        
-        //If is not on sale
-        if (offer.onsale == false) {
-            $('#sellBox').removeClass('hidden')
-            $('#sellBtn').attr('onclick', 'sellCat(' + id + ')')
-        } else {
-            $('#sellBox').removeClass('hidden')
-            $('#cancelBox').removeClass('hidden')
-            $('#cancelBtn').attr('onclick', 'deleteOffer(' + id + ')')
-            $('#sellBtn').addClass('btn-success')
-            $('#sellBtn').html('<b>For sale at:</b>')
-            $('#catPrice').val(offer.price)
-            $('#catPrice').prop('readonly', true)
-        }
-    }
-}
+//     var ownership = await catOwnership(id)
+//     //If user owns the cat
+//     if (ownership == true) {        
+//         //If is not on sale
+//         if (offer.onsale == false) {
+//             $('#sellBox').removeClass('hidden')
+//             $('#sellBtn').attr('onclick', 'sellCat(' + id + ')')
+//         } else {
+//             $('#sellBox').removeClass('hidden')
+//             $('#cancelBox').removeClass('hidden')
+//             $('#cancelBtn').attr('onclick', 'deleteOffer(' + id + ')')
+//             $('#sellBtn').addClass('btn-success')
+//             $('#sellBtn').html('<b>For sale at:</b>')
+//             $('#catPrice').val(offer.price)
+//             $('#catPrice').prop('readonly', true)
+//         }
+//     }
+// }
 
 
 
@@ -197,6 +229,40 @@ function catContainer(id){
         $('#catsDiv').append(catDiv);
     }
 }
+
+function catContainerForBuy(id, isMarket, isSeller, price){
+    
+    var catDiv = `<div id="catview` + id + `">
+                 <div class="marketBox catDiv">
+                    ${catBody(id)}
+                    ${cattributes(id)}
+                 </div>
+                 ${isMarket ? catOffer(isSeller, price, id) : ""}
+                    
+                </div>`
+    var catView = $('#catview' + id)
+    if (!catView.length) {
+        $('#catsOnSale').append(catDiv);
+    }
+}
+
+function catOffer(isSeller, price, id){
+    let buttonDiv;
+    price = price.toString().substring(0, 7);
+    if(isSeller){
+      buttonDiv = `<button type="button" class="btn btn-danger cancel" id="${id}" onClick="cancelClick(this.id)">Cancel</button>`
+    }else{
+      buttonDiv = `<button type="button" class="btn btn-success buy" id="${id}" onClick="buyClick(this.id)">Purchase</button>`
+    }
+  
+    let offerDiv = `
+      <div class="offerBox">
+        <div class="tag"><h5>Price: ${price} ETH</h5></div>
+        <div class="buttons">${buttonDiv}</div>
+      </div>
+    `
+    return offerDiv;
+  }
 
 function catBody(id){
     var single = `  <div class = "cat" id = "newCat`+id+`">

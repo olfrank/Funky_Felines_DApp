@@ -181,26 +181,7 @@ function _createCat(
     }
 
 
-    function transfer(address to, uint256 tokenId) external override{
-        require(to != address(0), "Cannot Send Tokens To This Address");
-        require(to != address(this), "Cannot Send Tokens To This Address");
-        require(owns(msg.sender, tokenId), "You Must Own The Token You Are Sending");
-        _transfer(msg.sender, to, tokenId);
-    }
-
-    function _transfer(address from, address _to, uint256 _tokenId) internal {
-        ownerTokenBalance[_to]++;
-        catIndexToOwner[_tokenId] = _to;
-
-        //(edge case senario) when we mint new cats we dont want to decrease the token count
-        if(from != address (0)) {
-            ownerTokenBalance[from]--;
-            //this makes sure that the approval history for that token is erased
-            delete catIndexToApproved[_tokenId];
-        }
-        emit Transfer(from, _to, _tokenId);
-    }
-
+    
     function owns(address claimant, uint256 _tokenId) internal view returns (bool){
         return catIndexToOwner[_tokenId] == claimant;
     }
@@ -250,10 +231,31 @@ function _createCat(
     }
 
     function transferFrom(address _from, address _to, uint256 _tokenId) external override{
-        require(ownerOrApprovedCheck(msg.sender, _from, _to, _tokenId));
+        require(ownerOrApprovedCheck(msg.sender, _from, _to, _tokenId), "ERC721: Is not approved or owner");
         _transfer(_from, _to, _tokenId);
     }
 
+    function transfer(address to, uint256 tokenId) external override{
+        require(to != address(0), "Cannot Send Tokens To This Address");
+        require(to != address(this), "Cannot Send Tokens To This Address");
+        require(owns(msg.sender, tokenId), "You Must Own The Token You Are Sending");
+        _transfer(msg.sender, to, tokenId);
+    }
+
+    function _transfer(address from, address _to, uint256 _tokenId) internal {
+        ownerTokenBalance[_to]++;
+        catIndexToOwner[_tokenId] = _to;
+
+        //(edge case senario) when we mint new cats we dont want to decrease the token count
+        if(from != address (0)) {
+            ownerTokenBalance[from]--;
+            //this makes sure that the approval history for that token is erased
+            delete catIndexToApproved[_tokenId];
+        }
+        emit Transfer(from, _to, _tokenId);
+    }
+
+    
     function _checkERC721Support(address from, address to, uint256 tokenId, bytes memory data) internal returns(bool){
         if( !isContract(to) ){
             return true; //if it is not a contract return true

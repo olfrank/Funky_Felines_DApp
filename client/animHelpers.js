@@ -68,8 +68,8 @@ function create(){
 
 
                     <div id = "bothFeet" class = "feet">
-                        <div class = "foot-left"></div>
-                        <div class = "foot-right"></div>
+                        <div class = "foot-left feet1"></div>
+                        <div class = "foot-right feet1"></div>
                     </div>
                 </div>`
 
@@ -80,19 +80,19 @@ function create2(){
     var image = `<div class = "cat" id = "newCat">
                     <div class = "ears">
                         <div id = "leftEar" class= "ear left-ear2 movingLeftEar">
-                            <div class = " left-inner-ear"></div>
+                            <div class = " left-inner-ear inner2"></div>
                         </div>
                         <div id = "rightEar" class = "ear right-ear2 movingRightEar">
-                            <div class = "right-inner-ear"></div>
+                            <div class = "right-inner-ear inner2"></div>
                         </div>
                     </div>
 
-                    <div id = "catTail" class = "tail">
+                    <div id = "catTail" class = "tail tail2">
                         <div class = "inner-tail"></div>
                     </div>
 
-                    <div id = "catBody" class = "body body2"></div>
-                    <div id = "catBelly" class = "belly"></div>
+                    <div id = "catBody" class = " body2"></div>
+                    <div id = "catBelly" class = "belly belly2"></div>
                     <div id = "catHead" class = "head head2">
                         <!-- <div class= "head-pattern"></div> -->
                                         <div id="midShape" class="head-shapes">
@@ -117,7 +117,7 @@ function create2(){
                         </div>
 
 
-                        <div class = "mouth"></div>
+                        <div class = "mouth mouth2"></div>
                         <div class = "whiskers">
                             <div id = "rightWhiskers" class = "whiskers-right movingWhiskersRight">
                                 <div class = "whisker1"></div>
@@ -138,8 +138,8 @@ function create2(){
 
 
                     <div id = "bothFeet" class = "feet">
-                        <div class = "foot-left foot"></div>
-                        <div class = "foot-right foot"></div>
+                        <div class = "foot-left feet2"></div>
+                        <div class = "foot-right feet2"></div>
                     </div>
                 </div>`
 
@@ -216,7 +216,7 @@ function title(){
                 
                         <rect x="0" y="0" width="100%" height="100%" fill="url(#polka-dots)"> </rect>
                         <text x="50%" y="60%"  text-anchor="middle"  >
-                            WELCOME TO CRYPTO CATS
+                            WELCOME TO FUNKY FELINES
                         </text>
                         </svg>
                     </div>`
