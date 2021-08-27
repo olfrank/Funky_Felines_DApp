@@ -4,13 +4,11 @@ function appendCat(dna, id, gen){
     var catDna = catDNA(dna);
     catContainer(id);
     renderCat(catDna, id);
-    //$('#catview' + id).attr('onclick', 'go_to("marketplace.html?catId='+id+'")')
-    // $('#catview' + id).attr('onclick', 'catSingle("'+id+'")');
     $('#catview' + id).css('margin-right', '35px');
     $('#catDNA' + id).html(`
-    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
+    <span class="badge badge-light"><p class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</p></span>
     <br>
-    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>
+    <span class="badge badge-light"><p class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</p></span>
     
     <div class = "sellBOX">
         <button class="btn btn-warning" onclick="showSell(`+id+`)">Sell Cat</button>
@@ -24,8 +22,8 @@ function appendCat(dna, id, gen){
     `)
 }
 
-function appendCatForBuy(dna, id, isSeller, price){
-    catContainerForBuy(id, true, isSeller, price);
+function appendCatForBuy(dna, id, gen, isSeller, price){
+    catContainerForBuy(dna, id, true, gen, isSeller, price);
     renderCat(catDNA(dna), id);
     
     
@@ -145,23 +143,23 @@ function removeSelection(id, gender){
 
 
 
-async function singleCat(dna, id, gen) {
+// async function singleCat(dna, id, gen) {
 
-    var catDna = catDNA(dna)
-    //2 build the singleCat into HTML
-    var body = catBody(id)
-    var Cattributes = cattributes(id)
-    $('#cattributes').html(Cattributes)
-    $('#singleCat').html(body)
-    //3 Render the cats CSS style depending on DNA string
-    renderCat(catDna, id)
-    $('#catDNA').html(`
-    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
-    <br>
-    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
+//     var catDna = catDNA(dna)
+//     //2 build the singleCat into HTML
+//     var body = catBody(id)
+//     var Cattributes = cattributes(id)
+//     $('#cattributes').html(Cattributes)
+//     $('#singleCat').html(body)
+//     //3 Render the cats CSS style depending on DNA string
+//     renderCat(catDna, id)
+//     $('#catDNA').html(`
+//     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
+//     <br>
+//     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
     
-    await catOffer(id)
-}
+//     await catOffer(id)
+// }
 
 // async function catOffer(id) {
 
@@ -196,6 +194,57 @@ async function singleCat(dna, id, gen) {
 
 
 
+function catContainer(id){
+    var catDiv = `<div id="catview` + id + `">
+                 <div class="catalogue-box catDiv">
+                    ${catBody(id)}
+                 </div>
+                 <div class="dnaDiv" id="catDNA`+ id + `"></div>
+                    ${cattributes(id)}
+                </div>`
+    var catView = $('#catview' + id)
+    if (!catView.length) {
+        $('#catsDiv').append(catDiv);
+    }
+}
+
+function catContainerForBuy(dna, id, isMarket, gen, isSeller, price){
+    
+    var catDiv = `<div id="catview` + id + `">
+                 <div class="marketBox catDiv">
+                    ${catBody(id)}
+                 </div>
+                 <div class = "container-badge">
+                 <span class="badge badge-light"><p class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</p></span>
+                 <span class="badge badge-light"><p class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</p></span>
+                 </div>
+                 ${isMarket ? catOffer(isSeller, price, id) : ""}
+                </div>`
+    var catView = $('#catview' + id)
+    if (!catView.length) {
+        $('#catsOnSale').append(catDiv);
+    }
+}
+
+function catOffer(isSeller, price, id){
+    console.log(isSeller, price, id);
+    let buttonDiv;
+    price = price.toString().substring(0, 7);
+    if(isSeller){
+      buttonDiv = `<button type="button" class="btn btn-danger cancel" onClick="cancelClick(${id})">Cancel</button>`
+    }else{
+      buttonDiv = `<button type="button" class="btn btn-success buy" onClick="buyClick(${id})">Purchase</button>`
+    }
+  
+    let offerDiv = `
+      <div class="offerBox">
+        <div class="tag"><h5>Price: ${price} ETH</h5></div>
+        <div class="buttons">${buttonDiv}</div>
+      </div>
+    `
+    return offerDiv;
+  }
+
 function catDNA(dnaAttribute){
     var dna = {
         //colors
@@ -215,54 +264,6 @@ function catDNA(dnaAttribute){
     console.log(dna);
     return dna;
 }
-
-function catContainer(id){
-    var catDiv = `<div id="catview` + id + `">
-                 <div class="catalogue-box catDiv">
-                    ${catBody(id)}
-                 </div>
-                 <div class="dnaDiv" id="catDNA`+ id + `"></div>
-                    ${cattributes(id)}
-                </div>`
-    var catView = $('#catview' + id)
-    if (!catView.length) {
-        $('#catsDiv').append(catDiv);
-    }
-}
-
-function catContainerForBuy(id, isMarket, isSeller, price){
-    
-    var catDiv = `<div id="catview` + id + `">
-                 <div class="marketBox catDiv">
-                    ${catBody(id)}
-                    ${cattributes(id)}
-                 </div>
-                 ${isMarket ? catOffer(isSeller, price, id) : ""}
-                    
-                </div>`
-    var catView = $('#catview' + id)
-    if (!catView.length) {
-        $('#catsOnSale').append(catDiv);
-    }
-}
-
-function catOffer(isSeller, price, id){
-    let buttonDiv;
-    price = price.toString().substring(0, 7);
-    if(isSeller){
-      buttonDiv = `<button type="button" class="btn btn-danger cancel" id="${id}" onClick="cancelClick(this.id)">Cancel</button>`
-    }else{
-      buttonDiv = `<button type="button" class="btn btn-success buy" id="${id}" onClick="buyClick(this.id)">Purchase</button>`
-    }
-  
-    let offerDiv = `
-      <div class="offerBox">
-        <div class="tag"><h5>Price: ${price} ETH</h5></div>
-        <div class="buttons">${buttonDiv}</div>
-      </div>
-    `
-    return offerDiv;
-  }
 
 function catBody(id){
     var single = `  <div class = "cat" id = "newCat`+id+`">

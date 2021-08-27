@@ -37,10 +37,13 @@ constructor(){
 
 Cat[] cats;
 //        owner => amount
-mapping(address => uint256) ownerTokenBalance;
+mapping(address => uint256[]) ownerTokenBalance;
 
 //      tokenId => owner of cat
 mapping(uint256 => address) public catIndexToOwner;
+
+//      tokenId => index of owner token list
+mapping(uint256 => uint256) public ownedTokensIndex;
 
 // tokenId => another approved address 
 mapping(uint256 => address) public catIndexToApproved;
@@ -167,8 +170,8 @@ function _createCat(
     }
 
     function balanceOf(address owner) public view override returns (uint256 balance){
-        balance = ownerTokenBalance[owner];
-        return balance;
+        return ownerTokenBalance[owner].length;
+        
     }
 
     function totalSupply() public view override returns (uint256 total){
@@ -242,17 +245,35 @@ function _createCat(
         _transfer(msg.sender, to, tokenId);
     }
 
-    function _transfer(address from, address _to, uint256 _tokenId) internal {
-        ownerTokenBalance[_to]++;
-        catIndexToOwner[_tokenId] = _to;
+    // function _transfer(address from, address _to, uint256 _tokenId) internal {
+    //     ownerTokenBalance[_to]++;
+    //     catIndexToOwner[_tokenId] = _to;
 
-        //(edge case senario) when we mint new cats we dont want to decrease the token count
-        if(from != address (0)) {
-            ownerTokenBalance[from]--;
-            //this makes sure that the approval history for that token is erased
-            delete catIndexToApproved[_tokenId];
-        }
-        emit Transfer(from, _to, _tokenId);
+    //     //(edge case senario) when we mint new cats we dont want to decrease the token count
+    //     if(from != address (0)) {
+    //         ownerTokenBalance[from]--;
+    //         //this makes sure that the approval history for that token is erased
+    //         delete catIndexToApproved[_tokenId];
+    //     }
+    //     emit Transfer(from, _to, _tokenId);
+    // }
+
+    function _transfer(address _from, address _to, uint256 _tokenId) internal {
+        if(_from != address(0)){
+      uint256 lastTokenIndex = balanceOf(_from) - 1;
+      uint256 tokenIndex = ownedTokensIndex[_tokenId];
+      if(tokenIndex != lastTokenIndex){
+        uint256 lastTokenId = ownerTokenBalance[_from][lastTokenIndex];
+        ownerTokenBalance[_from][tokenIndex] = lastTokenId;
+        ownedTokensIndex[lastTokenId] = tokenIndex;
+      }
+      ownerTokenBalance[_from].pop();
+      delete catIndexToApproved[_tokenId];
+    }
+      ownerTokenBalance[_to].push(_tokenId);
+      ownedTokensIndex[_tokenId] = ownerTokenBalance[_to].length - 1;
+      catIndexToOwner[_tokenId] = _to; 
+      emit Transfer(_from, _to, _tokenId);
     }
 
     

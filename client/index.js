@@ -3,8 +3,8 @@ var token;
 var marketplace;
 var user;
 
-var contractAddress = "0xa2E48bF4C458BD67B13F95165D927AAf776D7AA9";
-var marketplaceContract = "0xa41d706Aeb4f41d412d9265D5180dC119EcAd864";
+var contractAddress = "0x37e250df408ED9ceA38F1066EA91cAEcc06684c2";
+var marketplaceContract = "0x152e9862a38688bD966b8Cc6B122A387ac8ecCba";
 var contractOwner;
 
 $(document).ready(function () {
@@ -153,14 +153,15 @@ async function getAllSaleCats() {
     }    
   }
 }
+
 async function appendSaleCats(id){
   console.log(id);
   let cat = await token.methods.getCat(id).call();
   let offer = await marketplace.methods.getOffer(id).call();
-  let isSeller = offer.seller == ethereum.selectedAddress;
+  let isSeller = offer.seller == user;
   let price = web3.utils.fromWei(offer.price, 'ether');
   console.log(cat.genes, id, cat.generation, isSeller, price);
-  appendCatForBuy(cat.genes, id, isSeller, price);
+  appendCatForBuy(cat.genes, id, cat.generation, isSeller, price);
 }
 
 
@@ -208,7 +209,7 @@ async function breed(dadId, mumId) {
 async function approveCheck(){
   approved = await token.methods.isApprovedForAll(ethereum.selectedAddress, marketplaceContract).call();
   if(!approved){
-    alert("In order to sell any token, you need to allow the market place to be the operator for your tokens. \nPlease accept the following transcation first.");
+    alertMSG("In order to sell any token, you need to allow the market place to be the operator for your tokens. \nPlease accept the following transcation first.");
     token.methods.setApprovalForAll(marketplaceContract, true).send({}, (err, txHash) => {
       if(err){
         console.log(err);
@@ -220,12 +221,12 @@ async function approveCheck(){
 }
 
 
-async function catSingle() {
-  var id = get_variables().catId
-  var cat = await token.methods.getCat(id).call()
-  console.log(cat.genes, id, cat.generation);
-  singleCat(cat.genes, id, cat.generation);
-}
+// async function catSingle() {
+//   var id = get_variables().catId
+//   var cat = await token.methods.getCat(id).call()
+//   console.log(cat.genes, id, cat.generation);
+//   singleCat(cat.genes, id, cat.generation);
+// }
 
 async function deleteOffer(id) {
   try {
@@ -241,7 +242,7 @@ async function sellCat(id) {
   var amount = web3.utils.toWei(price, "ether")
   console.log(amount, id);
   try {
-    await marketplace.methods.createOffer(amount,id).send();
+    await marketplace.methods.createOffer(amount, id).send();
   } catch (err) {
     console.log("sellCat function "+err);
   }

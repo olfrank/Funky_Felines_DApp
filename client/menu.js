@@ -5,7 +5,7 @@ $(document).ready(function(){
 function menuHeader(){
        var menu = `<nav class="menu navbar navbar-light navbar-expand-md fixed-top bg-ligh p-4">
                     <div class="container">
-                        <a class="navbar-brand" href="index.html"><u style="color: rgb(77, 226, 47);"><b style= "font-size: 32px; color:rgb(248, 12, 189);">FUNKY</b></u></a><img class = "imageLogo" src="./image/pixelCATTT.png"/><a class="navbar-brand" href="index.html"><u style="color: rgb(47, 201, 226);"><b style= "font-size: 32px; color:rgb(186, 12, 248);"> FELINES</b></u></a>
+                        <a class="navbar-brand" href="index.html"><u style="color: #2DA4A8;"><b style= "font-size: 40px; color:#CF2B52;">FUNKY</b></u></a><img class = "imageLogo" src="./image/catHEAD.png"/><a class="navbar-brand" href="index.html"><u style="color:#CF2B52 ;"><b style= "font-size: 40px; color:#2DA4A8;"> FELINES</b></u></a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                             data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -32,7 +32,7 @@ function menuHeader(){
                                     </li> 
 
                                     <li class="nav-item">
-                                        <button id = "build" class="btn red-btn ml-5" onclick="go_to('katFactory.html')">CREATE A CAT</button>
+                                        <button id = "build" class = "navBtnBuild" onclick="go_to('katFactory.html')">CREATE A CAT</button>
                                     </li>
 
                                 </ul>
@@ -45,7 +45,7 @@ function menuHeader(){
 
     $("#menuBar").html(menu);
 }        
-
+//class="btn red-btn ml-5"
 
 function cancelClick(clickedId){
     clickedId = parseInt(clickedId);

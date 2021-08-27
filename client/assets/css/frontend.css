@@ -1,37 +1,43 @@
 .frontend {
     height: 90vh;
     padding-top: 105px;    
-    /* background: url('../images/banner.png') no-repeat; */
     background-size: cover;
     background-position:bottom;
 }
 .imageLogo{
     width: 116px;
-    left: -5px;
     margin: -32px;
     position: relative;
 }
 
+@font-face{
+    src: url(/client/fonts/bellbottom.ttf);
+    font-family: bellbottom;
+}
+
 .navbar-brand {
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: -2px;
     /* color:rgb(77, 226, 47); */
-    
+    font-family: bellbottom;
 }
 
 .nav-link {
     padding: 17px 55px;
     margin-right: 25px;   
-    font-size: 20px; 
+    font-size: 23px; 
+    
 }
 
 .nav-link b {
     color:#000000;
     transition: 0.2s ease-in;
+    
 }
 
 .nav-link b:hover {
-    color: #ed5f0d;
+    color: #c80ded;
+    
 }
 
 .catGroup { 
@@ -120,19 +126,6 @@ footer {
 }
 
 /* BUTTONS */
-
-.red-btn {
-    background-image: -webkit-linear-gradient(0deg, #f14437 0%, #ed5b0d 99%);
-    color: #ffffff;
-    border-radius: 30px;
-    padding: 17px 55px;
-    font-weight: 600;
-    letter-spacing: 1px;
-  }
-  .red-btn:hover {
-    background-color: #cc3737;
-    color: #ffffff;
-  }
   
  .white-btn {
     background: #ffffff;    

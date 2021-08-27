@@ -20,7 +20,7 @@ contract Marketplace is ICatMarketPlace{
     Offer[] offers;
           //tokenId => Offer
     mapping(uint256 => Offer) tokenIdToOffer;
-
+    mapping (uint256 => uint256) tokenIdToOfferId;
     
     
     constructor(address _catContractAddress){
@@ -73,14 +73,18 @@ contract Marketplace is ICatMarketPlace{
     function ownerOfCat(address theAddress, uint256 theTokenId) internal view returns (bool){
         return (_catContract.ownerOf(theTokenId)== theAddress);
     }
-     
+
     function createOffer(uint256 _price, uint256 _tokenId) public override{
         require(ownerOfCat(msg.sender, _tokenId), "You must own the cat you want to sell");
         require(tokenIdToOffer[_tokenId].active == false, "There is currently an active offer");
         require(_catContract.isApprovedForAll(msg.sender, address(this)), "The marketplace contract must be approved to create an offer");
-
+        _createOffer(_price, _tokenId, msg.sender);
+    }
+     
+    function _createOffer(uint256 _price, uint256 _tokenId, address _seller) internal{
+        
         Offer memory _offer = Offer({
-            seller: payable(msg.sender),
+            seller: payable(_seller),
             price: _price,
             index: offers.length,
             tokenId: _tokenId,
@@ -129,12 +133,14 @@ contract Marketplace is ICatMarketPlace{
         uint256 price = offer.price;
         (bool success, ) = payable(seller).call{value: price}("");
         require(success, "Marketplace: Failed to send funds to the seller");
+        delete offers[tokenIdToOfferId[_tokenId]];
+        delete tokenIdToOffer[_tokenId];
         offers[offer.index].active = false;
 
-        if(offer.price > 0 ){//this is push, todo: make it pull
-            offer.seller.transfer(offer.price);
-        }
-
+        // if(offer.price > 0 ){//this is push, todo: make it pull
+        //     offer.seller.transfer(price);
+        // }
+        
         _catContract.transferFrom(seller, _buyer, _tokenId);
 
         emit MarketTransaction("Buy", msg.sender, _tokenId);

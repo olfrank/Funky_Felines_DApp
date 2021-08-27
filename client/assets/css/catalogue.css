@@ -7,15 +7,14 @@ body{
     margin-top: 12vh;
     margin-bottom: 10vh;
     color:black;
-
 }
 
 .sellBOX{
     position: absolute;
-    margin-top: 48%;
+    margin-top: 55%;
     border-radius: 20px;
-    border: 1px solid black;
-    padding: 30px;
+    left: 90px;
+    padding: 8px;
 }
 
 .catalogue-box{
