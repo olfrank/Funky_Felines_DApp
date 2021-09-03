@@ -8,7 +8,8 @@
 }
 
 .cattributes {
-    padding: 25px;
+    padding: 51px;
+    padding-top: 31px;
     background-color: #d3a7a7;
     border-radius: 10px;
     margin-left: 20px;
@@ -25,4 +26,13 @@
     left:20px;
     bottom: 5px;
 
+}
+
+.gen-badge{
+    position: relative;
+    left: 75px;
+}
+.dna-badge{
+    position: relative;
+    left: 75px;
 }

@@ -134,8 +134,8 @@ contract Marketplace is ICatMarketPlace{
         (bool success, ) = payable(seller).call{value: price}("");
         require(success, "Marketplace: Failed to send funds to the seller");
         delete offers[tokenIdToOfferId[_tokenId]];
-        delete tokenIdToOffer[_tokenId];
-        offers[offer.index].active = false;
+        delete offer;
+        // offers[offer.index].active = false; === recently deleted this 
 
         // if(offer.price > 0 ){//this is push, todo: make it pull
         //     offer.seller.transfer(price);

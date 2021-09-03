@@ -6,16 +6,16 @@ function appendCat(dna, id, gen){
     renderCat(catDna, id);
     $('#catview' + id).css('margin-right', '35px');
     $('#catDNA' + id).html(`
-    <span class="badge badge-light"><p class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</p></span>
+    <span class="gen-badge badge badge-light"><p class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</p></span>
     <br>
-    <span class="badge badge-light"><p class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</p></span>
+    <span class="dna-badge badge badge-light"><p class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</p></span>
     
     <div class = "sellBOX">
-        <button class="btn btn-warning" onclick="showSell(`+id+`)">Sell Cat</button>
-        <div id="sell-div`+id+`" class = "hidden sellForm">
-            <input id="catSellPrice`+id+`" type="number" class="form-control">
-            <button id="confirmSell" class = "btn btn-primary" onclick="sellCat(`+id+`)">Confirm Sell Request</button>
-            <button id="cancelSell" class = "btn btn-danger" onclick="hideSell(`+id+`)">Cancel Sell Request</button>
+        <button id = "sell-btn`+id+`" class="sellBtn" onclick="showSell(`+id+`)">Sell Cat</button>
+        <div id="sell-div`+id+`" class = "hidden sellForm ">
+            <input id="catSellPrice`+id+`" type="number" class="form-control" placeholder="Enter Price in ETH">
+            <button id="confirmSell" class = "btn btn-primary" onclick="sellCat(`+id+`)">Confirm Sell</button>
+            <button id="cancelSell" class = "btn btn-danger" onclick="hideSell(`+id+`)">Cancel Sell</button>
         </div>
     </div>
     
@@ -31,11 +31,14 @@ function appendCatForBuy(dna, id, gen, isSeller, price){
 
 async function showSell(id){
     $("#sell-div"+id).removeClass("hidden");
+    $("#sell-btn"+id).addClass("hidden");
+
     await approveCheck();
     
 }
 async function hideSell(id){
     $("#sell-div"+id).addClass("hidden");
+    $("#sell-btn"+id).removeClass("hidden");
     
 }
 

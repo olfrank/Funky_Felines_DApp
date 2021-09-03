@@ -26,18 +26,15 @@
     padding: 17px 55px;
     margin-right: 25px;   
     font-size: 23px; 
-    
 }
 
 .nav-link b {
     color:#000000;
     transition: 0.2s ease-in;
-    
 }
 
 .nav-link b:hover {
     color: #c80ded;
-    
 }
 
 .catGroup { 

@@ -3,8 +3,8 @@ var token;
 var marketplace;
 var user;
 
-var contractAddress = "0x37e250df408ED9ceA38F1066EA91cAEcc06684c2";
-var marketplaceContract = "0x152e9862a38688bD966b8Cc6B122A387ac8ecCba";
+var contractAddress = "0x907EcC1E7732ba1397CF01E16eD7DaBf2483811d";
+var marketplaceContract = "0x555DDBBfBE210f2D64c55c3C6af2D6D05A999f35";
 var contractOwner;
 
 $(document).ready(function () {
@@ -147,6 +147,7 @@ async function catByOwner(address) {
 //Gen 0 cats for sale
 async function getAllSaleCats() {
   var arrayId = await marketplace.methods.getAllTokenOnSale().call();
+  console.log(arrayId);
   for (i = 0; i < arrayId.length; i++) {
     if(arrayId[i] != "0"){
       appendSaleCats(arrayId[i]);
