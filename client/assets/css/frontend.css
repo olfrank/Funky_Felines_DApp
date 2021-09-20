@@ -87,6 +87,7 @@ footer {
     border-radius: 40px;
     background-color:rgba(223, 55, 55, 0.911);
     padding: 20px;
+    font-size: 20px;
 }
 .featureBox {
     position: relative;

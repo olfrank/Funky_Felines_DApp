@@ -126,9 +126,9 @@ span.pupil-left, span.pupil-right{
     float: left;
     margin-left: 100px;
     box-shadow: inset 0 0px 0 rgb(0 0 0 / 0%);
-    top: -22px;
+    top: -24px;
     left: 23px;
-    transform: rotate(-155deg);
+    transform: rotate(205deg);
 }
 .whisker2{
     position: relative;
@@ -140,9 +140,9 @@ span.pupil-left, span.pupil-right{
     float: left;
     margin-left: 100px;
     box-shadow: inset 0 0px 0 rgb(0 0 0 / 0%);
-    top: -87px;
+    top: -88px;
     left: 23px;
-    transform: rotate( -165deg);
+    transform: rotate(198deg);
 }
 .whisker3{
     position: relative;
@@ -156,7 +156,7 @@ span.pupil-left, span.pupil-right{
     box-shadow: inset 0 0px 0 rgb(0 0 0 / 0%);
     top: -151px;
     left: 20px;
-    transform: rotate( -171deg);
+    transform: rotate( 192deg);
 }
 .whisker4{
     position: relative;
@@ -169,7 +169,7 @@ span.pupil-left, span.pupil-right{
     box-shadow: inset 0 0px 0 rgb(0 0 0 / 0%);
     top: -213px;
     left: -88px;
-    transform: rotate(-460deg);
+    transform: rotate(-99deg);
 }
 .whisker5{
     position: relative;
@@ -316,7 +316,7 @@ span.pupil-left, span.pupil-right{
     left: 96px;
 }
     /* the original egg pattern */
-.head-pattern{
+/* .head-pattern{
     position: absolute;
     display: block;
     width: 51px;
@@ -325,14 +325,14 @@ span.pupil-left, span.pupil-right{
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     top: 0px;
     left: 74px;
-}
+} */
 
 
 
-.head-Shapes {
+.head-shapes {
     position: absolute;
-    left: 92px;
-    height: 48px;
+    left: 93px;
+    height: 35px;
     top: 1px;
     width: 14px;
     background: #ffb74d;
@@ -340,24 +340,24 @@ span.pupil-left, span.pupil-right{
     border-radius: 0 0 50% 50%;
 }
 
- .left_head-Shape {
+ .left_head-shape {
     position: absolute;
     content: '';
     top: 0px;
     width: 14px;
-    height: 35px;
+    height: 25px;
     background: #ffb74d;
-    left: -13px;
+    left: -12px;
     border-radius: 50% 0 50% 50%;
 }
-.right_head-Shape {
+.right_head-shape {
     position: absolute;
     content: '';
     top: 0px;
     width: 14px;
-    height: 35px;
+    height: 25px;
     background: #ffb74d;
-    left: 13px;
+    left: 12px;
     border-radius: 0 50% 50% 50%;
 }
 .sunnies{

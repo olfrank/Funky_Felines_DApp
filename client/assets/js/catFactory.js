@@ -135,12 +135,12 @@ function decorationVariation(num) {
             break
         case 3:
             normaldecoration()
-            $('#patternName').html('Long and Wide')
+            $('#patternName').html('Vertical Spots')
             headPattern2()
             break
         case 4:
             normaldecoration()
-            $('#patternName').html('Tiny')
+            $('#patternName').html('Horizontal Spots')
             headPattern3()
             break
         case 5:
@@ -151,7 +151,7 @@ function decorationVariation(num) {
         
         case 6:
             normaldecoration()
-            $('#patternName').html('Fringe')
+            $('#patternName').html('Third Eye')
             headPattern5()
             break
 
@@ -344,50 +344,50 @@ var rightPupil = document.getElementsByClassName('pupil-right')
 async function normaldecoration() {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
-    $('.head-shapes').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "left": "92px", "border-radius": "0 0 50% 50%" })
-    $('.left_head-shape').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "-13px", "border-radius": "50% 0 50% 50%" })
-    $('.right_head-shape').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "13px", "border-radius": "0 50% 50% 50%" })
+    $('.head-shapes').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "left": "92px", "border-radius": "0 0 50% 50%" })
+    $('.left_head-shape').css({ "transform": "rotate(0deg)", "height": "25px", "width": "14px", "top": "0px", "left": "-12px", "border-radius": "50% 0 50% 50%" })
+    $('.right_head-shape').css({ "transform": "rotate(0deg)", "height": "25px", "width": "14px", "top": "0px", "left": "12px", "border-radius": "0 50% 50% 50%" })
 }
 
-async function headPattern1(){
-    $('.head-shapes').css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
-    $('.left_head-shape').css({ "transform": "rotate(63deg)", "height": "35px", "width": "14px", "top": "-3px", "border-radius": "50% 0 50% 50%" })
-    $('.right_head-shape').css({ "transform": "rotate(-63deg)", "height": "35px", "width": "14px", "top": "-2px", "border-radius": "50% 0 50% 50%" })
+async function headPattern1(){ //spread
+    $('.head-shapes').css({ "top": "0px", "border-radius": "30% 30% 50% 50%", "height": "25px"})
+    $('.left_head-shape').css({ "transform": "rotate(60deg)", "height": "35px", "width": "14px", "top": "-7.1px", "left": "-12px", "border-radius": "50% 0 50% 50%" })
+    $('.right_head-shape').css({ "transform": "rotateY(180deg) rotate(60deg)", "height": "35px", "width": "14px", "top": "-7px", "left": "12px", "border-radius": "50% 0 50% 50%" })
 
 }
 
- async function headPattern2() {
-     await $('.head-shapes').css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
-     await $('.left_head-shape').css({ "transform": "rotate(72deg)", "height": "63px", "width": "14px", "top": "-19px", "left": "-27px", "border-radius": "50% 0 50% 50%" })
-     await $('.right_head-shape').css({ "transform": "rotate(-74deg)", "height": "63px", "width": "14px", "top": "-17px", "left": "27px", "border-radius": "50% 0 50% 50%" })
+ async function headPattern2() { //vertical spots 
+     await $('.head-shapes').css({ "top": "17px", "left": "89px", "border-radius": "50%", "height": "20px", "width": "20px"})
+     await $('.left_head-shape').css({"height": "20px", "width": "20px", "top": "-15px", "left": "0px", "border-radius": "50%" })
+     await $('.right_head-shape').css({"height": "20px", "width": "20px", "top": "15px", "left": "0px", "border-radius": "50%" })
  }
  
- async function headPattern3() {
-     await $('.head-shapes').css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
-     await $('.left_head-shape').css({ "transform": "rotate(30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-     await $('.right_head-shape').css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
+ async function headPattern3() { // spots
+     await $('.head-shapes').css({ "top": "9px", "left": "90px", "border-radius": "50%", "width": "20px", "height": "20px"})
+     await $('.left_head-shape').css({"height": "20px", "width": "20px", "top": "0px", "left": "-17px", "border-radius": "50%" })
+     await $('.right_head-shape').css({"height": "20px", "width": "20px", "top": "0px", "left": "17px", "border-radius": "50%" })
  
-     await $('.head-shapes').css({ "transform": "scale(0.3)"})
-     await $('.head-shapes').css({ "top": "-5"})
    }
  
-   async function headPattern4() {
+   async function headPattern4() { //upside down 
      await $('.head-shapes').css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
-     await $('.left_head-Shape').css({ "transform": "rotate(25deg)", "height": "38px", "width": "14px", "top": "-2px", "left": "-8px" })
-     await $('.right_head-Shape').css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "0px", "left": "9px" })
+     await $('.left_head-shape').css({ "transform": "rotate(18deg)", "height": "38px", "width": "14px", "top": "-1px", "left": "-7px" })
+     await $('.right_head-shape').css({ "transform": "rotate(-18deg)", "height": "38px", "width": "14px", "top": "-1px", "left": "7px" })
      await $('.head-shapes').css({ "transform": "rotate(180deg)"})
      await $('.head-shapes').css({ "top": "4px"})   
    }
  
-   async function headPattern5() {   
-     await $('.left_head-shape').css({"height": "60px", "width": "15px"})
-     await $('.right_head-shape').css({"height": "60px", "width": "15px", "top": "0px"})   
+   async function headPattern5() {    // fringe
+     await $('.head-shapes').css({"height": "20px", "width": "30px", "top": "34px", "left": "84px", "border-radius": "50%"})
+     await $('.right_head-shape').css({"height": "18px", "width": "18px", "top": "1px", "left": "6px", "border-radius": "50%"})  
+     await $('.left_head-shape').css({"border-radius": "50%", "height": "18px", "width": "18px", "top": "1px", "left": "6px"})
+ 
    }
  
-   async function headPattern6() {   
-     await $('.head-shapes').css({ "height": "10px", "width": "5px", "transform": "rotate(-1deg)", "left": "97px"})
-     await $('.left_head-shape').css({"height": "10px", "width": "5px"})
-     await $('.right_head-shape').css({"height": "10px", "width": "5px"})   
+   async function headPattern6() {   // specks
+     await $('.head-shapes').css({ "height": "15px", "width": "10px", "left": "97px"})
+     await $('.left_head-shape').css({"height": "15px", "width": "10px", "top": "0px", "left": "-7px"})
+     await $('.right_head-shape').css({"height": "15px", "width": "10px", "top": "0px", "left": "7px"})   
    }
  
 
