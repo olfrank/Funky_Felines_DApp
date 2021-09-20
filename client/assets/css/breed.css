@@ -7,6 +7,12 @@ p{
     font-size: 20px;
 }
 
+.footerBoudoir{
+    width: 190%;
+    left: -450px;
+    bottom: -138px;
+}
+
 #firstCat{
     position: absolute;
 float: left;

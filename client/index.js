@@ -3,8 +3,8 @@ var token;
 var marketplace;
 var user;
 
-var contractAddress = "0x907EcC1E7732ba1397CF01E16eD7DaBf2483811d";
-var marketplaceContract = "0x555DDBBfBE210f2D64c55c3C6af2D6D05A999f35";
+var contractAddress = "0x702e5F297E4fE0E38041b6D906fe9156040e8233";
+var marketplaceContract = "0x4E485B6AEe283ae0Fa6A08FC5a28E65022673d5C";
 var contractOwner;
 
 $(document).ready(function () {
@@ -220,14 +220,6 @@ async function approveCheck(){
     });
   }
 }
-
-
-// async function catSingle() {
-//   var id = get_variables().catId
-//   var cat = await token.methods.getCat(id).call()
-//   console.log(cat.genes, id, cat.generation);
-//   singleCat(cat.genes, id, cat.generation);
-// }
 
 async function deleteOffer(id) {
   try {

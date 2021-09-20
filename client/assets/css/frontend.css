@@ -62,16 +62,31 @@
     margin-bottom: 120px;
 }
 
+.github{
+    font-size: 40px;
+    color: #000;
+}
+
+.linkedin{
+    font-size: 40px;
+    color: #000;
+}
+
 footer {
     position: relative;
     bottom: 0;
     margin-bottom: 0;
     margin-top: 20%;
     width: 100%;
-    height: 100px;
+    height: 150px;
     padding: 4vh;
-    background: #72DCA1;
-    
+    background: #6f88e8;
+}
+.red-btn{
+    border: none;
+    border-radius: 40px;
+    background-color:rgba(223, 55, 55, 0.911);
+    padding: 20px;
 }
 .featureBox {
     position: relative;
