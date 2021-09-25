@@ -20,6 +20,7 @@ body {
   text-align: center;
   width: 100vw;
 }
+
 @font-face{
   src: url('/client/fonts/VintageKing-vmXJ4.ttf');
   font-family: VintageKing;
@@ -47,7 +48,7 @@ svg text {
   0% {
     stroke-dasharray: 0 50%;
     stroke-dashoffset:  20%;
-    fill:hsla(0, 48%, 45%, 0.856)
+    fill:hsla(290, 48%, 45%, 0.856)
 
   }
   
@@ -336,8 +337,17 @@ background: #ffebcd00;
   float: right;
   top: 16rem;
   left: 9rem;
-
 }
+
+@media screen and(max-width: 768px){
+  .left-side{
+    width: 20%;
+    height: 30%;
+  }
+  
+}
+
+
 .right-side{
   position: relative;
   float: left;
@@ -345,6 +355,13 @@ background: #ffebcd00;
   left: -4rem;
 }
 
+@media screen and(max-width: 768px){
+  .right-side{
+    width: 20%;
+    height: 30%;
+  }
+  
+}
 
 
 
