@@ -21,10 +21,10 @@ body {
   width: 100vw;
 }
 
-@font-face{
+/* @font-face{
   src: url('/client/fonts/VintageKing-vmXJ4.ttf');
   font-family: VintageKing;
-}
+} */
 
 @font-face{
   src: url('/client/fonts/bellbottom.ttf');
@@ -48,14 +48,17 @@ svg text {
   0% {
     stroke-dasharray: 0 50%;
     stroke-dashoffset:  20%;
-    fill:hsla(290, 48%, 45%, 0.856)
+    /* fill:hsla(290, 48%, 45%, 0.856); */
+    
+    fill: #1f9599;
 
   }
   
   100% {
     stroke-dasharray: 50% 0;
     stroke-dashoffset: -20%;
-    fill: #4d2703;
+    /* fill: #4d2703; */
+    fill:#b42940;
   }
   
 }
@@ -150,7 +153,7 @@ svg text {
   background: bisque;
   z-index: 1;
   display: grid;
-  margin-top: 37%;
+  margin-top: 27%;
   margin-bottom: 0;
   /* box-shadow: 5px 5px 100px rgb(0, 0, 0); */
   box-shadow: 0px 0px 50px 20px rgb(0, 153, 255);
