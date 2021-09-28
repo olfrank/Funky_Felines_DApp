@@ -1,12 +1,16 @@
 pragma solidity >=0.4.22 <0.9.0;
 
+
 import "./IERC721.sol";
+// import "./CatMarketplace.sol";
 import "./IERC721Receiver.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
-contract Catcontract is IERC721 {
 
-string private  constant Name = "Purrfect";
-string private constant Symbol = "PURR";
+
+contract Catcontract is IERC721{
+
+string private  constant Name = "FunkyFelines";
+string private constant Symbol = "FUNK";
 uint16 private constant Gen0_Creation_Limit = 10;
 bytes4 internal constant MAGIC_ERC721_RECEIVED= bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
 bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
@@ -51,6 +55,7 @@ mapping(uint256 => address) public catIndexToApproved;
 mapping(address => mapping(address => bool)) private operatorApprovals;
 
 uint256 public gen0Counter;
+
 
 
 
@@ -218,6 +223,13 @@ function _createCat(
         //returns the mapping status for these inputs
         return operatorApprovals[_owner][_operator];
     } 
+
+//     function _deleteApproval(uint256 _tokenId) internal {
+//       require(_owns(msg.sender, _tokenId));
+//       delete catIndexToApproved[_tokenId];
+//   }
+
+
     function safeTransferFrom(address _from, address _to, uint256 _tokenId) external override{
         require(ownerOrApprovedCheck(msg.sender, _from, _to, _tokenId));
         _safeTransfer(_from, _to, _tokenId, "");

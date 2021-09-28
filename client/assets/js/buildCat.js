@@ -107,11 +107,11 @@ function changeDecorationVariation(num, id) {
             headPattern1(id)
             break
         case "3":
-            $('#decorationName'+id).html('Long and Wide')
+            $('#decorationName'+id).html('Vertical Spots')
             headPattern2(id)
             break
         case "4":
-            $('#decorationName'+id).html('Tiny')
+            $('#decorationName'+id).html('Horizontal Spots')
             headPattern3(id)
             break
         case "5":
@@ -119,7 +119,7 @@ function changeDecorationVariation(num, id) {
             headPattern4()
             break
         case "6":
-            $('#decorationName'+id).html('Fringe')
+            $('#decorationName'+id).html('Third Eye')
             headPattern5(id)
             break
         case "7":
@@ -299,50 +299,51 @@ async function eyesType7(id) {//top lid half shut right eye
  function normaldecoration(id) {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
-    $('#midShape'+id).css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "left": "92px", "border-radius": "0 0 50% 50%" })
-    $('#leftShape'+id).css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "-13px", "border-radius": "50% 0 50% 50%" })
-    $('#rightShape'+id).css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "0px", "left": "13px", "border-radius": "0 50% 50% 50%" })
+    $('#midShape'+id).css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "left": "92px", "border-radius": "0 0 50% 50%" })
+    $('#leftShape'+id).css({ "transform": "rotate(0deg)", "height": "25px", "width": "14px", "top": "0px", "left": "-12px", "border-radius": "50% 0 50% 50%" })
+    $('#rightShape'+id).css({ "transform": "rotate(0deg)", "height": "25px", "width": "14px", "top": "0px", "left": "12px", "border-radius": "0 50% 50% 50%" })
 }
 
  function headPattern1(id){
-    $('#midShape'+id).css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
-    $('#leftShape'+id).css({ "transform": "rotate(63deg)", "height": "35px", "width": "14px", "top": "-3px", "border-radius": "50% 0 50% 50%" })
-    $('#rightShape'+id).css({ "transform": "rotate(-63deg)", "height": "35px", "width": "14px", "top": "-2px", "border-radius": "50% 0 50% 50%" })
+    $('#midShape'+id).css({ "top": "0px", "border-radius": "30% 30% 50% 50%", "height": "25px"})
+    $('#leftShape'+id).css({ "transform": "rotate(60deg)", "height": "35px", "width": "14px", "top": "-7.1px", "left": "-12px", "border-radius": "50% 0 50% 50%" })
+    $('#rightShape'+id).css({ "transform": "rotateY(180deg) rotate(60deg)", "height": "35px", "width": "14px", "top": "-7px", "left": "12px", "border-radius": "50% 0 50% 50%" })
 
 }
 
   function headPattern2(id) {
-      $('#midShape'+id).css({ "top": "3px", "border-radius": "30% 30% 50% 50%"})
-      $('#leftShape'+id).css({ "transform": "rotate(72deg)", "height": "63px", "width": "14px", "top": "-19px", "left": "-27px", "border-radius": "50% 0 50% 50%" })
-      $('#rightShape'+id).css({ "transform": "rotate(-74deg)", "height": "63px", "width": "14px", "top": "-17px", "left": "27px", "border-radius": "50% 0 50% 50%" })
+      $('#midShape'+id).css({ "top": "17px", "left": "89px", "border-radius": "50%", "height": "20px", "width": "20px"})
+      $('#leftShape'+id).css({"height": "20px", "width": "20px", "top": "-15px", "left": "0px", "border-radius": "50%" })
+      $('#rightShape'+id).css({"height": "20px", "width": "20px", "top": "15px", "left": "0px", "border-radius": "50%" })
  }
  
   function headPattern3(id) {
-      $('#midShape'+id).css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
-      $('#leftShape'+id).css({ "transform": "rotate(30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-      $('#rightShape'+id).css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
+      $('#midShape'+id).css({ "top": "9px", "left": "90px", "border-radius": "50%", "width": "20px", "height": "20px"})
+      $('#leftShape'+id).css({"height": "20px", "width": "20px", "top": "0px", "left": "-17px", "border-radius": "50%" })
+      $('#rightShape'+id).css({"height": "20px", "width": "20px", "top": "0px", "left": "17px", "border-radius": "50%" })
  
-      $('#midShape'+id).css({ "transform": "scale(0.3)"})
-      $('#midShape'+id).css({ "top": "-5"})
+    //   $('#midShape'+id).css({ "transform": "scale(0.3)"})
+    //   $('#midShape'+id).css({ "top": "-5"})
    }
  
     function headPattern4(id) {
       $('#midShape'+id).css({ "top": "4px", "border-radius": "30% 30% 50% 50%"})
-      $('#leftShape'+id).css({ "transform": "rotate(25deg)", "height": "38px", "width": "14px", "top": "-2px", "left": "-8px" })
-      $('#leftShape'+id).css({ "transform": "rotate(-30deg)", "height": "35px", "width": "14px", "top": "0px", "left": "9px" })
+      $('#leftShape'+id).css({ "transform": "rotate(18deg)", "height": "38px", "width": "14px", "top": "-1px", "left": "-7px" })
+      $('#rightShape'+id).css({ "transform": "rotate(-18deg)", "height": "38px", "width": "14px", "top": "-1px", "left": "7px" })
       $('#midShape'+id).css({ "transform": "rotate(180deg)"})
       $('#midShape'+id).css({ "top": "4px"})   
    }
  
     function headPattern5(id) {   
-      $('#leftShape'+id).css({"height": "60px", "width": "15px"})
-      $('#rightShape'+id).css({"height": "60px", "width": "15px", "top": "0px"})   
+      $('#midShape'+id).css({"height": "20px", "width": "30px", "top": "34px", "left": "84px", "border-radius": "50%"})
+      $('#rightShape'+id).css({"height": "18px", "width": "18px", "top": "1px", "left": "6px", "border-radius": "50%"})  
+      $('#leftShape'+id).css({"border-radius": "50%", "height": "18px", "width": "18px", "top": "1px", "left": "6px"})
    }
  
     function headPattern6(id) {   
-      $('#midShape'+id).css({ "height": "10px", "width": "5px", "transform": "rotate(-1deg)", "left": "97px"})
-      $('#leftShape'+id).css({"height": "10px", "width": "5px"})
-      $('#rightShape'+id).css({"height": "10px", "width": "5px"})   
+      $('#midShape'+id).css({ "height": "15px", "width": "10px", "left": "97px"})
+      $('#leftShape'+id).css({"height": "15px", "width": "10px", "top": "0px", "left": "-7px"})
+      $('#rightShape'+id).css({"height": "15px", "width": "10px", "top": "0px", "left": "7px"})  
    }
  
 

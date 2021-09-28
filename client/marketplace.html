@@ -75,6 +75,17 @@
 
 
 <script>
+
+    function cancelClick(clickedId){
+    clickedId = parseInt(clickedId);
+    cancelOrder(clickedId);
+  }
+  
+  function buyClick(clickedId){
+    clickedId = parseInt(clickedId);
+    buyCat(clickedId);
+  }
+
     // when page load fetch the cat
     $(document).ready(function () {
         setTimeout(() => {

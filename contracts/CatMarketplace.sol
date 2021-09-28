@@ -1,9 +1,9 @@
 pragma solidity >=0.4.22 <0.9.0;
 
-import "./Catcontract.sol";
+import "./CatContract.sol";
 import "./ICatMarketplace.sol";
 
-contract Marketplace is ICatMarketPlace{
+contract CatMarketplace is ICatMarketPlace{
 
     Catcontract private _catContract;
     
@@ -102,12 +102,29 @@ contract Marketplace is ICatMarketPlace{
     * Emits the MarketTransaction event with txType "Remove offer"
     * Requirement: Only the seller of _tokenId can remove an offer.
      */
-    function removeOffer(uint256 _tokenId) external override{
-        require(tokenIdToOffer[_tokenId].seller == msg.sender, "You need to be the seller of that cat");
+    function removeOffer(uint256 _tokenId) public override{
+        // require(owns(msg.sender, _tokenId), "the user does not own the token");
+        Offer memory offer = tokenIdToOffer[_tokenId];
+        require(offer.seller == msg.sender, "You need to be the seller of that cat");
+        
+        // delete offers[tokenIdToOfferId[_tokenId]];
+        // delete tokenIdToOffer[_tokenId];
+        // _deleteApproval(_tokenId);
 
+        _removeOffer(_tokenId, msg.sender);
+        
+    }
+
+    function _removeOffer(uint256 _tokenId, address _seller) internal {
+        uint256 targetIndex = tokenIdToOffer[_tokenId].index;
+        uint256 lastIndex = offers.length - 1;
+        if(lastIndex > 0){
+            offers[targetIndex] = offers[lastIndex];
+            offers[targetIndex].index = targetIndex;
+            tokenIdToOffer[offers[targetIndex].tokenId] = offers[targetIndex];
+        }
+        offers.pop();
         delete tokenIdToOffer[_tokenId];
-        offers[tokenIdToOffer[_tokenId].index].active = false;
-
         emit MarketTransaction("Remove offer", msg.sender, _tokenId);
     }
 
@@ -133,15 +150,15 @@ contract Marketplace is ICatMarketPlace{
         uint256 price = offer.price;
         (bool success, ) = payable(seller).call{value: price}("");
         require(success, "Marketplace: Failed to send funds to the seller");
-        delete offers[tokenIdToOfferId[_tokenId]];
-        delete offer;
+        _catContract.transferFrom(seller, _buyer, _tokenId);
+        removeOffer(_tokenId);
         // offers[offer.index].active = false; === recently deleted this 
 
         // if(offer.price > 0 ){//this is push, todo: make it pull
         //     offer.seller.transfer(price);
         // }
         
-        _catContract.transferFrom(seller, _buyer, _tokenId);
+        
 
         emit MarketTransaction("Buy", msg.sender, _tokenId);
     }

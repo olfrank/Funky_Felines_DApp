@@ -25,8 +25,6 @@ function appendCat(dna, id, gen){
 function appendCatForBuy(dna, id, gen, isSeller, price){
     catContainerForBuy(dna, id, true, gen, isSeller, price);
     renderCat(catDNA(dna), id);
-    
-    
 }
 
 async function showSell(id){
@@ -161,7 +159,7 @@ function catContainer(id){
 }
 
 function catContainerForBuy(dna, id, isMarket, gen, isSeller, price){
-    
+    console.log(dna, id, isMarket, gen, isSeller, price);
     var catDiv = `<div id="catview` + id + `">
                  <div class="marketBox catDiv">
                     ${catBody(id)}

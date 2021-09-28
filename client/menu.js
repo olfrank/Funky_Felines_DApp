@@ -47,15 +47,7 @@ function menuHeader(){
 }        
 //class="btn red-btn ml-5"
 
-function cancelClick(clickedId){
-    clickedId = parseInt(clickedId);
-    cancelOrder(clickedId);
-  }
-  
-  function buyClick(clickedId){
-    clickedId = parseInt(clickedId);
-    buyCat(clickedId);
-  }
+
 
 
   function go_to(url) {

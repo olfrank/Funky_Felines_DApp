@@ -377,10 +377,11 @@ async function headPattern1(){ //spread
      await $('.head-shapes').css({ "top": "4px"})   
    }
  
-   async function headPattern5() {    // fringe
+   async function headPattern5() {    // third eye
      await $('.head-shapes').css({"height": "20px", "width": "30px", "top": "34px", "left": "84px", "border-radius": "50%"})
-     await $('.right_head-shape').css({"height": "18px", "width": "18px", "top": "1px", "left": "6px", "border-radius": "50%"})  
      await $('.left_head-shape').css({"border-radius": "50%", "height": "18px", "width": "18px", "top": "1px", "left": "6px"})
+     await $('.right_head-shape').css({"height": "18px", "width": "18px", "top": "1px", "left": "6px", "border-radius": "50%"})  
+     
  
    }
  

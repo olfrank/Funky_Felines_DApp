@@ -108,7 +108,7 @@ async function catAppend(id) {
 }
 
 
-async function checkOffer(id) {
+async function checkOffer(id){
 
   let result;
   try {
@@ -156,10 +156,14 @@ async function getAllSaleCats() {
 }
 
 async function appendSaleCats(id){
+  let user = ethereum.selectedAddress;
+  console.log(user);
   console.log(id);
   let cat = await token.methods.getCat(id).call();
   let offer = await marketplace.methods.getOffer(id).call();
-  let isSeller = offer.seller == user;
+  let sellerAdd = offer.seller;
+  let seller = sellerAdd.toLowerCase();
+  let isSeller = seller == user;
   let price = web3.utils.fromWei(offer.price, 'ether');
   console.log(cat.genes, id, cat.generation, isSeller, price);
   appendCatForBuy(cat.genes, id, cat.generation, isSeller, price);
@@ -243,7 +247,9 @@ async function sellCat(id) {
 
 
 async function buyCat(id){
+  console.log(id);
   let offer = await marketplace.methods.getOffer(id).call();
+  console.log(offer)
     marketplace.methods.buyKitty(id).send({value: offer.price}, (err) => {
     if(err){
       console.log(err);
@@ -254,7 +260,7 @@ async function buyCat(id){
         }else{
           console.log(JSON.stringify(event, null, "    "));
           alertMSG(`
-            Successfully purchased Doraemon\n
+            Successfully purchased a Funky Feline\n
             owner: ${event.returnValues.owner} \n
             ID: ${event.returnValues.tokenId} 
           `);
