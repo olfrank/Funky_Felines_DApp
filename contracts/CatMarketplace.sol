@@ -20,6 +20,7 @@ contract CatMarketplace is ICatMarketPlace{
     Offer[] offers;
           //tokenId => Offer
     mapping(uint256 => Offer) tokenIdToOffer;
+
     mapping (uint256 => uint256) tokenIdToOfferId;
     
     
@@ -52,20 +53,31 @@ contract CatMarketplace is ICatMarketPlace{
                 );
     }
 
-    function getAllTokenOnSale() external override view  returns(uint256[] memory listOfOffers){
-        if(offers.length == 0){
-            return new uint256[](0);//return empty array
-        }else{
-            uint256[] memory result = new uint256[](offers.length);
-            uint256 offerId;
-            for(offerId = 0; offerId < offers.length; offerId++){
-                if(offers[offerId].active == true){
-                    result[offerId] = offers[offerId].tokenId;
-                }
-            }
-            return result;
+    function getAllTokenOnSale() external override view returns(uint256[] memory){
+        uint256 numOfOffers = offers.length;
+        uint256[] memory listOfOffers = new uint256[](numOfOffers);
+
+        for(uint i = 0; i < numOfOffers; i++){
+            listOfOffers[i] = offers[i].tokenId;
         }
+
+        return listOfOffers;
     }
+
+    // function getAllTokenOnSale() external override view  returns(uint256[] memory listOfOffers){
+    //     if(offers.length == 0){
+    //         return new uint256[](0);//return empty array
+    //     }else{
+    //         uint256[] memory result = new uint256[](offers.length);
+    //         uint256 offerId;
+    //         for(offerId = 0; offerId < offers.length; offerId++){
+    //             if(offers[offerId].active == true){
+    //                 result[offerId] = offers[offerId].tokenId;
+    //             }
+    //         }
+    //         return result;
+    //     }
+    // }
 
     //* Requirement: There can only be one active offer for a token at a time.
     //* Requirement: Marketplace contract (this) needs to be an approved operator when the offer is created.
@@ -103,16 +115,13 @@ contract CatMarketplace is ICatMarketPlace{
     * Requirement: Only the seller of _tokenId can remove an offer.
      */
     function removeOffer(uint256 _tokenId) public override{
-        // require(owns(msg.sender, _tokenId), "the user does not own the token");
         Offer memory offer = tokenIdToOffer[_tokenId];
         require(offer.seller == msg.sender, "You need to be the seller of that cat");
         
         // delete offers[tokenIdToOfferId[_tokenId]];
         // delete tokenIdToOffer[_tokenId];
-        // _deleteApproval(_tokenId);
 
-        _removeOffer(_tokenId, msg.sender);
-        
+         _removeOffer(_tokenId, msg.sender);
     }
 
     function _removeOffer(uint256 _tokenId, address _seller) internal {
@@ -125,7 +134,7 @@ contract CatMarketplace is ICatMarketPlace{
         }
         offers.pop();
         delete tokenIdToOffer[_tokenId];
-        emit MarketTransaction("Remove offer", msg.sender, _tokenId);
+        emit MarketTransaction("Remove offer", _seller, _tokenId);
     }
 
     /**

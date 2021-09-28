@@ -181,9 +181,9 @@ function catOffer(isSeller, price, id){
     let buttonDiv;
     price = price.toString().substring(0, 7);
     if(isSeller){
-      buttonDiv = `<button type="button" class="btn btn-danger cancel" onClick="cancelClick(${id})">Cancel</button>`
+      buttonDiv = `<button type="button" class="btn btn-danger cancel" onClick="cancelClick(`+id+`)">Cancel</button>`
     }else{
-      buttonDiv = `<button type="button" class="btn btn-success buy" onClick="buyClick(${id})">Purchase</button>`
+      buttonDiv = `<button type="button" class="btn btn-success buy" onClick="buyClick(`+id+`)">Purchase</button>`
     }
   
     let offerDiv = `

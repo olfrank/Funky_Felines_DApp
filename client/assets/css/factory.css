@@ -30,9 +30,15 @@
 
 .gen-badge{
     position: relative;
-    left: 75px;
+    left: 25px;
+    top: 2;
+    border-radius: 10px;
+    padding-top: 6px;
 }
 .dna-badge{
     position: relative;
-    left: 75px;
+    left: 24px;
+    top: 2;
+    padding-top: 6px;
+    border-radius: 10px;
 }

@@ -3,57 +3,20 @@ var token;
 var marketplace;
 var user;
 
-var contractAddress = "0x702e5F297E4fE0E38041b6D906fe9156040e8233";
-var marketplaceContract = "0x4E485B6AEe283ae0Fa6A08FC5a28E65022673d5C";
+var contractAddress = "0x6F01B33613F8BC8A1308DBf24Ace3530E2784945";
+var marketplaceContract = "0xa19447cbcEf33edaf14380792Dee8f8763fa02d8";
 var contractOwner;
 
 $(document).ready(function () {
   window.ethereum.enable().then(function (accounts) {
     token = new web3.eth.Contract(abi.catContract, contractAddress, { from: accounts[0] });
     marketplace = new web3.eth.Contract(abi.marketplace, marketplaceContract, { from: accounts[0] });
-    // token.methods.owner().call().then(test => {
-    //   contractOwner = test;
-    // });
+    
     user = accounts[0];
-    console.log("Cat Contract instance: "+ token);
-    console.log("Marketplace instance: "+ marketplace);
+    // console.log("Cat Contract instance: "+ token);
+    // console.log("Marketplace instance: "+ marketplace);
     myCats();
 
-
-    marketplace.events.MarketTransaction()
-      .on('data', (event) => {
-        console.log(event);
-        var eventType = event.returnValues["TxType"].toString()
-        var tokenId = event.returnValues["tokenId"]
-        if (eventType == "Buy") {
-          alertMSG('Succesfully Kitty purchase! Now you own this Kitty with TokenId: ' + tokenId, 'success')
-        }
-        if (eventType == "Create offer") {
-          alertMSG('Successfully Offer set for Kitty id: ' + tokenId, 'success')
-          $('#cancelBox').removeClass('hidden')
-          $('#cancelBtn').attr('onclick', 'deleteOffer(' + tokenId + ')')
-          $('#sellBtn').attr('onclick', '')
-          $('#sellBtn').addClass('btn-warning')
-          $('#sellBtn').html('<b>For sale at:</b>')
-          var price = $('#catPrice').val()
-          $('#catPrice').val(price)
-          $('#catPrice').prop('readonly', true)
-
-          
-        }
-        if (eventType == "Remove offer") {
-          alertMSG('Successfully Offer remove for Kitty id: ' + tokenId, 'success')
-          $('#cancelBox').addClass('hidden')
-          $('#cancelBtn').attr('onclick', '')          
-          $('#catPrice').val('')
-          $('#catPrice').prop('readonly', false)
-          $('#sellBtn').removeClass('btn-warning')
-          $('#sellBtn').addClass('btn-success')
-          $('#sellBtn').html('<b>Sell me</b>')
-          $('#sellBtn').attr('onclick', 'sellCat(' + tokenId + ')')          
-        }
-      })
-      .on('error', console.error);
   });
 
 });
@@ -103,6 +66,7 @@ async function myCats() {
 
 //Appending cats for catalog
 async function catAppend(id) {
+  console.log(id)
   var cat = await token.methods.getCat(id).call()
   appendCat(cat.genes, id, cat.generation)
 }
@@ -135,7 +99,6 @@ async function checkOffer(id){
 
 // Get all the kitties from address
 async function catByOwner(address) {
-
   let result;
   try {
     result = await token.methods.ownedTokens(address).call();
@@ -144,21 +107,19 @@ async function catByOwner(address) {
   }
 }
 
-//Gen 0 cats for sale
+//cats for sale
 async function getAllSaleCats() {
   var arrayId = await marketplace.methods.getAllTokenOnSale().call();
   console.log(arrayId);
   for (i = 0; i < arrayId.length; i++) {
-    if(arrayId[i] != "0"){
       appendSaleCats(arrayId[i]);
-    }    
+     
   }
 }
 
 async function appendSaleCats(id){
-  let user = ethereum.selectedAddress;
-  console.log(user);
   console.log(id);
+  let user = ethereum.selectedAddress;
   let cat = await token.methods.getCat(id).call();
   let offer = await marketplace.methods.getOffer(id).call();
   let sellerAdd = offer.seller;
@@ -250,7 +211,7 @@ async function buyCat(id){
   console.log(id);
   let offer = await marketplace.methods.getOffer(id).call();
   console.log(offer)
-    marketplace.methods.buyKitty(id).send({value: offer.price}, (err) => {
+    await marketplace.methods.buyKitty(id).send({value: offer.price}, (err) => {
     if(err){
       console.log(err);
     }else{
@@ -272,7 +233,7 @@ async function buyCat(id){
 }
 
 async function cancelOrder(id){
-  marketplace.methods.removeOffer(id).send({}, (err) => {
+  await marketplace.methods.removeOffer(id).send({}, (err) => {
     if(err){
       console.log(err);
     }else{
@@ -298,120 +259,3 @@ async function totalCats() {
 
   return cats;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//this line will connect us to the Ethereum blockchain 
-//and we can access it through this variable
-// var web3 = new Web3(Web3.givenProvider);
-
-//contract instance
-// var instance;
-// var marketplaceInstance;
-// var user;
-
-// var contractAddress = "0x907EcC1E7732ba1397CF01E16eD7DaBf2483811d";
-
-// var marketplaceAddress = "0x555DDBBfBE210f2D64c55c3C6af2D6D05A999f35";
-
-// $(document).ready(function(){
-//     window.ethereum.enable().then(function(accounts){
-//         instance = new web3.eth.Contract(abi.catContract, contractAddress, {from: accounts[0]})
-//         // marketplaceInstance = new web3.eth.Contract(abi.marketplace, marketplaceAddress, {from: accounts[0]})
-
-//         user = accounts[0];
-
-//         console.log(instance);
-        
-        
-        // marketplaceInstance.events.MarketTransaction()
-        
-//     })
-// });
-
-// function createCat(){
-//     var dnaStr = getDna();
-//     instance.methods.createCatGen0(dnaStr).send({}, function(error, txHash){
-//         if(error)
-//             console.log(err);
-//         else{
-//             console.log(txHash)
-//             alert("Transaction has been successfully sent");
-//             instance.events.Birth().on('data', function(event){
-//                 console.log(event);
-//                 let owner = event.returnValues.owner;
-//                 console.log(owner);
-//                 let catId = event.returnValues.catId;
-//                 console.log(catId);
-//                 let mumId = event.returnValues.mumId;
-//                 console.log(mumId);
-//                 let dadId = event.returnValues.dadId;
-//                 console.log(dadId);
-//                 let genes = event.returnValues.genes;
-//                 console.log(genes);
-    
-//                 $("#catCreated").css("display", "block");
-//                 $("#catCreated").text( "CatId: " + catId + 
-//                                        "Owner: " + owner + 
-//                                        "MumId: " + mumId + 
-//                                        "DadId: " + dadId +
-//                                        "Genes: " + genes );
-    
-//             }).on('error', console.error)
-//         }
-//     })
-// }
-
-// async function checkOffer(id){
-//     var offer = await instance.methods.getOffer(id).call();
-//     var price = offer['price'];
-//     var seller = offer['seller'];
-//     var onsale = false;
-
-//     if(price > 0){
-//         onsale = true;
-//     }
-
-//     price = Web3.utils.fromWei(price, 'ether');
-//     var offer = { seller: seller, price: price, onsale: onsale }
-//     return offer
-// }
-
-
-

@@ -609,6 +609,7 @@ var abi = {
       }
     ],
   
+
   marketplace: [
     {
       "inputs": [
@@ -717,7 +718,7 @@ var abi = {
       "outputs": [
         {
           "internalType": "uint256[]",
-          "name": "listOfOffers",
+          "name": "",
           "type": "uint256[]"
         }
       ],
