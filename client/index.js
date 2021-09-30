@@ -3,8 +3,8 @@ var token;
 var marketplace;
 var user;
 
-var contractAddress = "0x6F01B33613F8BC8A1308DBf24Ace3530E2784945";
-var marketplaceContract = "0xa19447cbcEf33edaf14380792Dee8f8763fa02d8";
+var contractAddress = "0x702e5F297E4fE0E38041b6D906fe9156040e8233";
+var marketplaceContract = "0x4E485B6AEe283ae0Fa6A08FC5a28E65022673d5C";
 var contractOwner;
 
 $(document).ready(function () {

@@ -158,6 +158,8 @@ function catContainer(id){
     }
 }
 
+
+
 function catContainerForBuy(dna, id, isMarket, gen, isSeller, price){
     console.log(dna, id, isMarket, gen, isSeller, price);
     var catDiv = `<div id="catview` + id + `">
@@ -175,6 +177,9 @@ function catContainerForBuy(dna, id, isMarket, gen, isSeller, price){
         $('#catsOnSale').append(catDiv);
     }
 }
+
+
+
 
 function catOffer(isSeller, price, id){
     console.log(isSeller, price, id);

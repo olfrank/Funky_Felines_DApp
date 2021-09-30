@@ -17,6 +17,25 @@ body {
     
 }
 
+/* .gen-dna-breed{
+ font-size: 1rem;
+ letter-spacing: 3px;
+ 
+}
+
+.gen-dna-badge{
+  display: inline-block;
+  position: relative;
+  left: -40;
+  padding: .25em .4em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+  color: #212529;
+  background-color: #f8f9fa;
+} */
+
 .navbar-light {
   /* background: #e2a16cea; */
   /* background: linear-gradient(to top, #e2a16cea, #daafa4ea); */
@@ -112,7 +131,7 @@ body {
 
 
 .fit-content {
-  width: fit-content;
+  width: 385px;
 }
 
 html {

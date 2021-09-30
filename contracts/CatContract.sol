@@ -89,10 +89,11 @@ function breed(uint256 _dadId, uint256 _mumId) public returns(uint256){
 function mixDna(uint256 _dadDna, uint256 _mumDna) public view returns(uint256){
     uint256[9] memory geneArray;
     
-    //uint16 random = uint16(block.timestamp % 511);
-    uint16 random = uint16(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % 511);//binary between 000000000-111111111
+    uint16 random = uint16(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % 511);//binary between 0 = 000000000   511 = 111111111
     uint256 i = 1;
-    uint256 index = 8;
+    uint256 index = 8; 
+    
+    //  random no. in binary =  011010010
     
     for(i=1; i <= 256; i=i*2) {  //1, 2, 4, 8, 16, 32, 64, 128, 256 = 9 pairs
         if(random & i !=0){
@@ -103,14 +104,18 @@ function mixDna(uint256 _dadDna, uint256 _mumDna) public view returns(uint256){
         _mumDna = _mumDna / 100;  //removing the last two digits by moving the decimal point
         _dadDna = _dadDna / 100;
         
-        if(i != 256){index = index-1;}
+        if(i != 256){index = index-1;} //move to the next index in the array 
     }
     
     uint256 newGene;
+
+    //[11, 22, 33, 44, 55, 66, 77, 88, 99]
+    // 112233445566778899
+    
     
     for(i=0; i<9; i++){
         newGene = newGene + geneArray[i];
-        if(i !=8 ){
+        if( i !=8 ){
             newGene = newGene *100;
         }
     } 
