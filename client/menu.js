@@ -32,7 +32,7 @@ function menuHeader(){
                                     </li> 
 
                                     <li class="nav-item">
-                                        <button id = "build" class = "navBtnBuild" onclick="go_to('katFactory.html')">CREATE A CAT</button>
+                                        <button id = "build" class = "navBtnBuild" onclick="go_to('catFactory.html')">CREATE A CAT</button>
                                     </li>
 
                                 </ul>
